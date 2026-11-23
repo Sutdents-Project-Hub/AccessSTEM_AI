@@ -62,6 +62,8 @@
 
 本機待審材料位於 `evidence/raw/waicy-submission-draft/`，包含六頁英文 PDF 與可編修 HTML、167 字的表單短介、教材核對單、英文入口實機驗收證據。正式 PDF 需要確認團隊貢獻、公開 Demo 與對話網址，再重印並逐個開啟兩條外部連結。
 
+有八張可放入英文 PDF 的實拍截圖，包含六張顯示真實 OpenAI 回覆的畫面。[逐張截圖與英文圖說](assets/waicy-screenshots/WAICY-screenshot-index.md) · [整包下載（ZIP）](assets/waicy-screenshots/AccessSTEM_AI-WAICY-screenshots-2026-11-23.zip)
+
 ```text
 Live chatbot URL：待建立與匿名驗收
 Final real chat history URL：待建立與匿名驗收
