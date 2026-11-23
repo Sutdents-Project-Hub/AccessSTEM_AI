@@ -1,22 +1,16 @@
 "use client";
 
-import { ArrowUp, BookOpen, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowUp, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { materialSourceLabel } from "@/lib/material-sources";
+import { englishErrors, tutorCopy, type Language } from "./workspace-copy";
 import { CHAT_LIMITS, type ChatAnswer, type ChatMessage, type ChatRequest, type ChatResponse, type LearnerPreferences } from "@/lib/chat-contract";
 
 export type Material =
   | { chartId: string; userDescription: null }
   | { chartId: null; userDescription: string };
 
-type Round = { id: string; question: string; answer: ChatAnswer; educator: boolean };
-
-const starterQuestions = [
-  "先說圖表的全貌",
-  "從座標軸說起",
-  "只給我一個提示",
-];
-const followUps = ["換一種方式解釋", "只給我下一步提示", "出一題讓我試答"];
-const claimLabels = { given: "已知資料", derived: "數學推導", unknown: "待確認" };
+type Round = { id: string; question: string; answer: ChatAnswer; educator: boolean; hint: boolean; language: Language };
 
 function tutorHistory(rounds: Round[], characterBudget: number): ChatMessage[] {
   const history: ChatMessage[] = [];
@@ -30,50 +24,72 @@ function tutorHistory(rounds: Round[], characterBudget: number): ChatMessage[] {
   return history;
 }
 
-function TutorAnswer({ round }: { round: Round }) {
+function TutorAnswer({ round, language, onFollowUp }: {
+  round: Round;
+  language: Language;
+  onFollowUp?: (question: string) => void;
+}) {
+  const copy = tutorCopy[language];
   const [copyMessage, setCopyMessage] = useState("");
   const { answer } = round;
+  const nextQuestion = answer.nextQuestion;
 
   async function copyDraft() {
     const draft = [
-      "AI 教學草稿，使用前請核對",
+      tutorCopy[round.language].draft,
       answer.summary,
       ...answer.sections.map(({ heading, text }) => `${heading}\n${text}`),
       answer.nextQuestion,
     ].filter(Boolean).join("\n\n");
     try {
       await navigator.clipboard.writeText(draft);
-      setCopyMessage("已複製草稿");
+      setCopyMessage(copy.copied);
     } catch {
-      setCopyMessage("無法複製，請直接選取回答文字。");
+      setCopyMessage(copy.copyFailed);
     }
   }
 
   return (
-    <div className="answer">
-      <h3>AI 學習助理</h3>
-      {round.educator && <p className="verification">AI 教學草稿，使用前請核對。</p>}
-      <p className="answer-summary">{answer.summary}</p>
-      {answer.sections.map(({ heading, text }, index) => <details key={index}>
-        <summary><ChevronRight aria-hidden="true" />{heading}</summary><p>{text}</p>
-      </details>)}
+    <article className="answer" id={`reply-${round.id}`} aria-labelledby={`reply-label-${round.id}`} tabIndex={-1}>
+      <h3 id={`reply-label-${round.id}`}>{copy.tutor}</h3>
+      {round.educator && <p className="verification">{copy.draft}</p>}
+      <p className="answer-summary" lang={round.language}>{answer.summary}</p>
+      {answer.sections.map(({ heading, text }, index) => round.hint && !round.educator && index === 0
+        ? <div className="answer-step" lang={round.language} key={index}><h4>{heading}</h4><p>{text}</p></div>
+        : <details lang={round.language} key={index}>
+          <summary><ChevronRight aria-hidden="true" />{heading}</summary><p>{text}</p>
+        </details>)}
       {answer.claims.length > 0 && <details>
-        <summary><ChevronRight aria-hidden="true" />查看回答依據</summary>
-        <ul>{answer.claims.map((claim, index) => (
-          <li key={index}><strong>{claimLabels[claim.kind]}：</strong>{claim.text}</li>
-        ))}</ul>
+        <summary><ChevronRight aria-hidden="true" />{copy.notes}</summary>
+        <ul className="answer-claims">{answer.claims.map((claim, index) => {
+          const source = materialSourceLabel(claim.sourceRef, language);
+          return <li key={index}>
+            <strong>{copy[claim.kind]}{language === "en" ? ": " : "："}</strong>
+            <span lang={round.language}>{claim.text}</span>
+            {source && <span className="claim-source">{copy.source} · {source}</span>}
+          </li>;
+        })}</ul>
       </details>}
-      {answer.nextQuestion && <p className="next-question">{answer.nextQuestion}</p>}
-      {!round.educator && answer.needsHumanVerification && <p className="verification">教材或回答中的部分內容仍待核對。</p>}
+      {nextQuestion && <div className="next-question">
+        <p lang={round.language}>{nextQuestion}</p>
+        <button type="button" className="secondary-button" disabled={!onFollowUp}
+          onClick={() => onFollowUp?.(`${copy.replyPrefix}「${nextQuestion}」\n`)}>{copy.reply}</button>
+      </div>}
+      {!round.educator && answer.needsHumanVerification && <p className="verification">{copy.needsReview}</p>}
       {round.educator && <div className="copy-row">
-        <button type="button" className="secondary-button" onClick={copyDraft}>複製教學草稿</button>
+        <button type="button" className="secondary-button" onClick={copyDraft}>{copy.copyDraft}</button>
         <span role="status">{copyMessage}</span>
       </div>}
-    </div>
+    </article>
   );
 }
 
-export function Tutor({ material, preferences }: { material: Material | null; preferences: LearnerPreferences }) {
+export function Tutor({ material, preferences, language }: {
+  material: Material | null;
+  preferences: LearnerPreferences;
+  language: Language;
+}) {
+  const copy = tutorCopy[language];
   const [rounds, setRounds] = useState<Round[]>([]);
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState<string | null>(null);
@@ -98,7 +114,7 @@ export function Tutor({ material, preferences }: { material: Material | null; pr
     activeRequest.current?.abort();
     activeRequest.current = null;
     setPending(null);
-    setNotice("已停止等待，問題仍保留。");
+    setNotice(copy.stopped);
     textarea.current?.focus();
   }
 
@@ -111,7 +127,7 @@ export function Tutor({ material, preferences }: { material: Material | null; pr
     const controller = new AbortController();
     activeRequest.current = controller;
     setError("");
-    setNotice("正在取得 AI 回答。");
+    setNotice(copy.waiting);
     setPending(message);
 
     try {
@@ -122,6 +138,7 @@ export function Tutor({ material, preferences }: { material: Material | null; pr
         message,
         history: tutorHistory(rounds, budget),
         preferences,
+        language,
       };
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -133,23 +150,25 @@ export function Tutor({ material, preferences }: { material: Material | null; pr
       if (activeRequest.current !== controller) return;
       if (result.status === "error") {
         setNotice("");
-        setError(result.message);
+        setError(language === "en" ? englishErrors[result.code] ?? copy.networkError : result.message);
       } else if (response.ok && result.status === "ok") {
         setRounds((previous) => [...previous, {
           id: result.requestId,
           question: message,
           answer: result.answer,
           educator: preferences.profile === "educator",
+          hint: preferences.pedagogyMode === "hint",
+          language,
         }]);
         setDraft("");
-        setNotice("AI 回答已就緒，可到對話紀錄閱讀。");
+        setNotice(copy.ready);
       } else {
         throw new Error("Unexpected chat response");
       }
     } catch {
       if (activeRequest.current === controller) {
         setNotice("");
-        setError("暫時無法連線。問題已保留，可再送出一次。");
+        setError(copy.networkError);
       }
     } finally {
       if (activeRequest.current === controller) {
@@ -159,50 +178,51 @@ export function Tutor({ material, preferences }: { material: Material | null; pr
     }
   }
 
-  const suggestions = rounds.length ? followUps : preferences.profile === "educator"
-    ? ["產生高中函數導讀草稿，附三道引導題", ...starterQuestions.slice(0, 2)]
-    : starterQuestions;
+  const suggestions = rounds.length ? copy.followUps : preferences.profile === "educator"
+    ? [copy.educator, ...copy.starters.slice(0, 2)]
+    : copy.starters;
+  const latestRound = rounds.at(-1);
 
   return (
     <div className="tutor">
-      <div className="conversation" aria-label="對話紀錄">
-        {!rounds.length && !pending && <div className="conversation-empty">
-          <BookOpen aria-hidden="true" />
-          <h3>想先了解哪一部分？</h3>
-          <p>{material ? "選一個問題開始，也可以寫下你想問的內容。" : "選擇範例，或先在教材區貼上題目。"}</p>
-        </div>}
+      {(latestRound || pending) && <section className="conversation" aria-label={copy.history}>
         {rounds.length > 0 && <ol className="chat-rounds">
           {rounds.map((round) => <li key={round.id}>
-            <p className="question"><strong>你</strong>{round.question}</p>
-            <TutorAnswer round={round} />
+            <p className="question"><strong>{copy.you}</strong>{round.question}</p>
+            <TutorAnswer round={round} language={language} onFollowUp={pending ? undefined : fillQuestion} />
           </li>)}
         </ol>}
-        {pending && <p className="question"><strong>你</strong>{pending}</p>}
-      </div>
+        {pending && <p className="question"><strong>{copy.you}</strong>{pending}</p>}
+      </section>}
       <div className="composer">
-        <div className="suggestions" aria-label="可用的提問示例">
-          {suggestions.map((question) => (
-            <button className="suggestion" key={question} type="button"
-              disabled={!material || Boolean(pending)} onClick={() => fillQuestion(question)}>{question}</button>
-          ))}
-        </div>
+        {preferences.pedagogyMode === "hint" && <p className="composer-note">{copy.hintGuidance}</p>}
+        {material ? <div className="prompt-picker" role="group" aria-labelledby="prompt-heading">
+          <h3 id="prompt-heading">{latestRound ? copy.next : copy.start}</h3>
+          <div className="suggestions">
+            {suggestions.map((question) => (
+              <button className="suggestion" key={question} type="button"
+                disabled={Boolean(pending)} onClick={() => fillQuestion(question)}>{question}<ArrowRight aria-hidden="true" /></button>
+            ))}
+          </div>
+        </div> : <p className="composer-note">{copy.chooseLesson}</p>}
         <form onSubmit={send}>
-          <label htmlFor="question">你的問題</label>
+          <label htmlFor="question">{copy.yourQuestion}</label>
           <div className="question-input">
             <textarea id="question" ref={textarea} rows={2} maxLength={CHAT_LIMITS.messageCharacters} required
               value={draft} onChange={(event) => setDraft(event.target.value)}
               readOnly={Boolean(pending)} disabled={!material}
               aria-describedby={error ? "tutor-error tutor-privacy" : "tutor-privacy"} />
             <div className="submit-row">
-              {pending ? <button className="secondary-button" type="button" onClick={cancel}>停止等待</button> : null}
+              {latestRound && <a className="latest-reply" href={`#reply-${latestRound.id}`}><ArrowUp aria-hidden="true" />{copy.latest}</a>}
+              {pending ? <button className="secondary-button" type="button" onClick={cancel}>{copy.stop}</button> : null}
               <button className="send" type="submit" aria-disabled={!material || !draft.trim() || Boolean(pending)}>
-                {error ? "重試" : "送出"}<ArrowUp aria-hidden="true" size={18} />
+                {error ? copy.retry : copy.send}<ArrowUp aria-hidden="true" size={18} />
               </button>
             </div>
           </div>
           {error && <p role="alert" className="error" id="tutor-error">{error}</p>}
           <p className={pending ? "pending-status" : "sr-only"} role="status">{notice}</p>
-          <p className="privacy-note" id="tutor-privacy">問題會送至 OpenAI。請勿填寫個人資料。</p>
+          <p className="privacy-note" id="tutor-privacy">{copy.privacy}</p>
         </form>
       </div>
     </div>

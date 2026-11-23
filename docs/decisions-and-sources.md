@@ -13,7 +13,7 @@
 | ADR-005 | 三 Profile 是偏好模板，可自訂 | 真實的使用者需求不是障礙診斷推斷 | 有真實使用者研究時 |
 | ADR-006 | P0 不導入 DB 或登入 | 減少未成年人資料風險和截止前複雜度 | 明確需要持久儲存／分享個別對話時 |
 | ADR-007 | 真實 Final transcript 去識別後唯讀分享 | 可滿足可開啟的競賽證據，不必先建立完整帳號後台 | 官方改規則／取得授權需求 |
-| ADR-008 | OpenAI Responses API，預設 `gpt-4.1-mini`；Hosting 待決 | 使用者指定 OpenAI，需另確認實際模型存取權和費用 | 真實 API 驗證與公開前 |
+| ADR-008 | OpenAI Responses API，預設 `gpt-6.1-terra`，推理深度 `low`，Hosting 待決 | 使用者指定 OpenAI，經同題重測選 Terra 作評審版。見評估紀錄 | 真實 API 驗證與公開前 |
 | ADR-009 | WCAG 2.2 AA 作為目標、非宣稱已達 | 需實際 VoiceOver、鍵盤、對比與真人驗證 | 無障礙測試後按證據更新 |
 | ADR-010 | Baseline、V1、V2、V3 預先定義但**不預設數據** | 對準 WAICY 迭代評分，避免事後編造結果 | 每一版本真實跑完時 |
 

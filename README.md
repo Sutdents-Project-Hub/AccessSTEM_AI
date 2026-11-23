@@ -1,7 +1,7 @@
 # AccessSTEM AI｜視障學生的個人化 STEM 圖表學習助理
 
 > WAICY 2026｜第 4 賽道 LLM & AI Agent（AI as a Service）
-> 專案狀態：**本機 MVP 已實作。真實 OpenAI 對話、教材教師核對與競賽交件待驗證**。
+> 專案狀態：**本機 MVP 已接通 OpenAI。教材教師核對、VoiceOver 與公開交件仍待完成**。
 > 企劃、實作、研究與評測依學生、指導者和協作工具的實際貢獻記錄。
 
 ## 專案目標
@@ -35,7 +35,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-開啟 `http://localhost:3000`。可直接使用圖表、文字導讀、學習偏好與貼題。要啟用 AI 對話，依 [Web 啟動說明](web/README.md) 在 `web/.env.local` 設定伺服器端 `OPENAI_API_KEY`，可選填 `OPENAI_MODEL`。預設模型為 `gpt-4.1-mini`。
+開啟 `http://localhost:3000`。可使用中英介面、圖表、文字導讀、學習偏好與貼題。要啟用 AI 對話，依 [Web 啟動說明](web/README.md) 在 `web/.env.local` 設定伺服器端 `OPENAI_API_KEY`，可選填 `OPENAI_MODEL`。預設模型為 `gpt-6.1-terra`，推理深度為 `low`。
 
 ```sh
 pnpm lint
@@ -64,6 +64,7 @@ GitHub 遠端為 [Sutdents-Project-Hub/AccessSTEM_AI](https://github.com/Sutdent
 | [API 與資料契約](docs/api-and-data-contracts.md) | ChartFacts、對話介面與錯誤契約 |
 | [介面與無障礙](docs/ux-accessibility.md) | 畫面、互動、VoiceOver／鍵盤測試 |
 | [測試與評估](docs/evaluation-plan.md) | Baseline／V1–V3、評分、資料集 |
+| [WAICY 迭代開發紀錄](docs/waicy-iteration-log.md) | Prompt 設計、實測、錯誤、修正與原始證據索引 |
 | [實作計畫](docs/implementation-plan.md) | 分階段任務、依賴、完成定義 |
 | [競賽要求](docs/competition.md) | WAICY 評分、必備交件與時間 |
 | [展示與交件](docs/demo-and-submission.md) | 公開 Demo、對話佐證、英文 PDF |
@@ -78,7 +79,7 @@ GitHub 遠端為 [Sutdents-Project-Hub/AccessSTEM_AI](https://github.com/Sutdent
 ## 驗收狀態
 
 - 已實作圖表學習室、文字題目輸入、學習偏好、伺服器端 OpenAI 路由與安全錯誤回復。
-- 三張圖表待教師核對。真實 OpenAI 回覆與 Baseline／V1–V3 比較尚待可用金鑰與額度。
+- 已跑真實 OpenAI、Baseline／V1–V3 同題試驗和模型比較。細節見 [評估計畫](docs/evaluation-plan.md)。三張圖表待教師核對。
 - VoiceOver、真人使用者研究、公開 Demo、匿名對話連結與英文 PDF 仍待完成。
 
 **來源**：使用者提供的《02_AccessSTEM_AI_企劃發想書.md》與《WAICY_2026_第4賽道_LLM_AI_Agent_完整參賽研究指南(1).md》，以及 [WAICY 官方資訊](https://www.waicy.org/waicy-2026/)、[官方評分](https://www.waicy.org/rubrics/)；詳細來源與尚待確認事項參見 [來源與決策](docs/decisions-and-sources.md)。

@@ -68,6 +68,7 @@ Profile 只代表使用者選擇的**輸出風格**。系統不需保存全名�
   "chartId": "quadratic-vertex-demo-01",
   "userDescription": null,
   "message": "頂點為什麼是最低點？先給我一個提示",
+  "language": "zh-Hant",
   "history": [
     {"role": "user", "content": "這張圖的大意是什麼？"},
     {"role": "assistant", "content": "根據已知公式，這是一條開口向上的拋物線。"}
@@ -81,7 +82,7 @@ Profile 只代表使用者選擇的**輸出風格**。系統不需保存全名�
 }
 ```
 
-Server 會檢查 `chartId` 合法、`history` 僅允許 user/assistant、每筆長度與總量受限、`message` 不可為空、`userDescription` 不可冒充可信資源；`sessionId` 為 UUID，僅表示當前對話。請求 body 上限 96,000 bytes；問題 2,000 字元、題目描述 6,000 字元、歷史 12 則且每則 4,000 字元。問題、題目描述與歷史合計至多 20,000 字元。錯誤回傳 requestId、status、code 和 message。答案的 nextQuestion 與 sourceRef 可為 null。
+Server 會檢查 `chartId` 合法、`history` 僅允許 user/assistant、每筆長度與總量受限、`message` 不可為空、`userDescription` 不可冒充可信資源；`sessionId` 為 UUID，僅表示當前對話。請求 body 上限 96,000 bytes；問題 2,000 字元、題目描述 6,000 字元、歷史 12 則且每則 4,000 字元。問題、題目描述與歷史合計至多 20,000 字元。錯誤回傳 requestId、status、code 和 message。可選的 language 為 zh-Hant 或 en。答案的 nextQuestion 與 sourceRef 可為 null。
 
 ### Response（示意）
 
@@ -93,8 +94,8 @@ Server 會檢查 `chartId` 合法、`history` 僅允許 user/assistant、每筆�
     "summary": "先想一想：平方數可能小於零嗎？",
     "sections": [{"heading": "提示", "text": "(x-2)^2 的最小值是 0。"}],
     "claims": [
-      {"kind": "given", "text": "函數是 y=(x-2)^2+1。", "sourceRef": "quadratic-vertex-demo-01"},
-      {"kind": "derived", "text": "平方部分不會小於 0。", "sourceRef": "algebra"}
+      {"kind": "given", "text": "函數是 y=(x-2)^2+1。", "sourceRef": "formula"},
+      {"kind": "derived", "text": "平方部分不會小於 0。", "sourceRef": "formula"}
     ],
     "nextQuestion": "當 x=2 時，y 會是多少？",
     "needsHumanVerification": false
@@ -102,7 +103,7 @@ Server 會檢查 `chartId` 合法、`history` 僅允許 user/assistant、每筆�
 }
 ```
 
-**回覆只是欄位示例，並非真實 AI 實測輸出。** 若求得的事實涉及未核對資料，`needsHumanVerification` 不得擅自為 false。模型輸出必須再經 schema 與內容規則校驗。
+**回覆只是欄位示例，並非真實 AI 實測輸出。** 若求得的事實涉及未核對資料，`needsHumanVerification` 不得擅自為 false。模型輸出用 schema 驗證。來源 ID 依題目類型確認，未辨識到的參照回傳 null。可用 ID 包含 formula、x-axis、y-axis、key-points、trends、missing-data、user-description、question。來源標籤不等於數學正確性已驗證。
 
 ## 5. HTTP 錯誤與 UI 表現
 

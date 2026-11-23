@@ -66,7 +66,7 @@ export const charts: ChartFacts[] = [
     shortDescription: "這是一條開口向上的拋物線，從下降轉為上升的地方就是頂點。",
     longDescription: "橫軸為 x，縱軸為 y，題目未指定實體單位。從 x 較小的一側往 x 較大的一側讀，曲線在 x 小於 2 時下降，經過最低點 (2, 1) 後開始上升。以 x = 2 為對稱軸，x = 0 與 x = 4 時的 y 都是 5。",
     formulaDisplay: "y = (x − 2)² + 1",
-    formulaReading: "y 等於 x 減二的平方，再加一",
+    formulaReading: "y 等於先用 x 減二，將整個差平方，再加一",
     plot: { coefficients: [1, -4, 5], x: [-3, 7], y: [-2, 9] },
   },
   {
@@ -114,7 +114,7 @@ export const charts: ChartFacts[] = [
     shortDescription: "這是一條開口向下的拋物線，從上升轉為下降的地方就是頂點。",
     longDescription: "橫軸為 x，縱軸為 y，題目未指定實體單位。曲線在 x 小於負 1 時隨 x 增加而上升，經過最高點 (−1, 4) 後開始下降。對稱軸是 x = −1，兩個橫軸交點分別位於 (−3, 0) 和 (1, 0)。",
     formulaDisplay: "y = −(x + 1)² + 4",
-    formulaReading: "y 等於 x 加一的平方取負，再加四",
+    formulaReading: "y 等於先將 x 加一的和平方，再取負，最後加四",
     plot: { coefficients: [-1, -2, 3], x: [-6, 4], y: [-5, 6] },
   },
 ];

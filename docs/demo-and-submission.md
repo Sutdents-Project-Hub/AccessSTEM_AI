@@ -1,8 +1,10 @@
 # 展示流程與 WAICY 正式交件執行手冊
 
-> 目前所有 demo 網址、真正對話紀錄、測試結果、正式 PDF、表單提交狀態均為**未完成**。本文件是操作／驗收清單。
+> 本機已完成真實模型試點與缺陷重測。正式公開 Demo 網址、經審核的對話連結、英文 PDF 與表單提交待完成。
 
 ## A. 三分鐘實際 Demo 建議
+
+開場可點頁首 English，使教材、操作與後續回答一起切換為英文。先使用圖表的文字導讀，再用一個未提供答案的文字題展示提示模式。
 
 ### 00:00–00:30｜問題與服務
 
@@ -22,7 +24,7 @@
 
 ### 02:45–03:00｜實驗與迭代證據
 
-顯示**真實跑出**的 Baseline→V3 前後對照、失敗修正案例與一項仍未解的限制；如果未測出改善，不得宣稱有提升。
+從 [WAICY 迭代開發紀錄](waicy-iteration-log.md) 取用**真實跑出**的 Baseline→V3 前後對照、失敗修正案例與一項仍未解的限制；如果未測出改善，不得宣稱有提升。
 
 ## B. 備援 Demo（不能冒充真實 AI）
 
@@ -66,6 +68,8 @@
 
 ## F. 應保留的可驗證連結欄位
 
+本機已有六輪英文合成操作的真實回覆，保留於 `evidence/raw/waicy-final-english-browser.md`。可用來準備學生實機對話與英文展示，發布前須審核。
+
 ```text
 Live chatbot URL：待建立與匿名驗收
 Final real chat history URL：待建立與匿名驗收
@@ -86,3 +90,13 @@ Submission confirmation：尚未提交
 ## H. 截止時間
 
 官方全球提交預定 **2026/11/29（日）17:00 美國東部時間（EST）＝台灣 2026/11/30（一）06:00**。內部目標設在 **11/29 台灣晚間之前**送出。需再次核對官網與所屬地區主辦通知；不要把資料夾分享當成已完成線上提交。
+
+## I. WAICY 參賽簡報視覺風格
+
+簡報主題與頁綱待確認。以下保留原始風格提示詞，日後製作時套用到每一頁。
+
+```text
+Create a presentation in the 'Collage' theme, a cut-paper collage. Background: warm paper (#EFEBE3); ink text #2B2722. Typography: headlines in bold 'Bricolage Grotesque' with body copy in 'Work Sans' (both Google Fonts); each headline word sits on its own paper strip, rotated between -3 and 3 degrees, stacked with slight overlaps and staggered indents. Paper shapes: blocks in muted brights (red #E2574C, teal #2A9D8F, mustard #E9C46A, ink blue #264653) with torn edges drawn as jagged CSS clip-path polygons, never clean rectangles. Signature motifs: translucent white tape strips (about 84x22px, rotated near 40 degrees, 50% opacity) pinning pieces at corners; one halftone patch per slide made of small ink dots (radial-gradient, 11px grid, 22% opacity). Text on mustard is ink #2B2722, on every other color it is white. Body copy sits in ink on the paper background or on white torn sheets. Strictly avoid: gradients, drop shadows, clean rectangles for colored shapes, photographs, a fifth accent color, perfectly straight alignment.
+
+Use this theme for my slides. Ask me what the presentation is about first, then apply the theme to every slide.
+```

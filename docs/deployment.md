@@ -1,6 +1,6 @@
 # 公開 Demo 部署規劃（未部署）
 
-> 目前狀態：`planned`。**未選 Hosting、未取得網域、未部署、未驗證公開 URL、未設定 OpenAI 金鑰。** 本文件不含虛構的 port、healthcheck 或實際指令。
+> 目前狀態：`planned`。**未選 Hosting、未取得網域、未部署、未驗證公開 URL、未設定部署環境的 OpenAI 金鑰。** 本文件不含虛構的 port、healthcheck 或實際指令。
 
 ## Demo 的必要條件
 

@@ -28,6 +28,7 @@ export const ChatRequestSchema = z.strictObject({
   message: z.string().trim().min(1).max(CHAT_LIMITS.messageCharacters),
   history: z.array(ChatMessageSchema).max(CHAT_LIMITS.historyMessages),
   preferences: LearnerPreferencesSchema,
+  language: z.enum(["zh-Hant", "en"]).optional(),
 }).superRefine((request, context) => {
   if (Boolean(request.chartId) === Boolean(request.userDescription)) {
     context.addIssue({ code: "custom", path: ["chartId"], message: "請選擇一份圖表或提供一份描述。" });

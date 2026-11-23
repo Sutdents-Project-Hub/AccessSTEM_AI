@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import "@fontsource-variable/bricolage-grotesque/wght.css";
+import "@fontsource-variable/work-sans/wght.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

@@ -25,6 +25,8 @@ export function ChartPlot({ chart, highContrast }: { chart: ChartFacts; highCont
       const muted = colors.getPropertyValue("--muted");
       const line = colors.getPropertyValue("--grid-line");
       const accent = colors.getPropertyValue("--accent");
+      const pointFill = colors.getPropertyValue("--point");
+      const paper = colors.getPropertyValue("--plot");
       const [a, b, c] = chart.plot.coefficients;
       const [xMin, xMax] = chart.plot.x;
       const [yMin, yMax] = chart.plot.y;
@@ -84,15 +86,16 @@ export function ChartPlot({ chart, highContrast }: { chart: ChartFacts; highCont
       for (const [index, point] of chart.facts.keyPoints.entries()) {
         pen.beginPath();
         pen.arc(x(point.x), y(point.y), index === 0 ? 5.5 : 3.5, 0, Math.PI * 2);
-        pen.fillStyle = accent;
+        pen.fillStyle = index === 0 ? pointFill : accent;
         pen.fill();
         pen.lineWidth = 2;
-        pen.strokeStyle = colors.getPropertyValue("--plot");
+        pen.strokeStyle = index === 0 ? ink : paper;
         pen.stroke();
         if (index === 0) {
           pen.font = "600 13px ui-monospace, monospace";
           pen.fillStyle = ink;
           const label = `(${point.x}, ${point.y})`;
+          pen.strokeStyle = paper;
           pen.lineJoin = "round";
           pen.lineWidth = 4;
           pen.strokeText(label, x(point.x) + 10, y(point.y) - 10);
