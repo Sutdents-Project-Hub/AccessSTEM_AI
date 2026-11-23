@@ -1,55 +1,55 @@
-# 公開 Demo 部署規劃（未部署）
+# Public Demo Deployment Plan (Not Deployed)
 
-> 目前狀態：`planned`。**未選 Hosting、未取得網域、未部署、未驗證公開 URL、未設定部署環境的 OpenAI 金鑰。** 本文件不含虛構的 port、healthcheck 或實際指令。
+> Current status: `planned`. **No hosting provider has been selected, no domain acquired, no deployment performed, no public URL verified, and no OpenAI key configured in a deployment environment.** This document does not invent ports, health checks, or commands.
 
-## Demo 的必要條件
+## Demo requirements
 
-1. 外部評審可用不認識的裝置與無痕視窗從 `/?lang=en` 直接開啟、使用真正 LLM 問答（若有存取限制需先與主辦確認）。
-2. 服務端安全保管 AI Provider 金鑰，前端沒有直接暴露 Key 或私有 API。
-3. 支援至少兩個經核對圖表、三種教學偏好、連續追問與明確錯誤。
-4. 另有一個**唯讀、匿名化、真正最終版**的聊天紀錄公開連結。
-5. 文字內容可被螢幕閱讀器操作；不能用只有影片的頁面冒充可用 Chatbot。
-6. 有流量限制、API 額度、服務失效時明確的使用者提示。
-7. 從 Git commit 至部署版、Prompt 版本、模型 ID 可查到對應，不同環境不得偷偷使用不同 Prompt。
+1. External judges can open the service from an unfamiliar device and incognito window at `/?lang=en` and use real LLM responses (confirm with the organizer first if access restrictions apply).
+2. The AI provider key is stored securely on the server; the frontend exposes neither the key nor a private API.
+3. Support at least two reviewed charts, three teaching preferences, follow-up questions, and clear errors.
+4. Provide a separate **read-only, anonymized, genuine final-version** conversation record link.
+5. Make text usable with a screen reader; a video-only page is not an operable chatbot.
+6. Set traffic and API quota limits and give users clear messages when service fails.
+7. Keep the deployed Git commit, Prompt version, and model ID traceable. Do not silently use a different Prompt in different environments.
 
-## 平台候選（**僅選項，不是既定部署**）
+## Platform candidates (**options only; no platform selected**)
 
-- **Next.js 相容的平台**：選擇能執行 Server Route Handler 和管理 Secret 的服務，例如 Vercel 或其他相容 Node.js hosting；需實測 AI API 連線、區域、費用與 timeout。
-- **Coolify（若日後明確選用）**：只有 `web/` 一個有部署生命週期的元件，獨立 Dockerfile Application，base directory `web/`。需要實際核對 Node、啟動指令、port、healthcheck、域名、環境 Secret、log 與回滾，不能套用別的專案 Dockerfile。
-- 目前不建立 PostgreSQL／S3／Redis，沒有資料要做持久化 migration。
+- **Next.js-compatible platform:** Choose a service that can run Server Route Handlers and manage secrets, such as Vercel or another compatible Node.js host. Test AI API connectivity, region, cost, and timeout.
+- **Coolify (only if explicitly selected later):** The `web/` component is the only one with a deployment lifecycle. Use a standalone Dockerfile Application with base directory `web/`. Verify Node, startup command, port, health check, domain, environment secrets, logs, and rollback in the actual environment; do not reuse another project's Dockerfile.
+- No PostgreSQL, S3, or Redis is currently being created, and no persistent data needs a migration.
 
-## 本機 Compose 與 production 分界
+## Local Compose and production boundary
 
-此專案**目前沒有** Compose。若未來因需要本機整合而建立根目錄 `compose.yaml`，頂層 `name: accessstem_ai`，service key 用 `web` 等責任角色，不加不必要的 `container_name`。根 Compose 僅供**本機整合**，不直接拿來當 Coolify Production 入口。任何 production Compose 例外要有明確批准、服務／Secrets／Volumes／備份與 rollback 方案。
+This project currently has **no Compose file**. If a root `compose.yaml` is later added for local integration, set top-level `name: accessstem_ai`, use service keys such as `web` to identify responsibilities, and avoid unnecessary `container_name`. Root Compose is for **local integration** and must not be used directly as the Coolify production entry point. A production Compose exception requires explicit approval plus a plan for services, secrets, volumes, backups, and rollback.
 
-## 上線前先記錄的事實（實作時再填）
+## Facts to record before launch (fill only after implementation)
 
 ```text
-Platform：
-Owner：
-Repository / commit：
-Base directory：web/
-Build/runtime commands（實際測過）：
-Node / pnpm / Next 版本：
-Entry and port / protocol：
-Healthcheck（實測成功與失敗）：
-Public URL：
-Server environment variable names：
-Provider／model ID／prompt version：
-API budget／rate-limit／logging policy：
-Preview vs live boundary：
-Deployment date：
-Rollback procedure（已測試才寫 verified）：
+Platform:
+Owner:
+Repository / commit:
+Base directory: web/
+Build/runtime commands (tested in the real environment):
+Node / pnpm / Next versions:
+Entry and port / protocol:
+Health check (success and failure tested):
+Public URL:
+Server environment variable names:
+Provider / model ID / Prompt version:
+API budget / rate-limit / logging policy:
+Preview vs live boundary:
+Deployment date:
+Rollback procedure (mark verified only after testing):
 ```
 
-## 驗收與復原
+## Acceptance and recovery
 
-- 使用無痕視窗／非開發者機器測 Chatbot、對話紀錄、PDF、Drive 連結。
-- 模擬 Provider 429、斷網、單題太長、API token 超支，檢查是否顯示真實失敗而不是空白成功。
-- 觀察 Web logs 不應包含金鑰或可識別學生對話。
-- 若失敗，恢復前一個**已確認可用**的版本；沒有做過 rollback 就不能標示演練通過。
-- 交件後確保 Demo 於評審時段仍可用；具體保存期限、成本責任與關閉時間需與團隊確認。
+- Use an incognito window or a non-developer machine to test the chatbot, conversation record, PDF, and Drive links.
+- Simulate provider 429, network loss, an overlong question, and exhausted API quota. Confirm that the UI shows a real failure instead of an empty success.
+- Check that web logs contain neither keys nor identifiable student conversation data.
+- If a deployment fails, restore the previous version **only if it is confirmed to work**. Do not mark a rollback drill as passed if it was not performed.
+- Keep the demo available during the judging period. Confirm the retention period, cost owner, and shutdown time with the team.
 
-## 不屬本次初始化授權的動作
+## Actions not authorized by this initialization
 
-建立 Vercel/Coolify 專案、DNS、Bucket、資料庫、API Key、變更雲端帳單、GitHub repository、Git push、release 或 Production 部署；待使用者明確要求後才執行。
+Creating a Vercel/Coolify project, DNS, bucket, database, API key, changing a cloud bill, creating a GitHub repository, pushing Git, releasing, or deploying to production requires a separate explicit user request.

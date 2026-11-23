@@ -58,7 +58,7 @@ function ChartLesson({ chart, highContrast, language }: { chart: ChartFacts; hig
   </>;
 }
 
-export function LearningWorkspace({ initialLanguage = "zh-Hant" }: { initialLanguage?: Language }) {
+export function LearningWorkspace({ initialLanguage = "en" }: { initialLanguage?: Language }) {
   const [language, setLanguage] = useState<Language>(initialLanguage);
   const copy = workspaceCopy[language];
   const [source, setSource] = useState<"chart" | "custom">("chart");
@@ -93,6 +93,14 @@ export function LearningWorkspace({ initialLanguage = "zh-Hant" }: { initialLang
     setContextVersion((version) => version + 1);
   }
 
+  function changeLanguage() {
+    const next = language === "en" ? "zh-Hant" : "en";
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", next);
+    window.history.replaceState(null, "", url);
+    setLanguage(next);
+  }
+
   return (
     <div className="workspace" lang={language} data-contrast={highContrast ? "high" : undefined}>
       <a className="skip-link" href="#main">{copy.skip}</a>
@@ -108,7 +116,7 @@ export function LearningWorkspace({ initialLanguage = "zh-Hant" }: { initialLang
           </nav>
           <div className="header-actions">
             <button className="contrast-toggle" type="button" lang={language === "en" ? "zh-Hant" : "en"}
-              onClick={() => setLanguage(language === "en" ? "zh-Hant" : "en")}>
+              onClick={changeLanguage}>
               {language === "en" ? "繁體中文" : "English"}
             </button>
             <button className="contrast-toggle" type="button" aria-pressed={highContrast} onClick={() => setHighContrast(!highContrast)}>

@@ -1,83 +1,85 @@
-# UI／UX 與無障礙體驗設計
+# UI/UX and Accessibility Design
 
-> 狀態：本機 MVP 已實作語意化操作、中英切換、文字導讀及高對比切換，VoiceOver 和真人使用者驗證仍待完成。
+> Status: The local MVP implements semantic controls, English/Traditional Chinese switching, text descriptions, and a high-contrast toggle. VoiceOver and real-user validation remain outstanding.
 
-## 核心原則
+## Core principle
 
-**讓人能理解圖表，不只是朗讀圖片上的字**。核心介面是簡單、可預期、能反覆提問的學習對話。所有主要操作不得依賴視覺、滑鼠、拖曳、手勢或自動語音；弱視與全盲者的需求由本人選擇，不依賴固定身分刻板印象。
+**Help people understand a chart, not just hear the words on an image.** The core interface is a simple, predictable learning conversation that supports repeated questions. Main tasks must not depend on vision, a mouse, dragging, gestures, or automatic speech. Let users choose their own needs; do not infer a fixed preference from identity.
 
-## 學習流程與閱讀順序
+## Learning flow and reading order
 
-### A. 學習起點（單頁最小入口）
+### A. Getting started (single-page entry)
 
-1. 「讀懂函數圖表」為頁面主標題，頁首可跳到教材或 AI 對話。
-2. 用原生單選控制切換「內建圖表」和「貼上題目」。內建圖表提供三個自製範例及核對狀態。
-3. 貼上題目後選「使用這份題目」。確認前顯示待準備的提示，確認後開啟提問並標註題目未經教師核對。
-4. 在助理區用 `<fieldset><legend>學習方式</legend>` 選三種偏好。可另外調整解說深度、解題方式及數學程度。
+1. “Understand Function Charts” is the page's primary heading. The page header can link to materials or the AI conversation.
+2. Use native radio controls to switch between “Built-in chart” and “Paste a problem.” Built-in charts show three self-created examples and their review status.
+3. After a problem is pasted, select “Use this problem.” Before confirmation, show the pending-step prompt. After confirmation, enable questions and label the problem as not teacher-reviewed.
+4. In the assistant area, use `<fieldset><legend>Learning style</legend>` for the three preferences. Explanation depth, solution approach, and math level can also be adjusted.
 
-### B. 圖表導讀與聊天（主畫面）
+### B. Chart walkthrough and chat (main view)
 
-1. 目前圖表名稱、資料是否經確認、來源與未知項目。
-2. 可選的三層區塊：「快速摘要」「軸與標記」「數學概念／趨勢」。
-3. 聊天記錄，使用 `<ol>` 或清楚的訊息角色標示「你／AccessSTEM」。
-4. 常見操作：「再簡單一點」「從座標軸說起」「只給提示」「讓我試答」均用真實 `<button>`。
-5. 固定可找到的輸入欄位和「送出」；請求中的狀態要可被察覺。
-6. 回覆到達後提供「閱讀最新回答」，由使用者決定何時跳轉。已辨識的教材參照顯示為可讀來源名稱。有下一題時可選「回應這一題」，焦點回到問題欄，由使用者補充後手動送出。
+1. Current chart name, review status, source, and unknown items.
+2. Optional three-layer sections: “Quick summary,” “Axes and markers,” and “Math concepts and trends.”
+3. Conversation history using `<ol>` or clearly labeled message roles such as “You” and “AccessSTEM.”
+4. Common actions such as “Make it simpler,” “Start with the axes,” “Give me a hint,” and “Let me try” use real `<button>` elements.
+5. Keep the input field and “Send” control easy to find. Make the pending-request state perceivable.
+6. When a response arrives, offer “Read latest answer” and let the user choose when to move. Show recognized source references with readable names. If a next question is offered, “Respond to this question” may return focus to the question field; the user adds details and submits manually.
 
-### C. 老師協助（同一 Web，不另建後台）
+### C. Educator support (same web app; no separate dashboard)
 
-1. 指定年級、單元、學習目標與閱讀深度。
-2. 生成經老師**審閱前**的導讀草稿、三道引導題、常見誤解與需確認的資訊。
-3. 可複製文字供教師修改；不可將 AI 草稿標記為已符合正式教學標準。
+1. Specify grade, unit, learning objective, and reading depth.
+2. Generate a walkthrough draft, three guiding questions, common misconceptions, and items to confirm. Clearly mark all output as **not yet teacher-reviewed**.
+3. Allow text to be copied for editing; do not label an AI draft as meeting formal teaching standards.
 
-## Screen reader-first 的資訊設計
+## Screen-reader-first information design
 
-- 完整描述按**圖表性質 → 軸標籤／單位 → 已知點與區間 → 趨勢與關係 → 不確定處**順序。
-- 「右半段曲線」應補充其代表的座標或 `x` 區間，不能只有「看右邊」「紫色線」。
-- 圖像應提供短 `alt` 與可到達的**完整文字描述／資料表**；長描述不可藏在只有 hover 才能看到的 tooltip。
-- 數學式同時提供可理解的文字讀法，例如「y 等於 x 減 2 的平方，再加 1」；MathML 或其他技術採用後仍須實測讀法。
-- 圖表文字、使用者輸入、AI 推導、未知資訊使用一致的標題與標籤，不用只靠顏色／圖示辨別來源。
-- 若需要長回覆，先提供一句摘要和可選展開的層級內容，尊重閱讀節奏。
+- Give the full description in this order: **chart type → axis labels and units → known points and intervals → trends and relationships → uncertainty**.
+- Add coordinates or the relevant `x` interval to “the right half of the curve”; do not say only “look right” or “the purple line.”
+- Images need a short `alt` and an accessible **full text description or data table**. Do not hide long descriptions in hover-only tooltips.
+- Provide a readable verbal form for equations, for example, “y equals the square of x minus 2, then plus 1.” Test MathML or other equation technologies after adoption.
+- Use consistent headings and labels for chart text, user input, AI derivations, and unknown information. Do not distinguish sources by color or icons alone.
+- For long responses, start with a one-sentence summary and allow optional expansion by layer, respecting the user's reading pace.
 
-## 鍵盤與動態聊天必測項目
+## Required keyboard and dynamic-chat tests
 
-| 編號 | 測試 | 預期 |
+| ID | Test | Expected result |
 |---|---|---|
-| AX-01 | 從首頁只按 Tab／Shift+Tab | 可選模式、範例、輸入、送出，不會陷入循環 |
-| AX-02 | 在 VoiceOver 開啟畫面 | 標題、控制標籤、狀態與目前圖表能依合理順序被唸出 |
-| AX-03 | 送出問題後等待 | 有不擾人的「回應中」狀態；不把每個 token 都送進 live region |
-| AX-04 | AI 回覆到達 | 只公告一次精簡狀態，焦點留在合理位置，使用者可自行前往完整回覆 |
-| AX-05 | 表單資料缺漏 | 聽得到具體錯誤並能回到出錯控制項 |
-| AX-06 | 切換簡短／完整、提示／完整答案 | 提示與選項標籤易理解；切換後不丟失當前圖表 |
-| AX-07 | 縮放至 200%、400% | 主要內容不丟失、文字不互相覆蓋；窄視窗無不必要的雙向捲動 |
-| AX-08 | prefers-reduced-motion、對比與高對比模式 | 不強迫動態效果，焦點可辨識，不靠顏色辨別結論 |
-| AX-09 | 完全關閉圖片載入 | 有完整等值文字與可進行的問答 |
-| AX-10 | 外部 API 錯誤 | 明確文字可讀、當前輸入保留、重試可操作 |
+| AX-01 | Use only Tab / Shift+Tab from the home page | Reach modes, examples, input, and send without a keyboard trap |
+| AX-02 | Navigate the page with VoiceOver | Headings, control labels, status, and current chart are announced in a sensible order |
+| AX-03 | Submit a question and wait | A quiet “responding” state is available; each token is not sent to a live region |
+| AX-04 | AI response arrives | Announce one concise status, keep focus in a sensible location, and let the user navigate to the full response |
+| AX-05 | Required form data is missing | Announce a specific error and allow return to the invalid control |
+| AX-06 | Switch brief/full or hint/full answer | Preference and option labels are understandable; switching does not lose the current chart |
+| AX-07 | Zoom to 200% and 400% | Main content remains available, text does not overlap, and narrow windows avoid unnecessary two-way scrolling |
+| AX-08 | Test `prefers-reduced-motion`, contrast, and high-contrast mode | Do not force motion; keep focus visible and do not rely on color to communicate a conclusion |
+| AX-09 | Disable image loading | Equivalent text and usable questions remain available |
+| AX-10 | External API fails | Show a clear readable message, preserve current input, and keep retry available |
 
-## 互動細節
+## Interaction details
 
-- 優先用 HTML button、input、label、fieldset，而不是模擬按鈕的 `div`。
-- 需要時使用 `aria-describedby` 關聯錯誤提示；焦點要有可見輪廓，避免僅使用 placeholder 當 label。
-- 以 `aria-live="polite"` 放**精簡**狀態；長篇逐字串流需評估對螢幕閱讀器的干擾，必要時用「回答已完成」而非逐 token 公告。
-- 避免自動播放語音、強制捲到最底、焦點突然跳到 AI 訊息、無法中斷的 loading。
-- 大字、行距、色彩對比與分段都能受瀏覽器縮放；深淺模式不是 P0 核心。
-- 低視力模式仍需能取得完整版；全盲模式也應可要求簡短重點。
-- 教師產生內容一律有「AI 草稿，使用前需核對」字樣。
+- Prefer HTML `button`, `input`, `label`, and `fieldset` over simulated `div` controls.
+- Where needed, associate error text with `aria-describedby`; keep a visible focus outline and do not use placeholder text as the only label.
+- Use `aria-live="polite"` for **concise** status. Evaluate long streamed answers for screen-reader disruption; consider announcing “Answer complete” instead of each token.
+- Avoid autoplay, forced scrolling to the bottom, sudden focus jumps to AI messages, and uninterruptible loading.
+- Large text, line spacing, contrast, and sections should remain usable with browser zoom. Dark/light mode is not a P0 requirement.
+- Low-vision mode must still offer the full version; blind mode must still offer brief key points.
+- Mark educator-generated material “AI draft; review before use.”
 
-## 設計系統
+## Design system
 
-網站採用與 [WAICY 簡報風格](demo-and-submission.md#i-waicy-參賽簡報視覺風格) 一致的剪紙方向。紙底為 `#EFEBE3`、正文為 `#2B2722`。芥末黃 `#E9C46A` 用於標題紙條與教材選取狀態，墨藍 `#264653` 用於曲線、主要按鈕和鍵盤焦點，青綠 `#2A9D8F` 用於標題的襯紙，珊瑚紅 `#E2574C` 用於描邊的圖表關鍵點。剪紙邊、膠帶與半色調點陣維持在圖文周圍。高對比模式採白底、深色文字和更清楚的控制邊界。
+The site uses a paper-cut style aligned with the [WAICY presentation style](demo-and-submission.md#original-collage-style-brief). Paper background: `#EFEBE3`; body text: `#2B2722`. Mustard `#E9C46A` marks title paper and selected materials; ink blue `#264653` is used for curves, primary buttons, and keyboard focus; teal `#2A9D8F` is title backing; coral `#E2574C` outlines key chart points. Paper edges, tape, and halftone dots stay around the text and illustrations. High-contrast mode uses a white background, dark text, and clearer control boundaries.
 
-桌面將教材與助理並置，窄視窗改為單欄。公式讀法、短描述、趨勢及座標表可獨立閱讀。教材選取有原生狀態與文字標籤，互動控制與焦點保持規則形狀。設計採用 [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) 的鍵盤、表單標籤、焦點及觸控建議，延續 Damir Sokolovsky 的 [unslop](https://github.com/heydamir/unslop) 視覺審視方法。
+On desktop, materials and the assistant appear side by side; narrow windows use one column. Equation readings, short descriptions, trends, and coordinate tables can be read independently. Material selection has native state and text labels; interaction controls and focus follow a consistent shape. The design draws on keyboard, form-label, focus, and touch guidance from [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) and Damir Sokolovsky's visual review approach, [unslop](https://github.com/heydamir/unslop).
 
-拉丁字形使用由 Fontsource 隨應用提供的 [Bricolage Grotesque](https://github.com/ateliertriay/bricolage) 與 [Work Sans](https://github.com/weiweihuanghuang/Work-Sans)，兩者使用 SIL Open Font License 1.1。繁體中文字回退到系統中文字型。
+Latin text uses [Bricolage Grotesque](https://github.com/ateliertriay/bricolage) and [Work Sans](https://github.com/weiweihuanghuang/Work-Sans), supplied by Fontsource and licensed under SIL Open Font License 1.1. Traditional Chinese falls back to system CJK fonts.
 
-## 本機驗證
+## Local verification
 
-以 Playwright 操作 Chrome，確認鍵盤可切換教材、選偏好、展開座標表、送出與重試。透過測試替身檢查兩輪對話及「閱讀最新回答」的焦點跳轉。320 CSS px 沒有水平溢出，內建圖表畫面通過 axe 的 WCAG 2.0／2.1 A、AA 自動檢查。
+Playwright with Chrome verified keyboard chart switching, preference selection, coordinate table expansion, submission, and retry. A test substitute checked two-turn conversation and focus movement for “Read latest answer.” At 320 CSS pixels there was no horizontal overflow. The built-in chart view passed axe automated WCAG 2.0/2.1 A and AA checks.
 
-配色的正文對紙底為 12.47:1，墨字對芥末黃為 8.88:1，主要按鈕的白字對墨藍為 10.08:1，墨藍焦點輪廓對紙底為 8.48:1。最終版 Chrome 也通過英文直達首屏與子樹語言標記、鍵盤切換、真實自訂題提示、回覆的來源與焦點跳轉；詳見 [評估計畫](evaluation-plan.md)。VoiceOver 與實際使用者驗收仍待完成。
+Text-to-paper contrast is 12.47:1, ink on mustard is 8.88:1, white text on the primary ink-blue button is 10.08:1, and the ink-blue focus outline against paper is 8.48:1. Final Chrome checks also passed direct English entry, subtree language tagging, keyboard switching, a real custom-problem prompt, and response source/focus navigation. See the [evaluation plan](evaluation-plan.md). VoiceOver and real-user acceptance remain outstanding.
 
-## 無障礙測試承諾與限制
+The English-first production build was checked again in Chrome. The first response to `/` had English document language and content with JavaScript disabled. The Traditional Chinese URL marked its workspace subtree correctly. The language for the document switches after hydration, and the preference survives a reload of its URL. At 320 CSS px the high-contrast screen did not overflow after expanding the graph notes. Selected automated axe rules reported zero violations on that screen. The [mobile capture](assets/waicy-screenshots/08-mobile-high-contrast.png) uses a 390 CSS px Chrome viewport.
 
-以 **WCAG 2.2 AA** 作為設計／測試目標；參考 W3C WAI [Complex Images](https://www.w3.org/WAI/tutorials/images/complex/) 的短／長描述雙層做法。實作至少保留 VoiceOver 操作錄影或可重現測試步驟、問題列表、修正紀錄。沒有實際視障使用者回饋時，**必須明確標示只有輔助工具操作測試，不能寫成已通過真實使用者驗證**。
+## Accessibility target and limitations
+
+WCAG 2.2 AA is the **design and testing target**. The design references W3C WAI [Complex Images](https://www.w3.org/WAI/tutorials/images/complex/) guidance on paired short and long descriptions. Implementation must retain at least a VoiceOver operation recording or reproducible test steps, an issue list, and a fix record. Without feedback from real users with visual impairments, **state clearly that only assistive-technology testing was done; do not claim real-user validation**.

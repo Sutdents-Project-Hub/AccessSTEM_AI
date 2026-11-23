@@ -5,13 +5,13 @@ import "@fontsource-variable/work-sans/wght.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AccessSTEM AI｜函數圖表學習室",
-  description: "從文字導讀、座標與循序問答，理解高中函數圖表。",
+  title: "AccessSTEM AI | Function Graph Learning Workspace",
+  description: "Explore high-school function graphs through text descriptions, coordinates, and step-by-step AI questions.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="zh-Hant-TW">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

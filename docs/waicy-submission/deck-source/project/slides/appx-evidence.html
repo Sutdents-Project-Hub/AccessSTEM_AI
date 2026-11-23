@@ -7,12 +7,12 @@
 <tr><td>waicy-2026-11-23T05-37-25Z</td><td>13:37</td><td>First pilot: 9 scenarios × 4 versions, 36 responses (Luna low)</td></tr>
 <tr><td>05-42-05Z · 05-44-18Z</td><td>13:42 · 13:44</td><td>V3 rewrites 1 and 2, with the intermediate failure</td></tr>
 <tr><td>05-46-09Z … 05-52-16Z</td><td>13:46–13:52</td><td>Repeats and model comparison (Luna low and medium, Terra low)</td></tr>
-<tr><td>05-56-58Z</td><td>13:57</td><td>Final run: 10 scenarios × 4 versions, 40 responses (Terra low)</td></tr>
+<tr><td>05-56-58Z</td><td>13:57</td><td>Historical mixed-language pilot: 10 scenarios × 4 versions, 40 responses (Terra low)</td></tr>
 <tr><td>waicy-final-english-browser.md</td><td>13:54</td><td>Six-turn English session, twelve messages</td></tr>
 <tr><td>waicy-closeout-pilot-grades.json</td><td>—</td><td>Scores and rationale for each of the 40 cells</td></tr>
 </table>
 <div class="row grow" style="gap:24px">
-<div class="wash f2"><p class="sm2"><b>Reproduce.</b> cd web · pnpm install --frozen-lockfile · OPENAI_MODEL=gpt-6.1-terra pnpm eval:waicy --effort low. Needs your own API key and budget. Each run saves the full request, response, tokens and timing.</p></div>
+<div class="wash f2"><p class="sm2"><b>Reproduce.</b> Run <code>pnpm eval:waicy --language en --effort low</code> from web with an authorized API key. This uses the current prompt and English cases. The iteration log identifies the exact archived revisions.</p></div>
 <div class="sand f1"><p class="sm2"><b>Access.</b> Raw files are kept locally and are git-ignored; share a reviewed copy in the submission folder if needed.</p></div>
 </div>
 </div>

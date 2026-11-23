@@ -1,73 +1,73 @@
-# 學生專案 Profile
+# Student Project Profile
 
-## 基本資訊
+## Basic information
 
-- Project name：AccessSTEM AI｜視障學生的個人化 STEM 圖表學習助理
-- Repository name：`AccessSTEM_AI`
-- Project slug：`accessstem-ai`
-- Local Docker Compose project：`accessstem_ai`
-- Stage：`competition`
-- Product type：`web`
-- Bootstrap mode：`scaffold`
-- Deployment：`planned`
-- Team collaboration：`true`
-- Technology policy：未指定時採公司技術基線
-- Structure exception：無；使用固定 component root
+- Project name: AccessSTEM AI | Personalized STEM Chart Learning Assistant for Students with Visual Impairments
+- Repository name: `AccessSTEM_AI`
+- Project slug: `accessstem-ai`
+- Local Docker Compose project: `accessstem_ai`
+- Stage: `competition`
+- Product type: `web`
+- Bootstrap mode: `scaffold`
+- Deployment: `planned`
+- Team collaboration: `true`
+- Technology policy: use the company technology baseline when no technology is specified
+- Structure exception: none; use the fixed component roots
 
-## 摘要
+## Summary
 
-為全盲學生、低視力學生與教師提供有依據、可持續追問、可調整解說深度的高中數學圖表 AI 學習服務，以 WAICY 2026 第 4 賽道 LLM & AI Agent 參賽為目標。
+An AI learning service for high-school math charts that helps blind students, students with low vision, and teachers explore evidence-based explanations, ask follow-up questions, and adjust explanation depth. The project targets WAICY 2026 Track 4, LLM & AI Agent.
 
-## 元件
+## Components
 
-- `web`：path=`web`，kind=`web`，framework=`Next.js`，package_manager=`pnpm`，quality=lint, typecheck, build，technology_source=`specified`
+- `web`: path=`web`, kind=`web`, framework=`Next.js`, package_manager=`pnpm`, quality=`lint, typecheck, build`, technology_source=`specified`
 
-## 功能領域
+## Feature areas
 
-- 三種使用者需求與可自行調整的學習偏好：完整導讀、重點短述與教師引導
-- 經人工核對之高中線性函數與二次函數圖表事實資料及題目輸入
-- 圖表全貌、座標軸與單位、趨勢及關鍵數學關係的分層描述
-- 持續追問、舉例、理解檢查與提示式解題，不強迫直接公布答案
-- 已知事實、推導結論、不確定資訊分級與缺資料先詢問
-- 以語意化 Web、鍵盤操作與螢幕閱讀器為核心的無障礙介面
-- Baseline、V1、V2、V3 真實 AI 回覆比較、錯誤分析與匿名化競賽證據
-- 可供評審操作的公開 Demo、可存取之最終 AI 真實對話紀錄與英文單份 PDF 交件
+- Three learning needs and adjustable preferences: full walkthrough, brief key points, and educator guidance
+- Fact data for high-school linear and quadratic function charts reviewed by a human, plus text problem input
+- Layered explanations of the chart overview, axes and units, trends, and key mathematical relationships
+- Follow-up questions, examples, comprehension checks, and hint-based problem solving without forcing a direct answer
+- Clear separation of known facts, derived conclusions, and uncertain information; ask when data is missing
+- Accessible interface centered on semantic web elements, keyboard operation, and screen readers
+- Real AI response comparisons across Baseline, V1, V2, and V3; error analysis and anonymized competition evidence
+- A public demo for judges, an accessible link to the final real AI conversation record, and a single English PDF submission
 
-## 專案限制
+## Project constraints
 
-- 本機 Next.js MVP 已驗證真實對話。圖表教師核對與公開 Demo 待完成
-- 2026-11-29 17:00 美東時間為 WAICY 預定截止；於台灣時間 2026-11-29 晚間前完成交件前檢查
-- 優先採用單一 Next.js App Router Web 元件，其伺服器端 Route Handlers 負責 AI 呼叫，不先分離 NestJS 或資料庫
-- MVP 由人工確認的結構化圖表資料或文字描述輸入，圖片辨識與語音功能屬於延伸階段且不得冒稱已完成
-- 不要求學生輸入可識別個資、健康診斷或真實學校帳號，聊天內容原則上只保留於當次會話
-- 所有 LLM API 金鑰僅置於伺服器環境，前端及 Git 不可暴露憑證
-- 不可將推測圖表刻度、數字或數學結論當成已知事實，教師應核對教材
-- 無障礙以 WCAG 2.2 AA 作為設計與測試目標，未實測不得宣稱通過
-- 正式交件需實際可操作 AI 連結、最終版真實對話紀錄連結、可追溯迭代證據及單份英文 PDF
-- GitHub 遠端為 `Sutdents-Project-Hub/AccessSTEM_AI`，LLM 供應商為 OpenAI。網域與部署環境待定
+- The local Next.js MVP has been verified with real conversations. Teacher review of charts and the public demo remain outstanding.
+- WAICY's scheduled deadline is November 29, 2026 at 17:00 Eastern Time. The team target is to finish pre-submission checks by the evening of November 29 in Taiwan.
+- Prefer one Next.js App Router web component, with server-side Route Handlers for AI requests. Do not split out NestJS or a database at this stage.
+- MVP input consists of manually reviewed structured chart data or text descriptions. Image recognition and voice features are extensions and must not be claimed as complete.
+- Do not require students to enter identifying personal information, health diagnoses, or real school accounts. Chat content should normally remain only for the current session.
+- Keep all LLM API keys in the server environment. Never expose credentials in the frontend or Git.
+- Do not present guessed chart scales, numbers, or mathematical conclusions as known facts. A teacher must review learning materials.
+- WCAG 2.2 AA is the accessibility design and testing target; do not claim conformance without testing.
+- Final submission requires a usable AI link, a link to the final real conversation record, traceable iteration evidence, and one English PDF.
+- GitHub remote: `Sutdents-Project-Hub/AccessSTEM_AI`. LLM provider: OpenAI. Domain and deployment environment are undecided.
 
-## 關注事項
+## Areas of concern
 
 - ai
 - external-api
 - personal-data
 - uploads
 
-## 假設
+## Assumptions
 
-- 優先採 Node.js 24 LTS、TypeScript、pnpm、Next.js App Router 與語意化 HTML，實作時再依相容性核驗版本
-- MVP 不建立資料庫、登入、教師後台或保存原始圖表上傳檔；去識別化賽事證據在審核後另行公開
-- 圖片上傳如加入，採先辨識後人工確認的兩階段流程；若無確認資料，不生成肯定數值
-- OpenAI Responses API 預設 `gpt-6.1-terra`，推理深度為 `low`，可在伺服器端覆寫模型。公開流量額度與使用條款需確認
-- 由參賽學生 負責題目理解、使用者研究、Prompt 迭代與結果解釋；指導者及工具協作內容如實揭露
-- 部署平臺僅有參賽 Demo 的規劃需求，尚未決定 Vercel、Coolify 或其他服務
+- Prefer Node.js 24 LTS, TypeScript, pnpm, Next.js App Router, and semantic HTML; verify compatible versions during implementation.
+- The MVP has no database, sign-in, teacher dashboard, or storage for original uploaded chart files. De-identified competition evidence may be published separately after review.
+- If image upload is added, use a two-stage process: extract a draft, then require human confirmation. Do not generate definitive numeric claims without confirmation.
+- OpenAI Responses API defaults to `gpt-6.1-terra` with `low` reasoning effort. The model can be overridden server-side. Public traffic quotas and terms of use need confirmation.
+- The student competitor is responsible for understanding the problem, user research, Prompt iteration, and interpreting results. Contributions by advisors and tools must be disclosed accurately.
+- Deployment is needed only for the competition demo. Vercel, Coolify, or another service has not been selected.
 
-## 未決定事項
+## Open decisions
 
-- 確認參賽學生 的報名年齡與授權同意，是否需主辦進一步確認
-- 確認 OpenAI 金鑰、模型權限、API 額度、付款責任與公開 Demo 流量預算
-- 確認最終 Demo 部署方案、公開網址與連結權限；不預填不存在的 URL
-- 確認使用者研究是否能招募視障參與者；若不能，需明確揭露僅完成 VoiceOver／鍵盤模擬測試
-- 確認圖片上傳是否列入截止日前的實作範圍，預設不列 P0
-- 確認教材與圖表來源可公開引用、展示與重製的權利
-- 確認公開最終對話紀錄前的匿名化、審閱與同意
+- Confirm the competitor's age eligibility and consent requirements, including whether the organizer must be consulted.
+- Confirm ownership of the OpenAI key, model access, API quota, payment responsibility, and public demo traffic budget.
+- Select a final demo deployment approach, public URL, and link permissions. Do not fill in a URL that does not exist.
+- Confirm whether blind or low-vision participants can be recruited. If not, clearly state that only VoiceOver and keyboard simulation tests were completed.
+- Decide whether image upload is in scope before the deadline; by default, it is not P0.
+- Confirm rights to publicly cite, display, and reproduce chart materials.
+- Confirm anonymization, review, and consent before publishing the final conversation record.

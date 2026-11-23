@@ -1,49 +1,49 @@
-# 圖表資料、對話暫存與競賽證據管理
+# Chart Data, Conversation Ephemera, and Competition Evidence
 
-> 狀態：本機 MVP。教材隨程式發佈，聊天與學習偏好保留於瀏覽器目前頁面。
+> Status: Local MVP. Materials ship with the application; chat and learning preferences remain in the browser's current page session.
 
-## 資料分類與預設儲存策略
+## Data categories and default storage
 
-| 資料 | P0 所在 | 可公開嗎 | 保存／刪除原則 |
+| Data | P0 location | Public? | Retention / deletion principle |
 |---|---|---|---|
-| 自製 ChartFacts 候選教材 | `web/src/lib/charts.ts`，待教師核對 | 可，但須確認著作權與來源 | 隨版本控制，修改需新版本與復核 |
-| 使用者手動題目／描述 | 當次瀏覽器 session，送 AI 當輪必要部分 | 預設否 | 重新整理、結束頁面或切換教材會清除該對話。OpenAI 請求使用 `store: false`，供應商適用政策公開前核對 |
-| Profile／學習偏好 | 當次 UI state | 可只保留非識別設定 | 不存診斷、學校、帳號 |
-| 原始 LLM 評測輸入輸出 | 團隊受控的**非公開**證據空間（待選定） | 預設否 | 去識別、授權、核對後才可選擇對外發布 |
-| 最終 10 輪真實對話（公開版） | 審核後的唯讀公開頁／文件（待建） | 在合適同意與去識別後才可 | 連結需交件有效，撤除與保存條件需確認 |
-| 圖片／掃描圖（P1） | 若未來加入，暫時處理後移除 | 預設否 | 不存原始圖片；重新確認第三方處理條款 |
-| Key、個資、真實學生資料 | **不納入 repo 或公開資料** | 不可 | 僅最低限度合法處理，敏感項不得記錄 |
+| Self-created ChartFacts candidate materials | `web/src/lib/charts.ts`, pending teacher review | Yes, after confirming copyright and source | Version-controlled; changes require a new version and review |
+| User-entered problem / description | Current browser session; only the portion needed for the current turn is sent to AI | No by default | Refreshing, leaving the page, or switching charts clears the conversation. OpenAI requests use `store: false`; confirm applicable provider policy before going public |
+| Profile / learning preferences | Current UI state | Non-identifying settings may be retained | Do not store diagnosis, school, or account data |
+| Raw LLM evaluation inputs and outputs | Team-controlled **private** evidence space (not yet selected) | No by default | Publish only after de-identification, permission, and review |
+| Final 10-turn real conversation (public version) | Read-only public page/document after review (not yet created) | Only with appropriate consent and de-identification | Confirm link validity for submission and conditions for removal and retention |
+| Images / scans (P1) | If added in the future, process temporarily and then remove | No by default | Do not retain original images; recheck third-party processing terms |
+| Keys, personal data, real student data | **Never in the repository or public materials** | No | Process only as legally necessary; do not log sensitive data |
 
-`docs/` 只放**規格與公開安全示例**，不放私有測試 raw logs。未來評測檔必須先過敏感資訊審查；不把「隱藏資料夾」當成足夠的 Git 安全保護。
+`docs/` contains **specifications and safe public examples** only, not private raw test logs. Review future evaluation files for sensitive information first; a hidden directory is not adequate Git protection.
 
-## 最小資料模型
+## Minimum data model
 
-1. `ChartFacts`：`id/version/topic/axes/keyPoints/trends/unknowns/shortDescription/longDescription/source`。
-2. `LearnerProfile`：讀取深度、教學模式、數學程度、使用偏好；沒有醫療身分欄位。
-3. `ChatTurn`：匿名化 session、`chartId`、role、message、時間（僅必要時）。
-4. `EvaluationRun`：case、Prompt/model 資訊、raw response、人工評分與錯誤原因。
+1. `ChartFacts`: `id/version/topic/axes/keyPoints/trends/unknowns/shortDescription/longDescription/source`.
+2. `LearnerProfile`: reading depth, teaching mode, math level, and interaction preferences; no medical identity fields.
+3. `ChatTurn`: anonymized session, `chartId`, role, message, and time (only when needed).
+4. `EvaluationRun`: case, Prompt/model details, raw response, human scores, and error reason.
 
-精確欄位見 [API 契約](api-and-data-contracts.md)，不要在另一個地方定義互不相容的版本。
+See the [API contract](api-and-data-contracts.md) for exact fields; do not define an incompatible version elsewhere.
 
-## 圖表權威性
+## Chart authority
 
-- 內建範例必須有公式／可核對的數學事實、圖表短描述、完整長描述、來源／授權、人工審查日期。
-- 建議先做自製線性及二次函數。使用者貼的圖表文字應標 `user_provided`，不是由此系統自動「認證」。
-- 當有矛盾（圖說頂點 `(2,1)`、公式卻是別的），不生成肯定解答，先顯示衝突並要求核對。
-- 之後加入圖片時，模型抽取值一律處於「暫定草稿」，由使用者確認或老師審核後，才能進一步作有依據的計算。
-- 題目圖像與 PDF 若來自正式教材，要確認授權、合理引用、出處與是否可公開到 GitHub。
+- Each built-in example needs a formula or checkable mathematical facts, short and full descriptions, source and license, and a human review date.
+- Start with self-created linear and quadratic functions. Label user-pasted chart text `user_provided`; the system does not automatically certify it.
+- If the description and formula conflict (for example, the description says the vertex is `(2,1)` but the formula implies something else), do not answer definitively. Show the conflict and ask for review.
+- If image support is added, all model-extracted values remain **provisional drafts** until confirmed by the user or reviewed by a teacher.
+- Confirm rights, appropriate citation, source, and permission to publish on GitHub for images and PDFs from formal learning materials.
 
-## 不用資料庫也能交件的方法（待實作）
+## Submission without a database (not yet implemented)
 
-- Demo 中可有匿名短期對話，支援真正 LLM 多輪問答，不必先註冊帳號。
-- 最終要交的真實互動，人工保存原始對話、核對並去識別後，產出**唯讀對話連結**；可規劃為網站靜態 evidence 頁／公開文件。
-- 唯讀頁不是假聊天：需明確註明原始執行的日期、模型、版本、與原始訊息完整順序一致；不能事先寫對話冒充 LLM。
-- 若未來要讓每位使用者跨裝置永久保存聊天或產生公開分享連結，這是**新需求**，需要另外做 DB、身份、授權、刪除與備份決策。
+- The demo may support anonymous short-lived conversations with real multi-turn LLM responses; sign-in is not required.
+- For the final real interaction, manually preserve the raw conversation, review and de-identify it, then create a **read-only conversation link**, potentially as a static evidence page or public document.
+- The read-only page must not be a fake chat. It must state the original run date, model, and version, and preserve the original message order. Do not write a conversation in advance and pass it off as an LLM run.
+- Cross-device permanent chat storage or public share links for every user would be a **new requirement** that needs decisions about database, identity, consent, deletion, and backups.
 
-## 來源、版權與再利用
+## Sources, copyright, and reuse
 
-除官方規範與自製算式外，任何圖片、教材、文字、AI 生成內容、使用者訪談與開源依賴都要記錄來源及可再利用條件。不要自動選 GitHub LICENSE。素材與測試結果只在**有權公開**的前提下放進正式報告。
+Record the source and reuse terms for all images, learning materials, text, AI-generated content, user interviews, and open-source dependencies, except official rules and self-created formulas. Do not choose a GitHub LICENSE automatically. Include materials and test results in a formal report only when publication rights are clear.
 
-## 日後新增儲存時的風險門檻
+## Risk threshold for adding storage later
 
-新增 PostgreSQL、Supabase、object storage、雲端回放或影片／照片保管，都要更新安全文件、部署責任、資料保留／刪除、授權模型、備份／回復、成本與風險；本次初始化不建立這些資源。
+Adding PostgreSQL, Supabase, object storage, cloud replay, or video/photo retention requires updates to security responsibilities, deployment, data retention/deletion, permissions, backup/recovery, cost, and risk. These resources are not created as part of this initialization.

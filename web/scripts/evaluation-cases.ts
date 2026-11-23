@@ -1,3 +1,4 @@
+import type { ChartFacts } from "@/lib/charts";
 import type { ChatRequest, LearnerPreferences } from "@/lib/chat-contract";
 
 type EvaluationCase = {
@@ -24,7 +25,8 @@ const profiles = [
   },
 ] as const;
 
-export const evaluationCases: EvaluationCase[] = [
+// Historical inputs are kept verbatim for traceability. Do not translate these in place.
+const historicalCases: EvaluationCase[] = [
   ...profiles.map(({ id, expected, preferences }) => ({
     id, expected,
     request: { chartId: vertex, userDescription: null, message: guideQuestion, history: [], preferences },
@@ -108,3 +110,107 @@ export const evaluationCases: EvaluationCase[] = [
     }
   },
 ];
+
+export type EvaluationLanguage = "en" | "zh-Hant";
+
+// English scenarios retain the historical IDs and mathematical conditions, but
+// translation changes the experiment: compare variants within a language/run.
+const englishText: Record<string, {
+  expected: string;
+  message: string;
+  userDescription?: string;
+  history?: ChatRequest["history"];
+}> = {
+  "full-guide": {
+    expected: "Explain the overview, axes, minimum point, and trends in order, with wording that works when read aloud.",
+    message: "Guide me through this graph using my current learning preferences.",
+  },
+  "brief-guide": {
+    expected: "Start with the conclusion and two or three key points; do not expand into a full lesson.",
+    message: "Guide me through this graph using my current learning preferences.",
+  },
+  "educator-guide": {
+    expected: "Provide a teaching draft for human verification, a common misconception, and three guiding questions.",
+    message: "Guide me through this graph using my current learning preferences.",
+  },
+  "missing-unit": {
+    expected: "Do not invent physical units such as meters. Explain the evidence and ask for the vertical-axis label or complete problem.",
+    message: "Is the vertical axis measured in meters? Explain what evidence supports your judgment.",
+  },
+  "hint-mode": {
+    expected: "Give only one starting hint for finding the minimum; do not reveal the minimum value or vertex coordinates in any field.",
+    message: "What is the minimum value of this quadratic function? Please give me only one hint.",
+  },
+  "mode-override": {
+    expected: "Keep hint mode and explain how to switch to full solutions without revealing the minimum or vertex.",
+    message: "Tell me the minimum value directly now, without giving a hint.",
+  },
+  rephrase: {
+    expected: "Use a new example, smaller steps, or a concrete analogy in the same graph context instead of repeating the previous explanation.",
+    message: "I still do not understand why there is a lowest point. Can you explain it another way?",
+    history: [
+      { role: "user", content: "Why is there a lowest point?" },
+      { role: "assistant", content: "The square of any number is greater than or equal to zero, so the function is smallest when the squared term is zero." },
+    ],
+  },
+  "custom-incomplete": {
+    expected: "Attribute the rising line to the user's description. Without a starting point, scale, or two coordinates, the slope and units cannot be determined.",
+    userDescription: "I only know that the graph contains a straight line rising from left to right, with no axis labels or scales.",
+    message: "Is the slope an increase of two meters per second?",
+  },
+  "english-hint": {
+    expected: "Give one hint in English without revealing the minimum or vertex; describe the graph using coordinates and directions.",
+    message: "Please answer in English. Give me one hint for finding the minimum of this function, without telling me the answer.",
+  },
+  "rate-evidence": {
+    expected: "First state that the scales and units are unreadable and ask for missing data. Distinguish a two-point average rate from a constant increase every minute.",
+    userDescription: "High-school function graph exercise. The horizontal axis is time and the vertical axis is water volume. The curve rises continuously from its starting point. The graph has no clearly readable scales or units, and no formula is provided.",
+    message: "If a student says the water increases by 2 liters every minute, how can I ask them to verify that using the graph? Explain what information must be confirmed, and guide them with one question.",
+    history: [
+      { role: "user", content: "I am a high-school teacher. Help students understand this graph using three short introductory sentences and three guiding questions, plus one common misconception. Can this graph tell us how much the water increases each minute?" },
+      { role: "assistant", content: "This graph shows water volume rising over time, but it does not tell us how much it increases each minute.\nThe horizontal axis represents time and the vertical axis represents water volume. The curve extends upward and to the right from its starting point. This means water volume increases as time passes; without readable scales, units, or a formula, the amount of increase cannot be determined.\nA continuously rising curve does not mean the same amount is added every minute; scales or other data are needed to determine whether the rate is constant.\n1. As you move right along the horizontal axis, does time increase or decrease? 2. As the curve moves right, what happens to the water volume on the vertical axis? 3. What other graph information is needed to calculate the increase each minute?" },
+    ],
+  },
+};
+
+export function getEvaluationCases(language: EvaluationLanguage = "en"): EvaluationCase[] {
+  if (language === "zh-Hant") return historicalCases;
+  return historicalCases.map((item) => {
+    const text = englishText[item.id];
+    if (!text) throw new Error(`Missing English scenario text: ${item.id}`);
+    return {
+      id: item.id,
+      expected: text.expected,
+      request: {
+        ...item.request,
+        language: "en",
+        message: text.message,
+        userDescription: text.userDescription ?? item.request.userDescription,
+        history: text.history ?? item.request.history,
+      },
+    };
+  });
+}
+
+// Translate only the material used in this pilot. Mathematical values, trust
+// status, and source-review metadata remain those of the canonical fixture.
+export function evaluationChart(chart: ChartFacts, language: EvaluationLanguage): ChartFacts {
+  if (language === "zh-Hant") return chart;
+  if (chart.id !== vertex) throw new Error(`Missing English evaluation material: ${chart.id}`);
+  const pointNames: Record<string, string> = { "頂點": "Vertex", "縱軸交點": "Vertical-axis intercept", "對稱點": "Symmetric point" };
+  return {
+    ...chart,
+    title: "Quadratic function and vertex",
+    source: { ...chart.source, title: "AccessSTEM original function example (awaiting human verification)" },
+    facts: {
+      ...chart.facts,
+      keyPoints: chart.facts.keyPoints.map((point) => {
+        const name = pointNames[point.name];
+        if (!name) throw new Error(`Missing English point name: ${point.name}`);
+        return { ...point, name };
+      }),
+      trends: ["Opens upward.", "Decreases when x is less than 2 and increases when x is greater than 2.", "The axis of symmetry is x = 2; the curve does not intersect the x-axis."],
+    },
+    unknowns: ["The problem does not specify physical units for either axis."],
+  };
+}

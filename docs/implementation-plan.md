@@ -1,77 +1,40 @@
-# Codex／Claude Code 實作計畫與工作分解
+# Implementation plan and closeout
 
-> 已進入本機 MVP。下方工作包保留完整交件門檻，現況見實作進度。
+The project has a locally working prototype. The work packages preserve the acceptance criteria for the competition entry. WAICY assigns 25 points each to the specific AI service and iterative development, so the priority is a working tutor and a traceable trial-and-retest record.
 
-## 工作方式與優先順序
+Read [repository instructions](../AGENTS.md), [requirements](project-overview.md), [architecture](architecture.md), [tutor design](agent-design.md), [API contract](api-and-data-contracts.md), and [evaluation protocol](evaluation-plan.md) before changing those areas.
 
-優先保住 WAICY 2026 的評分核心：**具體 AI 服務（25）＋可追溯迭代（25）**。最小公開可玩作品必須使用真正 LLM，不是固定對話、靜態截圖或假資料充當聊天。因截止日接近，**先完成一條可展示的端到端路徑，再改善介面與延伸能力**。
+## Work packages
 
-開發前先讀 `../AGENTS.md`、[需求](project-overview.md)、[架構](architecture.md)、[Agent](agent-design.md)、[API](api-and-data-contracts.md)、[測試](evaluation-plan.md)。
+| ID | Deliverable | Dependency | Acceptance | Status |
+|---|---|---|---|---|
+| W01 | Single Next.js component in `web/` | Existing structure | Direct manifest and lockfile, no nested Git, verified build | Implemented and verified locally |
+| W02 | Candidate graph facts and text alternatives | Teacher and publication review | Formulas, coordinates, trends, and source status traceable | Three examples implemented, teacher review pending |
+| W03 | Preferences and request/reply schemas | W01 | Validated input and output, no user-controlled verified status | Implemented |
+| W04 | Server-side Responses API and chat route | W01/W03 | Live reply, bounded requests, and meaningful errors | Live provider verified locally. Missing key, 429, and invalid replies covered by controlled checks. |
+| W05 | Layered tutoring, evidence, and hints | W02/W04 | Follow-ups, alternative explanations, useful hints, and questions when facts are missing | Implemented with true browser dialogues and matched retests |
+| W06 | Accessible bilingual workspace | W03/W05 | Keyboard, labels, feedback, and English-first entry | Implemented. VoiceOver and participant testing pending. |
+| W07 | Baseline through V3 prompt comparison | W05/W06 | Save real requests, outputs, failures, and fixes | Historical and English pilot evidence recorded. Larger 36-scenario plan and independent grading remain open. |
+| W08 | Accessibility and error verification | W06/W07 | Record real assistive-technology checks, fixes, and retests | Keyboard, reflow, and selected automated checks recorded. VoiceOver remains open. |
+| W09 | Deployed demo and reviewed conversation | W07/W08 and hosting decision | External judges can open both links and use AI | Public deployment and link acceptance pending |
+| W10 | English PDF and submission | W07–W09 and team review | One English PDF, form description within 200 words, and confirmation | English source package prepared. Final links, export, and submission pending. |
 
-## 工作包（按依賴與可驗收性排列）
+## Original rehearsal schedule
 
-| ID | 工作 | 前置依賴 | 產物／完成標準 |
-|---|---|---|---|
-| W01 | 官方 Next.js 初始化（原地於 `web/`），TypeScript/pnpm、ESLint 等 | 本文件與現有檔案讀取 | 正確直屬 manifest/lockfile；無 nested git；能按實際命令 build |
-| W02 | 建立 2～3 張自製高中函數圖表 ChartFacts + 長描述 | 教師核對數學／授權 | 來源與審核欄位可查；事實、推導與未知分開 |
-| W03 | 建立偏好、Session、請求／回覆 schema | W01 | 前端不得提交 `verified:true` 冒充權威；型別驗證可測 |
-| W04 | LLM Provider adapter（server-only）、/api/chat | W01/W03 + Provider 選擇 | 真實模型連線、超時/429/錯誤可安全顯示；Key 未洩露 |
-| W05 | Agent 基準 Prompt 與三層解說／提示模式 | W02/W04 | 單一圖表可連問 3 回合，缺資料不編值 |
-| W06 | 無障礙首頁／圖表選擇／聊天 UI | W03/W05 | Tab 操作、清晰標籤與回應狀態；無需登入 |
-| W07 | Baseline／V1／V2／V3 版本保存及 36 案例評估 | W05/W06 | 真實原始回覆、比較方法、問題修正記錄 |
-| W08 | 無障礙實測／Provider 失敗／Prompt injection | W06/W07 | VoiceOver＋鍵盤操作、缺陷清單及修正 |
-| W09 | 公開 Demo 部署、匿名對話唯讀連結 | W07/W08 + 平台決策 | 無痕視窗外部可操作；兩種連結能開啟 |
-| W10 | 英文 PDF、英文 200 字摘要與交件 | W07～W09 | 一份 PDF 包含必備章節、證據與可用連結；實際送件另有確認 |
-
-W01 不得自動做 W10；每個工作包完成時附測試與文件同步結果。依實際功能建置目錄，不預先製造空殼。
-
-## 實作進度
-
-| 工作包 | 目前狀態 |
+| Target in Taiwan | Focus |
 |---|---|
-| W01 | Next.js 骨架、lint、typecheck、production build 本機通過 |
-| W02 | 3 張自製候選圖表與等值文字已實作，待教師核對 |
-| W03 | 偏好、匿名對話、輸入輸出驗證已實作 |
-| W04／W05 | OpenAI Responses API 路由與 V3 教學指令已實作，缺金鑰降級與本機模擬上游的結構驗證、429、502 已測；真實回覆、提示切換、缺資料與速率追問已測 |
-| W06 | 中英介面、回答依據與回應下一題已實作。Chrome 通過鍵盤跳轉、模式切換、教材操作及 320px 重排；VoiceOver 待測 |
-| W07 | 已跑 9 個試點案例 × 4 版與多輪真實重測，最終 Terra 版再跑 10 個案例 × 4 版。40 筆已完成 AI 輔助試評，完整 36 案例及人工評分待完成 |
-| W08～W10 | 已備英文入口、PDF 草稿和本機真實對話。VoiceOver 完整驗收、公開 Demo、對話連結與正式 PDF 待完成 |
+| Nov 20–22 | Scope, scaffold, lessons, and working local chat |
+| Nov 23–26 | Prompt comparison, revisions, and accessibility acceptance |
+| Nov 27 | Public demo and reviewed conversation |
+| Nov 28 | English report and rehearsal |
+| Evening of Nov 29 | Final checks and the team's internal submission target |
 
-## 比賽倒排時程（以 2026/11/20 起算，預定時間可調）
+See [competition status](competition.md) for the official deadline.
 
-| 日期 | 聚焦 | 可交付證據 |
-|---|---|---|
-| 11/20 | 規格與 Scaffold（本次任務） | 本機 project / docs / Git 初始化 |
-| 11/21 | W01–W03 | 可起動 Web 骨架、核對的 ChartFacts、資料契約 |
-| 11/22 | W04–W06 | 可向真正 LLM 問圖表並繼續追問 |
-| 11/23–11/24 | W07 初輪 | 3 Profile 真實案例、Baseline、V1／V2 |
-| 11/25–11/26 | W07／W08 修正 | V3、完整錯誤追溯、VoiceOver 缺陷修復 |
-| 11/27 | W09 | 公開 Demo、真實匿名對話連結，可在無痕測 |
-| 11/28 | W10 初稿與驗收 | 英文 PDF、200 字簡介、三分鐘 demo 演練 |
-| 11/29 晚間前（台灣） | 最後檢查與提早上傳 | 提交成功憑證、連結全部驗證 |
+## Ownership and risks
 
-官方目前公告 **2026/11/29 17:00 ET（台灣 11/30 06:00）** 截止；表格 11/29 晚間是更保守的**團隊工作目標**，不是新的官方時限。
-
-## 各角色實際貢獻分工（請如實填寫，不是已完成）
-
-- **參賽學生**：說明問題、設定教學目標、挑選／檢查圖表、親自設計／調整 Prompt、測試並解釋實驗結果、展示與回答評審。
-- **指導者**：技術選型、架構安全、教材／測試方法指導與結果複核。
-- **Codex／Claude Code 等工具**：在有明確任務時協助寫 UI、程式與測試；必須說明 AI 協助部分，不得寫成學生獨立完成。
-- **無障礙使用者／教育專家（如實參與）**：需取得合適同意，僅記錄可公開的匿名意見；未參與時清楚標明。
-
-## 風險及降級策略
-
-- **模型 API 無法使用**：公開 Demo 需保留「無法取得 AI 回應」真實狀態與已核對的靜態教材；不得以固定答案冒充 LLM。
-- **圖片辨識不準**：P0 直接取消圖片，採教師核對文字；不影響專業 AI 顧問核心。
-- **時間不足**：砍 P1 與 P2，不砍三種 profile、真實 AI 對話、迭代測試或可用連結。
-- **沒有視障受試者**：完成 VoiceOver／鍵盤技術測試並誠實註明不能證明真實使用成效。
-- **成本／濫用**：設定 server-side 配額、長度與速度限制，預先估算模型費用。
-- **英文時間不足**：先確保內容為真實實測，英文採清晰簡短，不貼示意數字。
-
-## Done Definition（每一個工作包皆適用）
-
-1. 符合對應 FR／AX／測試案例；沒有未解的 P0 阻斷缺陷。
-2. 有實際命令輸出或可重現使用流程，未執行要明說原因。
-3. 把目標功能、API、環境變數、測試、限制同步到權威 docs。
-4. 排除憑證、真實個資、未獲授權素材；不把未經核對的圖當已核對。
-5. Git 行為符合當次授權：**不因完成程式碼就自動 commit、push 或部署**。
+- Team members explain the problem, design decisions, tests, and implementation they performed. Advisors and AI tool work are attributed separately in the [contribution record](evidence-templates.md#f-contribution-record).
+- Provider failures should leave the lesson and a retry option available. A past real capture is suitable as labeled fallback evidence during a rehearsal.
+- Use structured or text graph inputs. Image recognition needs a separate privacy and accuracy plan.
+- Give published links, true model interaction, evidence, and the three profiles priority over future features. Keep API usage limits and external acceptance visible.
+- Complete a work package only with evidence, updated authoritative docs, and clear unresolved limits. Keep private data and credentials out of the repository. Follow the repository's Git and external-action instructions.

@@ -1,6 +1,6 @@
 <section id="appx-prompt" data-transition="fade">
 <p class="eyebrow">APPENDIX A · PROMPT V3, ENGLISH TRANSLATION</p>
-<h2 class="title">The seven rules of Prompt V3</h2>
+<h2 class="title">The rules of Prompt V3</h2>
 <div class="main">
 <div class="row grow" style="gap:30px">
 <div class="col f1" style="gap:12px; justify-content:center">
@@ -10,10 +10,10 @@
 <p class="sm3"><b>4 · Evidence labels.</b> given = explicitly provided; derived = follows from the conditions; unknown = missing. Source IDs only from: formula, x-axis, y-axis, key-points, trends, missing-data, user-description, question. Never claim teacher review.</p>
 </div>
 <div class="col f1" style="gap:12px; justify-content:center">
-<p class="sm3"><b>5 · Hint mode.</b> No field (summary, sections, claims, next question) may reveal the target result. Give one actionable step and stop. If a full answer is requested, say to choose “Full solution” in the learning preferences, and still give only a hint this turn. Guided = step-by-step; full = answer with checkable steps.</p>
-<p class="sm3"><b>6 · Confusion.</b> If the learner says they do not understand, use a new example or smaller steps. Teacher drafts put each guiding question on its own line.</p>
+<p class="sm3"><b>5 · Learner hints.</b> Keep the result out of every field and give one actionable step. If the learner asks for the answer, explain how to select Full solution.</p>
+<p class="sm3"><b>6 · Teacher scope.</b> A full draft has an overview, a misconception, and three guiding questions. Honor the number requested in a focused task. When one missing fact is needed, put the single follow-up in <code>nextQuestion</code>.</p>
 <p class="sm3"><b>7 · Language and style.</b> Answer in the selected language, including headings and the next question. Short overview first, then sections. Describe coordinates by x-value, interval and direction, never by color or “here”. Plain text; do not repeat the same text in several fields.</p>
-<p class="src">Translated from the Traditional Chinese production prompt in web/src/server/agent/prompts.ts. Wording condensed; meaning unchanged.</p>
+<p class="src">Condensed English guide to the revised developer prompt. If a learner is confused, use another example or smaller steps.</p>
 </div>
 </div>
 </div>

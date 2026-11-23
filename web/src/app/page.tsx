@@ -4,7 +4,7 @@ export default async function Home({ searchParams }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { lang } = await searchParams;
-  const initialLanguage = lang === "en" ? "en" : "zh-Hant";
+  const initialLanguage = lang === "zh-Hant" ? "zh-Hant" : "en";
 
   return <LearningWorkspace initialLanguage={initialLanguage} />;
 }

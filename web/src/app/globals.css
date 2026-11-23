@@ -137,6 +137,7 @@ nav a:hover { color: var(--accent); text-decoration: underline; text-underline-o
   max-width: 100%;
   padding: 7px 4px 9px;
 }
+.workspace[lang="en"] .title-strips { column-gap: .16em; }
 .title-strips::before, .title-strips::after {
   content: "";
   position: absolute;

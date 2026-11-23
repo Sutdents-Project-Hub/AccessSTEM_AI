@@ -1,67 +1,67 @@
-# 專案需求、範圍與驗收（產品規格 v0.1）
+# Product Scope and Acceptance Criteria (Product Specification v0.1)
 
-> 狀態：**本機 MVP 已接通 OpenAI。教師核對、真人使用者與公開驗收待完成**。需求源於學生企劃；以下為完整交件目標，實際狀態見實作計畫。
+> Status: **The local MVP is connected to OpenAI. Teacher review, real-user evaluation, and public acceptance remain outstanding.** Requirements originated in the student proposal. This document records the full competition target; see the implementation plan for current progress.
 
-## 問題與定位
+## Problem and positioning
 
-高中數學的線性函數、二次函數圖表，往往依賴視覺閱讀軸、刻度、頂點、斜率與趨勢。單次圖片描述不能保證理解，學生需要依自己掌握的知識繼續追問。AccessSTEM 提供**可信圖表資料上的個人化對話式 STEM 學習**，不承諾代替正式無障礙教材或教師判讀。
+High-school linear and quadratic function graphs rely on visual reading of axes, scales, vertices, slopes, and trends. A one-time image description cannot ensure understanding; students need to ask follow-up questions at their own level. AccessSTEM provides **personalized, conversational STEM learning grounded in trustworthy chart data**. It does not claim to replace formally accessible learning materials or teacher judgment.
 
-## 三類使用需求（可自由覆寫偏好）
+## Three learning needs (preferences can be changed freely)
 
-| Profile | 預設輸出需求 | 核心風險 | 代表測試 |
+| Profile | Default output | Main risk | Representative check |
 |---|---|---|---|
-| `learner-full` 全盲情境 | 非視覺、由全貌至細節、軸與單位講清楚、可分步閱讀 | 「看這邊」或遺漏空間資訊 | 完全不看螢幕仍能描述圖表結構 |
-| `learner-brief` 低視力情境 | 先給短版重點、可放大、細節按需展開 | 過長朗讀、細標籤難辨 | 只要求曲線轉折與關鍵值 |
-| `educator` 教學情境 | 可編修導讀稿、三道理解題、常見誤解 | AI 答案被誤認為已審教材 | 指定年級後產出教學草稿與需核對處 |
+| `learner-full` — blind-learning context | Nonvisual explanation from overview to detail; clear axes and units; readable in steps | Vague phrases such as “look here” or missing spatial information | A learner can describe the chart structure without looking at the screen |
+| `learner-brief` — low-vision learning context | Key points first, with optional enlargement and details on request | Overly long speech or hard-to-read small labels | The learner can request only a curve's turning point and key values |
+| `educator` — teaching context | Editable guide, three comprehension questions, and common misconceptions | AI output being mistaken for reviewed teaching material | A draft identifies the grade level, learning goals, and items to verify |
 
-使用者只選**偏好的互動方式**，不要求透露診斷、障礙證明、真實姓名；角色標籤不是能力定論，所有選項都可自行調整。
+Users choose **interaction preferences**. They are not asked to disclose a diagnosis, disability documentation, or real name. Profile labels do not determine ability, and all options can be changed.
 
-## P0｜WAICY 截止前必須完成
+## P0 | Required before the WAICY deadline
 
-| ID | 功能／情境 | 接受條件（DoD） |
+| ID | Feature / scenario | Acceptance criteria (DoD) |
 |---|---|---|
-| FR-01 | 學習需求選擇 | 可選三種 profile 並設定「簡短／分步／老師」、`hint`／`guided`／`full` 解題節奏；切換後生效 |
-| FR-02 | 圖表範例與文字描述 | 至少 2 張**數學事實經教師人工核對**的線性／二次函數圖表；可貼文字題目；標註來源與是否核對 |
-| FR-03 | 三層結構描述 | 按「30 秒全貌 → 軸／單位／重要標記 → 概念與趨勢」輸出，可要求重講指定層 |
-| FR-04 | 多輪互動 | 以同一圖表繼續問「頂點是什麼／更簡單／從軸開始」；新圖表不能汙染舊對話 |
-| FR-05 | 學習引導 | 在 `hint` 模式不直接揭露最終答案，除非使用者明確切換模式要求完整解答 |
-| FR-06 | 誠實分級 | 區分提供資料 `given`、從條件可推出 `derived`、尚待確認 `unknown`；缺刻度不得補造數值 |
-| FR-07 | 安全失敗 | API 缺額度／超時／模型不可用時，明確說明並保留教材文字，禁止顯示偽造的 AI 成功回答 |
-| FR-08 | 無障礙基本操作 | 不用滑鼠可選學習方式、提交題目、查看回答、重試；VoiceOver 完成核心任務的實測紀錄 |
-| FR-09 | 競賽證據 | 同題 Baseline 與 V1–V3 真實輸出、測試表與錯誤回顧可重現；不編造通過率 |
-| FR-10 | 可被外部評審使用 | 無痕視窗可開啟真正 LLM 對話服務，不依賴開發者帳號或私有本機網域 |
+| FR-01 | Choose learning needs | Select one of three profiles and set `brief` / `step-by-step` / `teacher` preferences and `hint` / `guided` / `full` teaching pace; changes take effect |
+| FR-02 | Sample charts and text descriptions | At least two linear or quadratic function charts whose **mathematical facts have been manually reviewed by a teacher**; users can paste a text problem; source and review status are shown |
+| FR-03 | Three-layer description | Explain “30-second overview → axes, units, and key markers → concepts and trends”; allow the learner to revisit a specific layer |
+| FR-04 | Multi-turn interaction | Continue asking about the same chart (for example, “What is the vertex?”, “Make it simpler,” or “Start with the axes”); a new chart must not contaminate the old conversation |
+| FR-05 | Guided learning | In `hint` mode, do not reveal the final answer unless the user explicitly switches to a mode that provides a full solution |
+| FR-06 | Label certainty | Distinguish supplied facts (`given`), conclusions derived from conditions (`derived`), and unconfirmed information (`unknown`); never invent a missing scale |
+| FR-07 | Safe failure | When API quota, timeout, or model availability fails, explain that clearly and retain chart text; never show a fabricated successful AI answer |
+| FR-08 | Basic accessibility | Without a mouse, users can choose a learning mode, submit a problem, read an answer, and retry; retain a VoiceOver core-task test record |
+| FR-09 | Competition evidence | Same-question Baseline and V1–V3 outputs, test table, and error review can be reproduced; do not invent pass rates |
+| FR-10 | Usable by external judges | An incognito window can open the real LLM conversation service without a developer account or private local domain |
 
-## 非功能需求
+## Non-functional requirements
 
-- **語言**：繁體中文與英文，可在同一份教材切換，回覆符合所選語言。
-- **可理解**：避免「這裡／如圖所示／紅色那條」作為唯一定位；明講座標軸、變化方向與單位。
-- **可控制**：不自動播放語音；訊息區避免每個 token 的自動朗讀風暴；支援清楚焦點順序。
-- **可信度**：只有內建已核對資料可標成教師確認；使用者自行貼上的圖表描述，表述為「根據你提供的描述」。
-- **隱私**：不需登入或收集學校、醫療或實名資料；最少化將情境送到 AI 提供商。
-- **韌性**：LLM 失敗時 UI 保留使用者輸入與已知的靜態圖表說明；不默默切回無關模型。
-- **成本**：公開 demo 必須有 server-side 基本速率上限與長度限制；在選定供應商後定義預算。
+- **Languages:** English is the default; users can switch to Traditional Chinese or back on the same material, and responses follow the selected language.
+- **Understandability:** Do not use “here,” “as shown,” or “the red line” as the only location reference. Name axes, direction of change, and units.
+- **User control:** Do not autoplay speech. Avoid announcing every token in a message region; keep focus order clear.
+- **Trust:** Only built-in, reviewed data may be labeled teacher-verified. User-pasted descriptions must be attributed as “based on the description you provided.”
+- **Privacy:** No sign-in or collection of school, medical, or real-name data is required. Send only the minimum context needed to the AI provider.
+- **Resilience:** If the LLM fails, retain the user input and known static chart description; do not silently switch to an unrelated model.
+- **Cost:** The public demo must have basic server-side rate and length limits. Define a budget after selecting a provider.
 
-## P1／P2｜有餘裕才做（不是 P0 承諾）
+## P1 / P2 | Only if time allows (not P0 commitments)
 
-- **P1**：圖片上傳、多模態抽取圖表初稿、使用者／老師確認後才納入 ChartFacts；支援更完整的速度－時間圖例。
-- **P1**：可自行匯出匿名化的真實對話與老師審閱註記。
-- **P2**：語音提問與文字朗讀、數學式特殊朗讀、更廣泛學科、學習記錄與登入。
+- **P1:** Image upload, multimodal extraction into a chart draft, and inclusion in ChartFacts only after user or teacher confirmation; add more complete speed-time chart examples.
+- **P1:** Allow export of anonymized real conversations with teacher review notes.
+- **P2:** Voice input and read-aloud, specialized math expression reading, more subjects, learning history, and sign-in.
 
-## 典型 E2E 流程
+## Typical end-to-end flow
 
-1. 選擇「完整分步」或其他偏好，使用鍵盤進入圖表範例。
-2. 顯示經核對的圖表資料，先請 AI 說重點，不依賴圖片才可理解。
-3. 學生說「我不懂頂點」，AI 用例子重述；可選「不要直接給答案」。
-4. 學生追問「改用更短的方法」；AI 保留圖表上下文並遵守偏好。
-5. 資料缺失或圖中沒有刻度時，AI 表達未知並提出具體確認問題。
-6. 老師模式輸出教學草稿與三道引導題，仍標明需人工審核。
+1. Choose “full step-by-step” or another preference, then use the keyboard to reach a chart example.
+2. Review the chart data and ask the AI for the main idea; understanding must not depend on the image.
+3. The student says, “I don’t understand the vertex.” The AI explains it with an example; the student can choose not to receive the direct answer.
+4. The student asks for a shorter explanation. The AI keeps the chart context and follows the selected preference.
+5. If data is missing or the chart has no scale, the AI says what is unknown and asks a specific question.
+6. Educator mode produces a teaching draft and three guiding questions, clearly marked for human review.
 
-## 真實完成門檻
+## Evidence required to mark complete
 
-- 任一 P0 功能只有當**可操作、可錄製、可用測試案例重跑**才可標記為完成。
-- 比賽評分著重服務與迭代；不得拿企劃示例、預填的理想答案或純靜態 UI 當真實 AI 回覆。
-- 如果時間不足，優先確保 FR-01～07、09～10 可展示，再將 FR-08 的發現和缺口誠實記錄；但不准聲稱已做過未完成的無障礙測試。
+- A P0 feature is complete only when it is **operable, recordable, and repeatable with a test case**.
+- Competition scoring emphasizes the service and iteration evidence. Proposal examples, prewritten ideal answers, and static UI do not count as real AI responses.
+- If time is short, prioritize making FR-01–07 and FR-09–10 demonstrable, then honestly record FR-08 findings and gaps. Never claim accessibility tests that were not performed.
 
-## 未決事項
+## Open decisions
 
-金鑰與公開環境的模型配額、Hosting、圖表人工核對及素材授權、學生年齡資格、真人研究可行性、P1 圖片上傳及公開對話授權，均須在對應階段確認，見 [決策紀錄](decisions-and-sources.md)。
+Model quota for the API key and public environment, hosting, teacher review of charts, material licensing, student age eligibility, feasibility of real-user research, P1 image upload, and permission to publish conversations must be resolved at the relevant stage. See [Decisions and sources](decisions-and-sources.md).

@@ -1,74 +1,90 @@
-# WAICY 迭代開發紀錄
+# WAICY iterative development log
 
-本文件對應 WAICY LLM Track 的迭代開發要求。從學習問題、Prompt 設計與測試出發，逐項保留失敗、改動和重測結果。日期使用台灣時間。本紀錄截至 2026-11-23。[WAICY Guidebook，第 21–22 頁](https://waicy-cdn.wholeren.cn/wp-content/uploads/2026/09/WAICY-2026-Guidebook.pdf#page=21) · [WAICY Rubrics](https://www.waicy.org/rubrics/)
+AccessSTEM AI addresses an interaction gap in high-school mathematics: a learner can read what a function graph contains and continue asking about what its relationships mean. This log connects the learner need to an actual prompt change, a test, and the observed result. Dates below are local to Taiwan. See the [WAICY guidebook](https://waicy-cdn.wholeren.cn/wp-content/uploads/2026/10/WAICY-2026-Guidebook-2.pdf#page=21) and [rubric](https://www.waicy.org/rubrics/).
 
-## 1. 從問題到可測試的服務
+## 1. Idea to working tutor
 
-| 時點 | 設計或實作 | 如何驗證 |
+| Date | Decision | Evidence |
 |---|---|---|
-| 11/20–11/21 | 把學生企劃收斂為高中函數圖表學習。先做線性、開口向上及開口向下的二次函數，以公式、軸、關鍵點及趨勢提供文字等值。設計完整導讀、重點短述和教師引導三種偏好。 | [需求與驗收](project-overview.md) 定義 FR-01～10，並在 [評估計畫](evaluation-plan.md) 先寫案例預期與評分尺度。 |
-| 11/22 | 完成單一 Next.js 學習室和伺服器端 OpenAI 路由，對話只保留在目前頁面。三張內建圖表仍標待教師核對。 | 公開程式基線為 `63b3d5d`。通過 build、型別、lint、缺金鑰降級與本機模擬流程。當時還沒有真實模型回覆。 |
-| 11/22 | 依使用者回饋換成 Collage，讓內建圖表與貼題入口並列。移除空白對話區，加入可帶入輸入框的常見提問與跳至最新回答。 | Chrome 鍵盤操作和 320 CSS px 重排。把原始風格 Prompt 存入 [展示與交件手冊](demo-and-submission.md)。 |
-| 11/23 | 實際用 Luna 低推理接通 OpenAI。兩位 Codex 代理分別扮演學生／教師與獨立檢查者。新增可重跑的四版評測，從回覆各欄位核對洩題、缺值、學習偏好及來源。 | 首題缺單位經實際網頁 API 回應 HTTP 200，5.293 秒。代理用 Chrome 取得五輪真實回覆。這些操作使用合成題目與角色。 |
-| 11/23 | 依缺陷修正提示、速率與語言，測 Luna 低／中推理、Terra 低推理。新增中英切換、來源標籤、可直接操作的下一題，以及提示模式切換說明。 | 以最終 Terra 低推理重跑四版 Prompt。Chrome 用最終版走完六輪英文與中文版速率題。 |
+| Nov 20–21 | Narrow the brief to linear and quadratic function graphs. Provide a formula reading, axis labels, key points, and trends. Let learners choose Full guide, Quick summary, or Teacher guide. | [Requirements](project-overview.md) and prewritten [evaluation criteria](evaluation-plan.md) |
+| Nov 22 | Build a single Next.js workspace and server-side OpenAI route. Keep conversations in the current page and mark the three original lessons for teacher review. | `63b3d5d` had a local build and simulated-provider tests, including missing-key recovery. |
+| Nov 22 | Apply the Collage design, place sample and custom lessons together, remove the empty conversation area, and add starters and a link to the latest answer. | Chrome keyboard and 320 CSS px reflow checks. The original style brief is in the [demo guide](demo-and-submission.md). |
+| Nov 23 | Connect to OpenAI with Luna low. Exercise learner and teacher tasks with synthetic scenarios and keep the answers from every field. | Initial missing-unit call returned HTTP 200 in 5.293 s. Two agent roles provided scenario testing and review. |
+| Nov 23 | Refine hint pacing, rate explanations, language consistency, and source labels. Compare three model and effort settings. | Final Terra low batch, targeted retests, and a real English browser chat. |
 
-## 2. Prompt 設計與控制變因
+## 2. Prompt versions
 
-| 版本 | 提升的能力 | 在測試中觀察 |
+| Version | Change | English reading guide |
 |---|---|---|
-| Baseline | 不附 AccessSTEM 開發者教學指令。使用相同教材、提問、偏好、歷史與輸出 schema。 | 可正確回答部分單題。在使用者直接要答案時，曾忽略模式而報出目標數值。 |
-| V1 | 用高中數學圖表助理的角色，依全貌、座標軸、關鍵點、趨勢組織回答。 | 可形成導讀，對三種角色的差異和解題節奏較少約束。 |
-| V2 | 累加三種偏好、解說深度和教師的教學草稿、常見誤解及三道引導題。 | 角色輸出更容易區分，完整解答的切換與缺資料追問仍需要更明確規則。 |
-| V3 | 累加已知／推導／未知、來源 ID、缺資料補問與提示規則。反覆修正語言一致、單步提示及區間平均變化率。 | 最終版把速率證據和提示限制寫清楚，並透過 UI 提供可見的完整解答切換入口。 |
+| Baseline | Remove the specialized developer tutoring instructions. Keep the lesson, preferences, question, history, and output schema. | The matched version without the graph teaching rules still has the task inputs and output structure. |
+| V1 | Give the model a graph tutor role and a description order. | “Describe the overview, axes, key points, and trends in sequence.” |
+| V2 | Add adjustable depth, the three teaching modes, and a teacher draft with misconceptions and guiding questions. | Lead with the takeaway in Quick summary. Draft three guiding questions for a teacher. |
+| V3 | Add known, derived, and unknown claims, source identifiers, one-step hints, and missing-evidence questions. | In Hints only, keep the target result out of every answer field. For a possible constant rate, distinguish the average over an interval from a claim about the whole graph. |
 
-四個版本的請求由 [Prompt 原始碼](../web/src/server/agent/prompts.ts) 與 [請求組裝](../web/src/server/agent/openai.ts) 產生。完整送出字串在每筆評測的 `request.instructions`，最終同題比較的模型固定為 `gpt-6.1-terra`、推理深度 `low`、最高 2,200 個輸出 token。教學個人化保留在同一份案例輸入，因而可看出開發者指令的增量。每筆都保留原始輸出，格式通過與內容正確分別判讀。
+The reading guide paraphrases the tested instructions in English. [Prompt source](../web/src/server/agent/prompts.ts) and [request assembly](../web/src/server/agent/openai.ts) preserve the actual implementation. Individual run files retain the complete sent developer text and raw provider output. The historical matched comparison fixed `gpt-6.1-terra`, low reasoning effort, and a maximum of 2,200 output tokens. See the [evaluation protocol](evaluation-plan.md) for scoring and version controls.
 
-## 3. 錯誤分析與同題重測
+## 3. Failures, fixes, and matched retests
 
-| 觀察到的問題 | 分析與改動 | 實際重測 |
+| Case or issue | Observed failure and change | Retest |
 |---|---|---|
-| `missing-unit` 首次回覆知道不能假定公尺，卻沒有要求補充。 | 把缺資料時的提問寫入 `nextQuestion`，並讓介面提供「回應這一題」，按下即聚焦輸入欄。 | 最終 Terra V3 問 y 代表的實際量或單位。不把公尺當成已知。英文網頁也操作了來源與補問。 |
-| `mode-override` 原 V3 在提示模式直接答出最小值 1、x 值 2。初次修詞時，摘要說只提示，段落和主張仍把答案寫出來。 | 原指令允許文字索答覆寫模式。初次用了可能歧義的「保留答案」措辭。改成所有欄位不得揭露目標，從平方項的一步提示開始。切換由學習偏好控制，UI 明列切換路徑。 | 最終同題 Baseline 直接回答最小值是 1，V3 引導先思考平方項，並指向「完整解答」。Terra 另重跑提示與直接索答各三次，沒有直接公布答案。 |
-| `rate-evidence` 在刻度不可讀的水量圖上，教師版仍叫學生找兩點，漏了只得到區間平均的限制。 | 明確規定先補可用刻度、單位或公式，並要求以「水量差 ÷ 時間差」說明區間平均。要驗證整段固定仍要有線性或題目條件。 | 最終 Terra 三次專項回覆與一次網站中文版重測都同時說明資料不足、區間平均算法和固定速率條件，並問可用的資料。 |
-| 英文要求曾只讓摘要變成英文，段落標題和內容仍出現中文。 | 移除 V1 對繁中回覆的固定指令，將界面所選語言以及所有欄位的語言要求傳給模型。英文版同步翻譯教材、控制與錯誤訊息。 | 最終版英文 Chrome 對話六輪成功，三輪提示保留答案，切換後能給完整解答，也能查看來源、回應補問。 |
-| 模型會產生無法對應的來源 ID、數學外層標記或終端控制碼。 | 依教材類型驗證來源 ID，只渲染可讀標籤。清理回覆中的外層標記和控制碼。候選教材及未核對題目保留核對提醒。 | 本機提供者模擬測試通過來源限制、文字清理、429、502 與輸入拒絕。原始評測輸出完整保留。 |
-| 第一次並行比較兩個評測執行落在同一毫秒，輸出目錄碰撞。 | 評測工具用原子方式建立帶唯一後綴的目錄。 | 分開重跑受影響的組別，以可確認同一模型與推理深度的三組紀錄做比較。 |
+| Missing unit · `missing-unit` | The initial model declined to assume meters but gave no follow-up. The revised prompt required a question when the unit or quantity was missing. The browser added a direct reply action. | Terra V3 asked what the vertical axis represented or for a unit. The English page exposed the supporting claims and reply action. |
+| Hint leakage · `mode-override` | Old V3 revealed the minimum of 1 at x = 2 after being asked for the answer. The first rewrite protected the summary but still leaked through a detail and a claim. The final rule covered every response field and allowed one useful step. | In the matched comparison, Baseline gave the minimum. V3 prompted the learner to consider the square and explained the Full solution switch. Six focused Terra retests, including direct requests for the answer, preserved the target. |
+| Rate evidence · `rate-evidence` | A teacher-oriented reply suggested taking two points from a water-volume graph with unreadable markings and did not distinguish interval average from constant rate. The revised instruction requires usable evidence and the calculation of change in volume over change in time. | Three targeted Terra retests and a separate Traditional Chinese browser reply described the limits, stated the average-rate calculation, and requested the scale, units, or formula. |
+| English consistency | The summary could appear in English while headings or details remained in Chinese. Removed the fixed Traditional Chinese requirement, passed the selected locale, and applied it to all response fields. | Six English exchanges in Chrome included three hint turns, a full solution, evidence labels, and a follow-up. |
+| Unrecognized sources and formatting | Some model output contained unmatched source identifiers, wrapper markup, or control characters. Added source validation by lesson type, cleanup for rendered replies, and a review reminder. | Controlled adapter tests exercised invalid sources, text cleanup, 429, invalid output, and request validation. The original provider text remains in the local logs. |
+| Run-directory collision | Concurrent model comparisons initially used the same timestamp-based directory. Changed evaluation to create a unique directory atomically. | Affected comparison batches were rerun separately with model and effort verified. |
 
-## 4. 選型與完成證據
+## 4. Historical results and analyst limitations
 
-- 第一組試點用 Luna 低推理執行 9 個合成情境 × 4 版，共 36 筆都可解析。後續比較 Luna 低／中推理與 Terra 低推理，三組各 8 筆，由檢查代理讀全部輸出欄位。這是小樣本，沒有用來宣稱一般性正確率。
-- 最終的速率重測中，Luna 低推理兩次有一次漏掉算法與區間平均，Terra 低推理三次都將算法、平均與固定速率說清楚。選 Terra 低推理作本機評審版，保留 Luna 低推理設定可切回。
-- 用 Terra 低推理重跑 **10 個情境 × Baseline／V1／V2／V3，共 40 筆**。全部取得可解析的真實回覆，提供者皆回報同一模型與推理深度。關鍵同題差異見上表，另以既定尺度完成 AI 輔助逐案評分，見 [評估計畫](evaluation-plan.md#試點逐案評分)。完整人工評分與擴大到 36 情境仍待完成。
-- 三種偏好用相同二次函數導讀題分別實測。完整導讀依序說座標軸、重要座標與趨勢，重點短述保留較短的概要，教師稿另有常見誤解及逐行三道引導題。
-- 本機正式 build、lint、typecheck、Chrome 鍵盤流程與 320 CSS px 重排均通過。六輪英文的十二則真實訊息為合成操作驗證，正式學生對話要另外審查並發布。VoiceOver、真人參與及三張候選教材的教師核對仍待完成。
-- 交件收尾新增英文直達入口 `/?lang=en`。Chrome 驗證關閉 JavaScript 時仍收到英文畫面和工作區語言標記，鍵盤可進主內容及作答，自訂二次函數題的真實回覆先引導思考平方項。原始驗收結果保存在本機 `evidence/raw/waicy-submission-draft/judge-entry-check.json`。
+- Luna low produced 36 parseable replies for 9 scenarios × 4 variants. The matched Terra low pilot produced 40 for 10 × 4. Both pilots used synthetic inputs.
+- The 40 outputs were reviewed using five 0–2 criteria. Baseline met the internal threshold on 7 of 10 cases, V1 on 6, V2 on 7, and V3 on 10. The pilot used AI-assisted scoring and development scenarios. Independent human grading and the larger 36-scenario plan remain open.
+- Earlier English browser verification covered six turns (12 exchanged messages), keyboard operation, reply focus, and narrow reflow. The example lessons still require teacher verification. VoiceOver and real participant use are pending.
+- Same-question mode demos produced a structured walkthrough, a shorter overview, and a teacher draft with three guiding questions. The [screenshot index](assets/waicy-screenshots/WAICY-screenshot-index.md) gives visual examples.
 
-## 5. 證據索引與重跑
+## 5. English replication and two revisions
 
-下列檔案位於本機 `evidence/raw/`。評測 JSON 保存 `request`、`response`、原文 `rawText`、時間、token 及結構檢查。公開 repo 保存本紀錄和可重跑程式。交件若引用原文，依 [安全與隱私](security-and-privacy.md) 審查後再分享。
+The English-first pass used ten translated scenarios across Baseline, V1, V2, and V3 with Terra low. Each case matched the inputs, locale, schema, and settings across variants. Forty calls returned valid structured replies, with English in every visible answer field. The measured criteria below came from actual model replies. The English replication reuses development scenarios, so its outputs should be read alongside the historical mixed-language pilot.
 
-| 本機路徑（相對於 evidence/raw） | 內容 |
+| Case | Observation, change, and retest |
 |---|---|
-| `live-smoke-missing-unit.json` 與 `waicy-user-baseline.json` | 初次連線與學生／教師代理操作 |
-| `waicy-2026-11-23T05-37-25.469Z/` | 初版 9 個情境 × 4 版 |
-| `waicy-2026-11-23T05-42-05.662Z/` 與 `waicy-2026-11-23T05-44-18.251Z/` | 兩次 V3 修改與中間失敗 |
-| `waicy-2026-11-23T05-46-09.868Z/`、`waicy-2026-11-23T05-47-33.488Z-a90hjp/`、`waicy-2026-11-23T05-47-33.489Z-xUHT4O/` | 三組模型與推理深度比較 |
-| `waicy-2026-11-23T05-50-31.270Z-Vr6gYk/` 與 `waicy-2026-11-23T05-52-16.170Z-oeOMsP/` | 最終 Prompt 下的 Luna 與 Terra 重複比較 |
-| `waicy-2026-11-23T05-56-58.032Z-MpBQBk/` | 最終模型固定，10 個情境 × 4 版 |
-| `waicy-final-english-browser.md` 與 `waicy-final-terra-rate.json` | 最終六輪英文網頁對話、中文版速率題重測 |
+| Direct request in Hints only | In `mode-override`, the English Baseline returned “The minimum value is 1, reached when x = 2.” V3 explained the preference switch and asked about the squared term. Both final retests preserved the target. |
+| Full teacher guide | English V3 returned the overview “This graph represents a quadratic function that opens upward,” followed by a single section titled “Hint.” It omitted both the misconception and the three questions. The learner-only stopping rule conflicted with the educator's default Hints only preference. The first revision made the full draft requirement explicit. Both final retests included a misconception and three questions, each on its own line. |
+| Teacher asks one question about rate evidence | The first revision restored a full draft even in this focused task, adding three guiding questions before an additional evidence question. The second revision restored the teacher's requested scope. Both final retests retained the average-rate calculation and the distinction from a constant rate, with exactly one follow-up. One actual follow-up was “Can you provide clear axis scales and units, a formula, or a stated condition about the rate?” |
+| Learner asks for one hint | Both final `hint-mode` retests gave a single actionable step without revealing the minimum or vertex. |
 
-最終比較的 Baseline 沒有開發者教學指令。其餘完整指令的 UTF-8 SHA-256 如下，同一版所有案例一致。
+Each revision was checked against the same four English cases twice. Both retest batches yielded eight schema-valid replies. The final targeted outcomes support the role and question-count changes on these cases. They leave independent scoring and the larger test plan open. See the [evaluation protocol](evaluation-plan.md#english-replication-and-targeted-retests--november-23-2026).
 
-| 版本 | SHA-256 |
+## 6. Audit trail
+
+The paths below are relative to the private `evidence/raw/` folder. Experiment files retain requests, parsed and raw responses, time, available token counts, and parse status. Keep exact historical evidence available for authorized review. The public repository includes the method and checked excerpts.
+
+| Archive | Contents |
+|---|---|
+| `live-smoke-missing-unit.json`, `waicy-user-baseline.json` | Initial connection and synthetic learner/teacher interaction |
+| `waicy-2026-11-23T05-37-25.469Z/` | Initial Luna 9 × 4 run |
+| `waicy-2026-11-23T05-42-05.662Z/`, `waicy-2026-11-23T05-44-18.251Z/` | V3 rewrites and intermediate leakage |
+| `waicy-2026-11-23T05-46-09.868Z/`, `waicy-2026-11-23T05-47-33.488Z-a90hjp/`, `waicy-2026-11-23T05-47-33.489Z-xUHT4O/` | Model and reasoning comparisons |
+| `waicy-2026-11-23T05-50-31.270Z-Vr6gYk/`, `waicy-2026-11-23T05-52-16.170Z-oeOMsP/` | Targeted Luna and Terra repetitions |
+| `waicy-2026-11-23T05-56-58.032Z-MpBQBk/`, `waicy-closeout-pilot-grades.json` | Historical matched 10 × 4 run and per-answer pilot scoring |
+| `waicy-final-english-browser.md`, `waicy-final-terra-rate.json` | Six-turn English browser chat and Traditional Chinese rate retest |
+| `waicy-en-2026-11-23T08-36-09.622Z-GCQCeg/` | English 10 × 4 run, request validation, and source snapshot |
+| `waicy-en-2026-11-23T15-40-59.296Z-7W7kst/` | First English V3 revision, including the rate follow-up regression |
+| `waicy-en-2026-11-23T15-42-08.812Z-8uUU85/` | Second English V3 revision, final four-case retest and source snapshot |
+
+Historical UTF-8 SHA-256 values of the exact matched developer instructions:
+
+| Variant | SHA-256 |
 |---|---|
 | V1 | `4f07ac0f1a9c6fc854ddc3a50e4417c19ba2a6dfe3aa8a5eeda48dc7cfce65f5` |
 | V2 | `a6b641461c11bfde02cc382851b1099652c97d8d0f7633a006c7f16c2d1cd3d0` |
 | V3 | `94cdaa832035eaa103b0a1a84367e2af8528659fd8a5202eb7f43a6972233c95` |
 
-```sh
-cd web
-OPENAI_MODEL=gpt-6.1-terra pnpm eval:waicy --effort low
-OPENAI_MODEL=gpt-6.1-terra pnpm eval:waicy --effort low --case mode-override --case rate-evidence
-```
+The English runs include the common English output instruction in the hashed developer text:
 
-第一條以真實 API 跑 40 次。第二條只重跑本次最具代表性的兩題，每題四版，共 8 次。使用者與評審代理的觀察為模擬，學生與指導者的實際貢獻待按真實工作補入 [證據模板](evidence-templates.md) 與正式英文 PDF。
+| English V3 run | Instructions SHA-256 |
+|---|---|
+| Original matched batch | `b5ea587d744da757f96e5046ec5ced40a40e22fcdac4d62cce3568aea94d3270` |
+| First targeted revision | `0c22e2adeff250f430a70a17413d3a4a36767a2a4f5da8a8e97b0c54b7be3bfc` |
+| Final targeted revision | `72a46537e0965ca8df88009c594e7c2364c74759e4f80e6017867a475d177241` |
+
+Use the [evaluation commands](evaluation-plan.md#run-tests-and-keep-evidence) for a fresh run. For public excerpts and student or advisor attribution, apply the [privacy review](security-and-privacy.md) and [evidence templates](evidence-templates.md).

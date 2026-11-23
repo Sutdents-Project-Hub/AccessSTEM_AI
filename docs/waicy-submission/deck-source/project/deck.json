@@ -12,7 +12,7 @@
     "chat1", "chat2", "chat3", "chatbot",
     "limits", "ethics", "ledger",
     "future", "contribution", "conclusion", "refs", "refs2",
-    "appx-prompt", "appx-evidence"
+    "appx-prompt", "appx-evidence", "english-retest"
   ],
   "sections": {
     "s1": { "description": "What AccessSTEM AI is, in one page.", "start": "cover" },
@@ -22,7 +22,7 @@
     "s5": { "description": "Final chat history and live chatbot.", "start": "chat1" },
     "s6": { "description": "Limitations, ethics and an honest evidence ledger.", "start": "limits" },
     "s7": { "description": "Future development, contributions, conclusion and references.", "start": "future" },
-    "s8": { "description": "Appendix: prompt V3 and evidence index.", "start": "appx-prompt" }
+    "s8": { "description": "Appendix: prompt V3, evidence index, and English retests.", "start": "appx-prompt" }
   },
   "faces": {
     "bricolage-grotesque": {

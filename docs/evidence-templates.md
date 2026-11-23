@@ -1,89 +1,77 @@
-# 實驗／缺陷／貢獻證據模板（待實測填寫）
+# Evidence recording templates
 
-> 本檔只提供空白模板。**不得把示意文字當成測試結果；競賽 PDF 必須引用真實、可核對的輸出與證據。**
+Use these blank templates to record observed evidence and who contributed. Quote actual model output in the competition report.
 
-## A. 每次模型執行（逐案例一筆）
+## A. One record per model call
 
 ```text
-Run ID：
-測試日期／時區：
-案例 ID：
-ChartFacts 資料版本：
-Variant：Baseline / V1 / V2 / V3
-完整 Prompt 版本／檔案 SHA：
-Provider／模型完整 ID／參數：
-Profile／偏好：
-實際送入的題目（已去識別）：
-真實回應原文保存位置：
-回應時間、token 使用量、費用（可得才填）：
-評分員：
-Grounding (0–2)：
-Personalization (0–2)：
-Teaching (0–2)：
-Uncertainty (0–2)：
-Accessible language (0–2)：
-是否達預先定義門檻：
-失敗模式與依據：
-是否重測與重測 Run ID：
-備註／未解：
+Run ID
+Date and timezone
+Case ID and ChartFacts version
+Variant (Baseline, V1, V2, or V3)
+Prompt source and SHA-256
+Provider, exact model ID, and settings
+Learning profile and preferences
+Exact question and de-identified input
+Private raw response path
+Elapsed time, tokens, and cost if available
+Reviewer and G/P/T/U/A scores (0–2 each)
+Internal threshold outcome
+Observed failure and evidence
+Retest Run ID and result
+Remaining questions
 ```
 
-## B. Prompt 版本紀錄
+## B. Prompt version sheet
 
-| 版本 | 實際建立日期 | 真實 Prompt 檔與 hash | 相對前版改動 | 修改原因 | 同題重測結果 |
+| Variant | Date | Prompt identifier and hash | Change | Reason | Matched retest |
 |---|---|---|---|---|---|
-| Baseline | 待填 | 待填 | 無特殊角色規則 | 建立比較基礎 | 待填 |
-| V1 | 待填 | 待填 | 圖表結構描述 | 待填 | 待填 |
-| V2 | 待填 | 待填 | Profile 個人化 | 待填 | 待填 |
-| V3 | 待填 | 待填 | 不確定性／提示／無障礙 | 待填 | 待填 |
+| Baseline | | | Specialized teaching guidance omitted | Establish a control | |
+| V1 | | | Graph description order | | |
+| V2 | | | Teaching profile and preferences | | |
+| V3 | | | Evidence, uncertainty, and pacing | | |
 
-表格中的 V1–V3 只是**計劃版本名稱**，不是已存在的 Prompt，亦非測試實驗結果。
+## C. Issue and retest sheet
 
-## C. 缺陷 → 修復 → 重測表
-
-| Issue | 首次觀察的 Run | 預期行為 | 實際失敗片段（引用原始） | 根因假設 | 改動檔案／版本 | 重測 Run | 結果 |
+| Issue | First run | Expected | Actual output | Suspected cause | Change | Retest | Outcome |
 |---|---|---|---|---|---|---|---|
-| 待填 | 待填 | 待填 | 待填 | 待填 | 待填 | 待填 | 未測 |
+| | | | | | | | |
 
-至少要保留失敗案例，不可只報成功的例子。若問題沒有解決，誠實寫「仍未修正」與使用者可能承擔的風險。
+Record unsuccessful tests and residual impact alongside successful retests. Preserve the exact output privately when using an excerpt in the report.
 
-## D. 無障礙操作測試
+## D. Accessibility test record
 
 ```text
-測試者（可用非識別代號）：
-測試平台／OS／瀏覽器版本：
-輔助工具與版本（例如 macOS VoiceOver）：
-是否有實際視障參與者：是／否；若是，公開同意範圍：
-測試 Case（AX-01...AX-10）：
-完整操作步驟：
-預期結果：
-實際結果（可附已去識別影片連結）：
-阻斷程度：
-修改與重測：
-是否符合 WCAG 準則：僅依實際逐項檢測結果填寫
-限制：
+Tester code (optional, non-identifying)
+OS, browser, and versions
+Assistive technology and version
+Participant and publication consent scope if relevant
+Test case (AX-01 through AX-10)
+Steps and expected result
+Observed result and optional cleared evidence
+Blocking severity
+Fix and retest result
+Specific WCAG criteria actually checked
+Limits of the test
 ```
 
-## E. 最終對話紀錄審查
+## E. Final conversation review
 
-- [ ] **來自最終版本**真實 LLM 互動，不是預寫的理想故事。
-- [ ] 至少滿足官方要求的 10 則交換訊息；為保守呈現，準備 10 輪完整人機問答。
-- [ ] 包含不止一種使用需求、追問／改寫，以及至少一種資訊不足情境。
-- [ ] 標示 model／Prompt 版本與日期，使用者內容經匿名化，已取得公開所需同意。
-- [ ] 對話連結可匿名檢視（不需開發者身份）、不包含 API key 或私人教材。
-- [ ] 原始回應與報告引用內容一致，避免刪去會改變結論的上下文。
+- [ ] Confirm the conversation comes from a real interaction with the final model and prompt.
+- [ ] Count at least ten exchanged messages. Include follow-up, at least two learning needs, and a case with missing information.
+- [ ] Record date, model, prompt version, scope, and permission to share.
+- [ ] Remove identifying information, credentials, and private source material. Preserve enough context for each result.
+- [ ] Check the share link as an unauthenticated visitor.
 
-## F. 學生／指導者／AI 貢獻記錄
+## F. Contribution record
 
-| 工作 | 學生實際做了什麼 | 指導者實際做了什麼 | AI Coding 工具做了什麼 | 證據連結 |
+| Work | Student | Advisor | AI tools | Evidence |
 |---|---|---|---|---|
-| 需求定義 | 待填 | 待填 | 待填 | 待填 |
-| 資料核對 | 待填 | 待填 | 待填 | 待填 |
-| Prompt 設計 | 待填 | 待填 | 待填 | 待填 |
-| UI／系統實作 | 待填 | 待填 | 待填 | 待填 |
-| 評測與修正 | 待填 | 待填 | 待填 | 待填 |
-| PDF／Demo | 待填 | 待填 | 待填 | 待填 |
+| Define the problem and design | | | | |
+| Review graph facts | | | | |
+| Develop prompts | | | | |
+| Implement the workspace | | | | |
+| Test and revise | | | | |
+| Build the report and demo | | | | |
 
-## G. 對外發布的檢查與保管
-
-保留完整私有原始測試記錄以供研究核對；**只有經匿名化、檢視授權、合法引用的必要證據**可公開至 GitHub／展示連結。原始學生對話、未獲授權教材或照片、實際模型金鑰等不得放在 `docs/` 或 commit。
+Published evidence needs the appropriate permission and a privacy review. Keep the full raw record privately for audit.

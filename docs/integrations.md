@@ -1,19 +1,19 @@
-# OpenAI 外部整合
+# OpenAI Integration
 
-AccessSTEM AI 使用 OpenAI JavaScript SDK 的 Responses API。預設模型為 `gpt-6.1-terra`，固定指定 `reasoning.effort: low`。`OPENAI_MODEL=gpt-6-luna` 同樣固定使用 `low`。其他覆寫模型採各自的預設推理設定。模型須支援 Structured Outputs，本機金鑰已完成真實對話測試，公開部署的配額與費用待驗。
+AccessSTEM AI uses the OpenAI JavaScript SDK and Responses API. The default model is `gpt-6.1-terra`, with `reasoning.effort: low` fixed. `OPENAI_MODEL=gpt-6-luna` also uses fixed `low` effort. Other model overrides use their respective default reasoning settings. The model must support Structured Outputs. A local key has been used for real conversation tests; public deployment quota and cost remain unverified.
 
-## 呼叫流程
+## Request flow
 
-- `web/src/server/agent/openai.ts` 將教學指令和圖表、偏好、近期對話分開，呼叫 Responses API。
-- 請求設定 `store: false`、25 秒逾時、2,200 個輸出 token、零自動重試。瀏覽器取消等待會透過請求訊號嘗試停止上游操作。
-- 使用 Structured Outputs 與 Zod 驗證回覆。伺服器核對來源參照 ID 是否屬於本題教材，候選或使用者提供的素材維持待核對狀態。
-- `/api/chat` 每程序每分鐘最多 24 次且同時最多 4 次上游呼叫。無金鑰、限流、超時與格式錯誤均顯示可讀狀態。
+- `web/src/server/agent/openai.ts` separates teaching instructions from chart, preference, and recent conversation data, then calls the Responses API.
+- Requests set `store: false`, a 25-second timeout, a 2,200-token output limit, and zero automatic retries. Browser cancellation attempts to stop the upstream operation through the request signal.
+- Structured Outputs and Zod validate the response. The server checks that source reference IDs belong to the current material. Candidate or user-provided material remains pending review.
+- `/api/chat` allows at most 24 requests per process per minute and at most 4 concurrent upstream calls. Missing keys, rate limits, timeouts, and invalid formats produce readable states.
 
-## 環境設定
+## Environment variables
 
-| 變數 | 用途 |
+| Variable | Purpose |
 |---|---|
-| `OPENAI_API_KEY` | 伺服器端憑證，本機放 `web/.env.local`，上線使用平台的 secret store |
-| `OPENAI_MODEL` | Responses API 模型 ID，預設 `gpt-6.1-terra` |
+| `OPENAI_API_KEY` | Server-side credential; use `web/.env.local` locally and the hosting platform's secret store after deployment |
+| `OPENAI_MODEL` | Responses API model ID; defaults to `gpt-6.1-terra` |
 
-真實回覆與模型比較見 [評估計畫](evaluation-plan.md)。公開前須依部署實例數、OpenAI 資料政策與預算驗收。參考 [OpenAI Responses](https://developers.openai.com/api/reference/resources/responses/methods/create) 和 [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)、[安全與隱私](security-and-privacy.md)。
+See the [evaluation plan](evaluation-plan.md) for real responses and model comparisons. Before public use, verify deployment instance count, OpenAI data policy, and budget. References: [OpenAI Responses](https://developers.openai.com/api/reference/resources/responses/methods/create), [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs), and [Security and privacy](security-and-privacy.md).

@@ -1,57 +1,57 @@
-# 安全、未成年人隱私與 AI 風險邊界
+# Security, Student Privacy, and AI Risk Boundaries
 
-> 狀態：**本機已實作輸入驗證、伺服器端金鑰、長度限制與錯誤處理**。正式公開部署仍須安全驗收。本服務以學生為主要對象，即使沒有帳號，文字與圖表也可能包含可識別資訊。
+> Status: **Input validation, server-side key handling, length limits, and error handling are implemented locally.** Security acceptance for a public deployment remains outstanding. Students are the primary audience; text and chart materials may contain identifying information even without accounts.
 
-## 資料最小化
+## Data minimization
 
-- P0 **不要求**姓名、生日、學號、學校、地址、視力診斷、醫療資訊或監護人資料。
-- 「全盲／低視力／教師」只是**輸出偏好模板**，最好在 UI 描述為學習需求；不永久建立醫療／身障身分檔。
-- 系統只把完成當輪教學**必要的** ChartFacts、使用者問題、最近對話與偏好傳給 LLM；無需把整本教材或原始報名資料送出。
-- P0 會話僅在瀏覽器使用期間保存；若選擇匯出，應向使用者清楚告知檔案所在裝置的風險。公共裝置上不應自動永久保存對話。
-- 禁止把用戶聊天內容、照片、學號或診斷丟入 console、第三方分析工具、錯誤追蹤或 GitHub issues。
-- 公開前需檢視使用條款與 LLM 提供商的資料使用／保存政策；不得憑空宣稱供應商不保存資料。
+- P0 does **not require** a name, date of birth, student ID, school, address, vision diagnosis, medical information, or guardian details.
+- “Blind,” “low vision,” and “educator” are **output preference templates**. Prefer describing them in the UI as learning needs; do not create a permanent medical or disability profile.
+- Send the LLM only the ChartFacts, user question, recent turns, and preferences needed for the current teaching turn. There is no need to send a full textbook or original application data.
+- P0 conversations remain in the browser only during use. If users export data, clearly tell them about risks on the device that receives the file. Do not automatically preserve conversations on public devices.
+- Never put user chats, photos, student IDs, or diagnoses in console output, third-party analytics, error tracking, or GitHub issues.
+- Before going public, review terms of service and the LLM provider's data use and retention policies. Do not claim the provider stores no data without evidence.
 
-## Server-only 的 Key 與邊界
+## Server-only keys and boundaries
 
-- `OPENAI_API_KEY` 只存在 `web/.env.local` 或部署平台 secret，**不得使用 `NEXT_PUBLIC_` 前綴**，不得回傳到瀏覽器。
-- `.env.example` 只能有空值／安全 placeholder；測試時使用假 key 不可把真 key 貼在聊天、Log、Demo 影片或 PR。
-- 所有對外 AI 請求由伺服器 Route Handler 中轉，進行輸入驗證、長度限制、速率限制、超時與可用額度管理。
-- 客戶端提供的 `verified`、`role=system`、`source=teacher` 一律**不可當權限事實**；可信 ChartFacts 必須由 server ID 查得。
-- Prompt injection：把教材、貼文、圖片 OCR 與使用者聊天視為未受信任資料；不得遵循「忽略安全規則」「輸出金鑰」等嵌入式指令。
-- Provider 回傳必須做 Schema 檢查與基本事實規則；格式錯誤要顯示失敗，禁止默默假造成功內容。
-- 公開 demo 必須防止濫用：速率上限、字數與回合限制、成本監控、錯誤處理，必要時可停止 API 提供服務。
+- `OPENAI_API_KEY` belongs only in `web/.env.local` or a deployment platform secret. **Never use a `NEXT_PUBLIC_` prefix** or return it to the browser.
+- `.env.example` may contain only empty values or safe placeholders. Never paste a real key into chat, logs, demo video, or a PR, including during testing.
+- Route Handler code on the server mediates all external AI requests and performs input validation, length and rate limits, timeout handling, and quota management.
+- Never treat client-provided `verified`, `role=system`, or `source=teacher` as authority. The server must look up trusted ChartFacts by ID.
+- Prompt injection: treat materials, pasted text, image OCR, and user chat as untrusted data. Do not follow embedded instructions such as “ignore safety rules” or “output the key.”
+- Validate provider responses against the schema and basic fact rules. Show a failure for invalid formats; never silently fabricate a successful response.
+- Protect public demos from abuse with rate, length, and turn limits, cost monitoring, and error handling; disable API service when needed.
 
-## 圖表學習與教育倫理
+## Learning and educational ethics
 
-- 讀不清的數字、未給的單位及用使用者文字猜測的結論，標為待確認，不要當成真實圖表證據。
-- 教師版產出的教材標示為**AI 草稿，必須經教師核對**；模型不能背書「完全符合無障礙標準」。
-- 不宣稱已提升視障學生學習成效；只有真實受試者研究且方法適切時，才可描述觀察到的結果與限制。
-- 不將全盲、低視力者當作同質群體，使用者可自行調整深度與教法。
-- 不能因 LLM 正常回應就宣稱它在數學上絕不犯錯；教學測試需人工對照事實標準。
+- Mark unreadable values, missing units, and conclusions guessed from user text as needing confirmation; do not present them as chart evidence.
+- Label educator materials **AI draft; teacher review required**. The model cannot certify that material fully meets accessibility standards.
+- Do not claim improved learning outcomes for students with visual impairments. Describe observed results and limitations only after a suitable real-user study.
+- Do not treat blind or low-vision learners as homogeneous. Let each user adjust explanation depth and teaching style.
+- A normal LLM response does not mean it can never make a math error. Compare teaching tests against a human-reviewed fact standard.
 
-## 真實受試者／未成年人同意
+## Consent for real participants and minors
 
-- 若有實際學生或視障者參與，事先說明目的、資料用途、錄音錄影及公開內容；依學校／監護人要求取得適當同意。
-- 若沒有真人視障參與，報告只能寫完成 VoiceOver 或鍵盤測試，不能寫「已通過視障學生使用者測試」。
-- 公開的對話截圖、語音、真實問答應去識別化並確認可公開範圍；若無授權就用自製假名的研究情境而非真實受試證據。
-- 不在 Git 儲存訪談原始錄音、真實學生名單、手機號碼或可識別資料。
+- If students or people with visual impairments participate, explain the purpose, data use, audio/video recording, and publication scope in advance. Obtain appropriate consent according to school and guardian requirements.
+- Without real participation by people with visual impairments, reports may say VoiceOver or keyboard tests were completed, but must not claim a “user test with students with visual impairments.”
+- De-identify public conversation screenshots, audio, and real Q&A; confirm what may be shared. Without permission, use a fictional research scenario with invented names instead of real participant evidence.
+- Do not store raw interview recordings, real student lists, phone numbers, or identifying data in Git.
 
-## 公開證據的發布流程
+## Publication workflow for public evidence
 
-1. 從原始測試資料中擷取最終模型實際回覆，不修改會改變解讀的上下文。
-2. 刪除或遮罩學校、姓名、家庭細節、照片位置、憑證、私有教材以及可回溯個人的 ID。
-3. 確認原始素材的引用與公開權利，以及受試者／監護人同意範圍。
-4. 由學生／指導者複核公開版與原始紀錄一致，保留記錄何處做了去識別處理。
-5. 再發布到唯讀連結，使用無痕模式檢查權限。
-6. 提供撤除途徑；如果刪除政策／留存期未決，**不可承諾具體永久保存或即時刪除 SLA**。
+1. Select the final model's actual response from the raw test record without changing context in a way that alters its meaning.
+2. Remove or mask schools, names, family details, photo locations, credentials, private learning materials, and IDs that could identify someone.
+3. Confirm source-material publication rights and the scope of participant/guardian consent.
+4. Have the student or advisor verify that the public version matches the raw record; document any de-identification edits.
+5. Publish to a read-only link and check permissions in an incognito window.
+6. Provide a removal path. If deletion policy or retention period is undecided, **do not promise permanent retention or an immediate deletion SLA**.
 
-## 安全測試與缺口
+## Security tests and gaps
 
-- 送入含特殊指令的教材；不應提升成 system instruction。
-- 前端封包含 `verified:true`；server 不得因此採信為老師核對。
-- Provider 429／timeout／bad JSON；不得回傳金鑰、stack trace 或空白假結果。
-- 長訊息、無效角色、改動 sessionId、匿名多次提交；應有可預期錯誤。
-- 公開 Demo 無痕操作；不得看到其他學生的私人對話。
-- 若加入圖片上傳：檔案大小／MIME 驗證、暫存刪除與 EXIF／私人資訊保護須先設計，圖片 OCR 不可自動變成已核對事實。
+- Submit material containing special instructions; it must not become a system instruction.
+- Send `verified: true` from the frontend; the server must not treat it as teacher review.
+- Provider 429, timeout, or invalid JSON; do not return keys, stack traces, or a fake empty result.
+- Long messages, invalid roles, changed session IDs, and repeated anonymous submissions; errors should be predictable.
+- Operate the public demo in an incognito window; do not expose another student's private conversation.
+- If image upload is added, design file size/MIME checks, temporary-file deletion, and EXIF/private-information protection first. OCR output must not automatically become verified fact.
 
-本機使用每服務程序的速率與併發限制。公開前需確認整體費用上限、跨實例限制與 OpenAI 留存政策。本機 Provider 已取得真實回覆。公開環境與完整對抗案例仍待驗證。
+Local rate and concurrency limits are per service process. Before public use, confirm an overall spending cap, cross-instance limits, and OpenAI retention policy. The local Provider has returned real responses. Public environment and complete adversarial cases remain unverified.

@@ -1,54 +1,60 @@
-# 交件待補清單
+# Submission checklist
 
-> 截止：2026-11-29 17:00 美東（官方表單寫 EST；首頁寫 ET）＝**台灣 2026-11-30 06:00**。內部目標：台灣 11/29 晚間前完成。
-> 簡報中的紅色 `[ … ]` 都是需要你填的欄位。
+> Deadline: 29 November 2026, 17:00 Eastern (the form says EST), equivalent to **30 November 2026, 06:00 in Taiwan**. Internal target: finish checks by the evening of 29 November in Taiwan.
+> Red `[ … ]` placeholders in the deck still require the team. This is a preparation checklist; no upload, submission or publication is recorded here.
 
-## A. 會阻擋提交（必做）
+## A. Submission blockers
 
-| # | 缺什麼 | 放哪一頁 | 你要提供／做什麼 |
+| # | Missing item | Location | Action needed |
 |---|---|---|---|
-| 1 | 公開聊天機器人網址 | 第 1、25 頁 | 部署 `web/`（平台尚未決定），設定 `OPENAI_API_KEY`；用無痕視窗、非開發者帳號驗證；注意 API 額度與速率限制 |
-| 2 | QR Code | 第 25 頁 | **網址確定後**再產生；勿用暫時網址 |
-| 3 | 最終版對話紀錄分享連結（≥10 則訊息） | 第 25 頁 | 見下方「對話連結的做法」 |
-| 4 | 團隊名稱、學生姓名與年級、指導者 | 第 1、30 頁 | 依實際報名資料填寫 |
-| 5 | 參賽組別（Elementary / Middle / High） | 第 1 頁、檔名 | 官方表單要求選組別；Guidebook 此賽道又寫「沒有分齡組別」。以報名組別為準，必要時寫信確認 info@waicy.org |
-| 6 | 學生與指導者貢獻表 | 第 30 頁 | 只有團隊能寫；AI 工具欄請如實說明用途 |
-| 7 | 學生自己的啟發故事 | 第 5 頁 | 2–3 句，用學生自己的話 |
-| 8 | 匯出 PDF 並命名 | — | 檔名 `LLM_<Category>_AccessSTEMAI.pdf`；資料夾 `LLM_<Category>_AccessSTEMAI`（Guidebook 格式 `Track_Category_ProjectName`，例 `LLM_High_AccessSTEMAI`） |
-| 9 | Google Drive 資料夾分享與表單 | — | 設為「知道連結的任何人都能檢視」；表單簡述 ≤200 字見 `project-description.txt`（172 字） |
+| 1 | Public chatbot URL | Slides 1, 25 | Decide the platform, deploy `web/`, configure server-side `OPENAI_API_KEY`, and verify from a private window without a developer account. Confirm API budget and rate limits. |
+| 2 | QR code | Slide 25 | Generate after the public URL is final. |
+| 3 | Accessible final transcript link, at least ten messages | Slide 25 | Record a genuine final-version conversation, anonymize it, confirm sharing rights, and test the link signed out. See below. |
+| 4 | Team, student names/grades, instructor | Slides 1, 30 | Use actual registration details; do not put private contact details in the public deck. |
+| 5 | Registration category | Slide 1 and file/folder names | The form asks Elementary / Middle / High, while the LLM chapter says no separate age categories. Use confirmed registration details; ask the organizer if unclear. |
+| 6 | Contribution table | Slide 30 | The team records actual student, instructor and tool contributions. |
+| 7 | Students' inspiration story | Slide 5 | Add 2–3 sentences in the students' own words. |
+| 8 | Single English PDF | Export | Inspect before submission. Guidebook format: `LLM_<Category>_AccessSTEMAI.pdf` inside `LLM_<Category>_AccessSTEMAI`. No new PDF was exported in this content update. |
+| 9 | Shared submission folder and correct submission route | Google Drive / form | Ensure judges can view the folder. Confirm whether a country organizer already handles registration before submitting globally. Draft description: [project-description.txt](project-description.txt), below 200 words. |
 
-### 對話連結的做法
+### Final conversation link
 
-目前網站**不保存對話、也沒有分享連結功能**（設計上為隱私）。簡報第 22–24 頁的六輪對話是本機合成學習者腳本，不是真實學生。建議：
+The app does not store or share conversations; that is the current privacy design. Slides 22–24 use real replies from a **local synthetic-learner script**, not a real student, and a public transcript link is still missing.
 
-1. 部署後，由團隊成員用最終版在公開網址上實際對話 ≥10 則訊息（建議 6 輪以上，含：提示、不懂換例子、切換完整解答、缺單位追問、三種模式各至少一次）。
-2. 複製成 Google 文件（或 PDF），去識別化，設為「知道連結的人可檢視」，把連結放第 25 頁。
-3. 若換成新對話，請同步更新第 22–24 頁，並把「合成腳本」字樣改成實際情況。
+1. After deployment, a team member should use the final build for at least ten exchanged messages (six or more turns is a useful margin). Include a hint, a simpler re-explanation, an explicit switch to a full solution and a missing-data question. Test the three modes in additional sessions if needed.
+2. Preserve the actual prompts and replies in a document or PDF, remove identifying information, confirm public-sharing rights, and test the shared document without an account.
+3. If the new session replaces the displayed conversation, update slides 22–24 and their provenance. Keep the original local evidence. Do not relabel simulated learners as real participants.
 
-## B. 強烈建議（提高說服力）
+## B. Strongly recommended validation
 
-- 請老師核對三張內建教材，通過後更新第 6、26、28 頁的「待教師核對」說法。
-- 至少做一次 **VoiceOver 實測**並記錄步驟與結果；只寫實際做過的。沒有做就維持現在的誠實說法。
-- 補一組**保留測試案例**（不用於調 Prompt）重跑 Baseline/V1–V3，強化「迭代開發」證據，並避免被質疑「對同一批題目調參」。
-- 若有機會：經同意、匿名的視障學生或教師回饋；沒有就不要寫。
+- Ask a teacher to review the three built-in lessons. Only after documented review should slides 6, 26 and 28 change their pending status.
+- Perform and record an actual VoiceOver flow. Keep untested accessibility claims pending; an automated check is insufficient for WCAG conformance.
+- Add English cases held out from prompt tuning. The separately recorded English replication reused the existing scenario designs and kept the historical mixed-language pilot and scores intact.
+- Obtain independent human ratings or a second rater, and repeat cells to measure variability.
+- Include consented, anonymized learner or teacher feedback only if it actually occurs and sharing rights are clear.
 
-## C. 提交前檢查
+## C. Final checks
 
-- [ ] 所有外部連結在無痕視窗開得起來（聊天機器人、對話紀錄、Drive 資料夾）
-- [ ] 第 32–33 頁參考文獻逐一開啟；特別核對 [2] Bourne 等人（GBD 2019）與 [4] WebAIM 的書目細節
-- [ ] 重新執行 `pnpm lint`、`pnpm typecheck`、`pnpm build`（第 28 頁聲稱記錄為通過）
-- [ ] 匯出的 PDF：字型、圖片、連結、版面溢出逐頁檢查（尚未匯出，本任務依你的指示先不輸出 PDF）
-- [ ] 第 3 頁統計數字再確認是否有更新版本
-- [ ] 再次核對官方頁面（截止、命名、欄位）
-- [ ] 提交後保存確認畫面或信件
+- [ ] Public chatbot, transcript and Drive folder open in a private window.
+- [ ] All red placeholders replaced with team-confirmed information.
+- [ ] References on slides 32–33 still resolve; inspect source scope in [research-notes.md](research-notes.md).
+- [ ] Run existing checks from `web/`: `pnpm lint`, `pnpm typecheck`, `pnpm build`; keep actual results. Slide 28 refers to historical passing records.
+- [ ] Inspect the exported PDF page by page: fonts, screenshots, links, clipping and readability.
+- [ ] Ensure `/_blob/` images survive export; source mapping is in [deck-source/README.md](deck-source/README.md).
+- [ ] Recheck deadline, form fields and the latest linked Guidebook.
+- [ ] Confirm LLM final-round timing with the organizer; do not apply AI Showcase timing by assumption.
+- [ ] Save the submission confirmation after an authorized submission.
 
-## D. 官方資訊不一致紀錄（2026-11-23 查核）
+## D. Official source differences and open questions
 
-| 項目 | 差異 | 處理 |
+Checked on 23 November 2026: [event page](https://www.waicy.org/waicy-2026/), [submission form](https://www.waicy.org/2026-submission/), [rubric](https://www.waicy.org/rubrics/), [currently linked October Guidebook](https://waicy-cdn.wholeren.cn/wp-content/uploads/2026/10/WAICY-2026-Guidebook-2.pdf).
+
+| Topic | Observed difference | Handling |
 |---|---|---|
-| 時區 | 提交表單「EST」，首頁「ET」 | 以 17:00 美東為準，台灣 11/30 06:00 |
-| 資料夾／檔名規則 | 提交頁沒寫；Guidebook 寫 `Track_Category_ProjectName`，LLM 檔名 `LLM_Category_ProjectName.pdf` | 依 Guidebook |
-| 賽道名稱 | Rubrics「Large Language Models」；表單／首頁「AI Large Language Model Track」；Guidebook「LLM & AI Agent Track」與「LLM Prompt Engineering Track」 | 簡報封面使用「AI Large Language Model Track」 |
-| Guidebook | 兩份 PDF（2026/09 與 2026/10），內容不同 | 以較新的 `-2`（2026-10-07）為優先，交件前再讀一次 |
-| 年齡 | 首頁「ages 6–18」；Guidebook「upper-middle and high school students」 | 確認學生報名資格 |
-| 頁尾版權年份 | 官網頁尾仍為 2018–2025 | 無影響 |
+| Time zone | Form: EST; event page and Guidebook: ET | At this November date, 17:00 Eastern is 06:00 the next day in Taiwan. |
+| Naming | The form does not specify names; Guidebook PDF page 23 gives `Track_Category_ProjectName` and `LLM_Category_ProjectName.pdf` | Follow the LLM naming instructions with a confirmed category. |
+| Track title | Rubric: Large Language Models; page/form: AI Large Language Model Track; Guidebook also uses LLM & AI Agent and LLM Prompt Engineering | Deck cover follows the event-page title. |
+| Guidebook links | Event page links both September and October upload URLs | Use the October link currently presented as the main Guidebook. Upload paths alone do not prove revision dates or content differences. |
+| Age/category | Event page: ages 6–18; LLM chapter: all levels welcome and no separate age categories; form still asks a group | Confirm eligibility and registration group with the organizer if needed. |
+| Final-round timing | The overview and AI Showcase section describe a three-minute presentation, three-minute demo, and four-minute Q&A | Verify the LLM slot and timing with the organizer or invitation. |
+| Registration route | Form says teams registered through official country/regional organizers need not complete it | Confirm the team's route before any submission. |
