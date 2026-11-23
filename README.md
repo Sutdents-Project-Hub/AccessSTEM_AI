@@ -35,7 +35,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-開啟 `http://localhost:3000`。可使用中英介面、圖表、文字導讀、學習偏好與貼題。要啟用 AI 對話，依 [Web 啟動說明](web/README.md) 在 `web/.env.local` 設定伺服器端 `OPENAI_API_KEY`，可選填 `OPENAI_MODEL`。預設模型為 `gpt-6.1-terra`，推理深度為 `low`。
+開啟 `http://localhost:3000`。評審英文入口可直接使用 `/?lang=en`。可使用中英介面、圖表、文字導讀、學習偏好與貼題。要啟用 AI 對話，依 [Web 啟動說明](web/README.md) 在 `web/.env.local` 設定伺服器端 `OPENAI_API_KEY`，可選填 `OPENAI_MODEL`。預設模型為 `gpt-6.1-terra`，推理深度為 `low`。
 
 ```sh
 pnpm lint

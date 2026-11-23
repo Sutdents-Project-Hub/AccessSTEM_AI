@@ -58,8 +58,8 @@ function ChartLesson({ chart, highContrast, language }: { chart: ChartFacts; hig
   </>;
 }
 
-export function LearningWorkspace() {
-  const [language, setLanguage] = useState<Language>("zh-Hant");
+export function LearningWorkspace({ initialLanguage = "zh-Hant" }: { initialLanguage?: Language }) {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   const copy = workspaceCopy[language];
   const [source, setSource] = useState<"chart" | "custom">("chart");
   const [chartId, setChartId] = useState(charts[0].id);
@@ -94,7 +94,7 @@ export function LearningWorkspace() {
   }
 
   return (
-    <div className="workspace" data-contrast={highContrast ? "high" : undefined}>
+    <div className="workspace" lang={language} data-contrast={highContrast ? "high" : undefined}>
       <a className="skip-link" href="#main">{copy.skip}</a>
       <header className="header">
         <div className="shell header-inner">

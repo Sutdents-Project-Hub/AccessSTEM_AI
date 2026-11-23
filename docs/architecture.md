@@ -23,4 +23,4 @@
 
 ## 執行責任
 
-瀏覽器頁面載入時可直接使用靜態教材。`/api/chat` 需要 Node.js 與有效的 OpenAI 伺服器端憑證。程序內的請求限制以單實例為作用範圍，公開部署前依 Hosting 補足跨實例費用控制。詳見 [資料契約](api-and-data-contracts.md)、[外部整合](integrations.md) 與 [安全與隱私](security-and-privacy.md)。
+首頁由伺服器解析 `?lang=en` 決定初始語言，預設繁中。頁面載入後可直接使用靜態教材。`/api/chat` 需要 Node.js 與有效的 OpenAI 伺服器端憑證。程序內的請求限制以單實例為作用範圍，公開部署前依 Hosting 補足跨實例費用控制。詳見 [資料契約](api-and-data-contracts.md)、[外部整合](integrations.md) 與 [安全與隱私](security-and-privacy.md)。

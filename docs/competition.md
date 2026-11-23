@@ -65,7 +65,7 @@
 | 可操作 AI 助理 | 中英切換及真實 OpenAI 本機對話已驗證 |
 | 真實 Baseline／V1–V3 與錯誤修正 | 最終 Terra 低推理已跑 10 個案例 × 4 版，提示、缺單位和平均速率重測見 [迭代紀錄](waicy-iteration-log.md) |
 | 聊天紀錄公開連結與外部存取測試 | **未完成** |
-| 英文報告 PDF／Google Drive／官方表單提交 | **未完成** |
+| 英文報告 PDF／Google Drive／官方表單提交 | 英文 PDF 與表單短介有本機待審草稿，正式檔案、分享與提交待完成 |
 
 更完整的交件流程：[demo-and-submission.md](demo-and-submission.md)；測試：[evaluation-plan.md](evaluation-plan.md)。
 
