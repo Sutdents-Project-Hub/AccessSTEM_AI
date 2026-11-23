@@ -1,0 +1,7 @@
+AccessSTEM AI is a conversational tutor that helps blind and low-vision high-school students, and their teachers, read and reason about graphs of linear and quadratic functions without relying on sight. Instead of one fixed description, learners choose a Full guide, Quick summary or Teacher guide and set their own pacing: hints only, guided, or full solution.
+
+The tutor receives reviewed graph facts, labels each claim as given, derived or unknown, asks for a missing scale or unit instead of guessing, and withholds the answer in hint mode.
+
+We compared four prompt versions (Baseline, V1, V2, V3) on the same ten scenarios with real OpenAI responses, 40 in total, and kept every failure. The tests exposed answers leaking into hints and advice that asked students to read unreadable graphs; both were fixed and re-tested.
+
+Evidence comes from controlled prototype tests with AI-assisted scoring. The three lessons await teacher review, and testing with screen-reader users is planned. The submission PDF links the live chatbot and a final chat history of at least ten messages.

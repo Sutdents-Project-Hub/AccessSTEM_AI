@@ -1,0 +1,30 @@
+<section id="heatmap" data-transition="fade">
+<p class="eyebrow">ITERATIVE DEVELOPMENT · ERROR ANALYSIS</p>
+<h2 class="title m">Where each version failed</h2>
+<div class="main">
+<div class="row grow" style="gap:48px">
+<div class="col" style="width:1010px; gap:6px; justify-content:space-between">
+<div class="row" style="gap:6px"><p class="src" style="width:410px"> </p><p class="src f1" style="text-align:center">Baseline</p><p class="src f1" style="text-align:center">V1</p><p class="src f1" style="text-align:center">V2</p><p class="src f1" style="text-align:center">V3</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">Full guide</p><p class="cell c8 f1">8</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">Quick summary</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">Teacher guide</p><p class="cell c7 f1">7</p><p class="cell c7 f1">7</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">Missing unit</p><p class="cell c8 f1">8</p><p class="cell c7 f1">7</p><p class="cell c8 f1">8</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">Hint mode</p><p class="cell c8 f1">8</p><p class="cell c10 f1">10</p><p class="cell c7 f1">7</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">Mode override</p><p class="cell c6 f1">6</p><p class="cell c6 f1">6</p><p class="cell c6 f1">6</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">Rephrase</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">Rate evidence</p><p class="cell c6 f1">6</p><p class="cell c7 f1">7</p><p class="cell c6 f1">6</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">English hint</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p><p class="cell c8 f1">8</p><p class="cell c10 f1">10</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:410px; padding-top:10px">No-scale description</p><p class="cell c10 f1">10</p><p class="cell c10 f1">10</p><p class="cell c8 f1">8</p><p class="cell c10 f1">10</p></div>
+<p class="src">Total per cell, 0–10. Teal 10 · light teal 8–9 · sand 7 · red 6.</p>
+</div>
+<div class="col f1" style="gap:20px; justify-content:center">
+<p class="small"><b>Easy cases hide the differences.</b> Quick summary and Rephrase scored 10 in every version.</p>
+<p class="small"><b>Mode override (6, 6, 6).</b> Baseline, V1 and V2 gave the minimum and vertex while the learner was in hint mode.</p>
+<p class="small"><b>Rate evidence (6–7).</b> Three versions asked a student to read values from a graph with no readable scale.</p>
+<p class="small"><b>V2 regression.</b> Hint mode fell from 10 to 7: the summary sounded like a hint, but a section disclosed the vertex (2, 1).</p>
+</div>
+</div>
+</div>
+<p class="foot">Rationales for every cell: evidence/raw/waicy-closeout-pilot-grades.json</p>
+<aside>This heatmap is the core error-analysis exhibit. Rows are scenarios, columns are versions; each cell is one real response scored 0–10. The failures cluster in the two scenarios that test rule-following rather than description.</aside>
+</section>

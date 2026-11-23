@@ -1,0 +1,29 @@
+<section id="engineering" data-transition="fade">
+<p class="eyebrow">ITERATIVE DEVELOPMENT · MODEL CHOICE AND SAFEGUARDS</p>
+<h2 class="title t">Choosing a model with the same final prompt</h2>
+<div class="main">
+<div class="row grow" style="gap:30px">
+<div class="col f3" style="gap:18px">
+<table style="font-size:26px">
+<tr><th style="width:23%">Model</th><th style="width:16%">Median</th><th>Observation (4 scenarios × 2 repeats)</th></tr>
+<tr><td><b>Luna, low</b></td><td>3.31 s</td><td>Hints and the English request withheld the answer. Rate answers asked for data.</td></tr>
+<tr><td><b>Luna, medium</b></td><td>3.84 s</td><td>Same hint behavior. One rate answer mentioned only the interval average.</td></tr>
+<tr><td><b>Terra, low</b></td><td>2.79 s</td><td>Shorter hints. Both rate answers separated average from fixed rate.</td></tr>
+</table>
+<div class="sand grow"><p class="sm2"><b>Decision.</b> In a three-repeat re-test of the rate scenario, Terra gave the formula and the average-versus-fixed distinction every time; Luna once did not. Terra with low reasoning became the demo default, and Luna can be selected by an environment variable.</p></div>
+</div>
+<div class="card f2"><p class="chd k">Safeguards in the build</p><div class="cb" style="justify-content:center">
+<ul class="sm2" style="margin:0; padding-left:30px">
+<li>API key only on the server</li>
+<li>Input length and role checks</li>
+<li>Strict JSON schema for every reply</li>
+<li>Source IDs validated; text cleaned</li>
+<li>Requests set store = false</li>
+<li>Provider errors shown, never faked</li>
+</ul></div></div>
+</div>
+<div class="wash"><p class="sm3"><b>Final run, median response time</b> (10 responses each, noisy): Baseline 5.1 s · V1 5.0 s · V2 5.4 s · V3 4.4 s.</p></div>
+</div>
+<p class="foot">Model comparison used 8 responses per model: a small-sample selection, not a benchmark.</p>
+<aside>Model names are the configured identifiers in the project. The comparison informed a practical choice for the demo; it does not rank the models in general.</aside>
+</section>

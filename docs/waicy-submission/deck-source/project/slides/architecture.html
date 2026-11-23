@@ -1,0 +1,25 @@
+<section id="architecture" data-transition="fade">
+<p class="eyebrow">HOW IT WORKS</p>
+<h2 class="title t">Reviewed facts in, labelled answers out</h2>
+<div class="main">
+<div class="row grow mid" style="gap:12px">
+<div class="card f1" style="align-self:stretch"><p class="chd">1 · Learner or teacher</p><div class="cb"><p class="sm2">Picks a lesson, a learning mode and preferences: pacing, depth, math level, language.</p></div></div>
+<x-shape kind="arrow-right" style="width:50px; height:34px; background:#2B2722"></x-shape>
+<div class="card f1" style="align-self:stretch"><p class="chd">2 · Web app</p><div class="cb"><p class="sm2">Next.js with semantic HTML, keyboard-first controls and a high-contrast toggle.</p></div></div>
+<x-shape kind="arrow-right" style="width:50px; height:34px; background:#2B2722"></x-shape>
+<div class="card f1" style="align-self:stretch"><p class="chd">3 · Server route</p><div class="cb"><p class="sm2">Validates input, limits size and keeps the API key on the server.</p></div></div>
+<x-shape kind="arrow-right" style="width:50px; height:34px; background:#2B2722"></x-shape>
+<div class="card f1" style="align-self:stretch"><p class="chd r">4 · OpenAI API</p><div class="cb"><p class="sm2">Prompt V3 plus a strict JSON schema. Model gpt-6.1-terra, low reasoning effort.</p></div></div>
+</div>
+<div class="row grow" style="gap:24px">
+<div class="card f1"><p class="chd m">A · Reviewed graph facts</p><div class="cb"><p class="sm2">Formula, axes, units, key points, trends and an explicit list of unknowns. Sent with every request.</p></div></div>
+<div class="card f1"><p class="chd t">5 · Structured answer</p><div class="cb"><p class="sm2">Summary, sections, claims tagged given, derived or unknown with source IDs, and at most one next question.</p></div></div>
+<div class="card f1"><p class="chd k">6 · Safety checks</p><div class="cb"><p class="sm2">Source IDs validated, stray markup removed, provider errors (429, 502) shown honestly instead of faked.</p></div></div>
+</div>
+<div class="row" style="gap:16px">
+<p class="pill">No database</p><p class="pill">No login</p><p class="pill">Conversation lives only in the open page</p><p class="pill m">Candidate lessons labelled “Teacher review pending”</p>
+</div>
+</div>
+<p class="foot">Architecture as built in the web/ component; no mock answers are shown when the provider fails.</p>
+<aside>Walk through left to right. The important design choice is box A: the model never has to read a picture or guess a scale, because facts arrive as structured data. Box 6 is why a failed API call shows an error instead of a plausible fake answer.</aside>
+</section>

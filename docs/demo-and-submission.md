@@ -60,7 +60,9 @@
 
 本機已有六輪英文合成操作的真實回覆，保留於 `evidence/raw/waicy-final-english-browser.md`。可用來準備學生實機對話與英文展示，發布前須審核。
 
-本機待審材料位於 `evidence/raw/waicy-submission-draft/`，包含六頁英文 PDF 與可編修 HTML、167 字的表單短介、教材核對單、英文入口實機驗收證據。正式 PDF 需要確認團隊貢獻、公開 Demo 與對話網址，再重印並逐個開啟兩條外部連結。
+**2026-11-23 更新**：已改用 Claude Slides 製作 35 頁英文簡報（尚未匯出 PDF，待團隊在 Artifact 檢視後自行匯出）。配套文件在 [`waicy-submission/`](waicy-submission/)：[評分對照](waicy-submission/scoring-map.md)、[待補清單](waicy-submission/submission-todo.md)、[研究與引用核對](waicy-submission/research-notes.md)、[表單簡述（172 字）](waicy-submission/project-description.txt)、[簡報原始檔備份](waicy-submission/deck-source/)。公開網址、QR Code、對話分享連結、團隊與貢獻資料仍為待補，簡報內以紅色括號標示。
+
+先前的六頁草稿（舊版，已被上述簡報取代）位於 `evidence/raw/waicy-submission-draft/`，包含六頁英文 PDF 與可編修 HTML、167 字的表單短介、教材核對單、英文入口實機驗收證據。正式 PDF 需要確認團隊貢獻、公開 Demo 與對話網址，再重印並逐個開啟兩條外部連結。
 
 有八張可放入英文 PDF 的實拍截圖，包含六張顯示真實 OpenAI 回覆的畫面。[逐張截圖與英文圖說](assets/waicy-screenshots/WAICY-screenshot-index.md) · [整包下載（ZIP）](assets/waicy-screenshots/AccessSTEM_AI-WAICY-screenshots-2026-11-23.zip)
 

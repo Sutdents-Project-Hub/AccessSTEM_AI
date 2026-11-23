@@ -1,0 +1,38 @@
+{
+  "v": 5,
+  "createdOnFiles": { "v": 1, "at": "2026-11-23T09:00:00Z" },
+  "lists": "css",
+  "format": { "v": 1, "shared": ["project/deck.css"] },
+  "title": "AccessSTEM AI – WAICY 2026 LLM Track",
+  "order": [
+    "cover", "glance",
+    "problem", "gaps", "motivation",
+    "service", "scope", "architecture", "personas", "answers", "tour", "hints",
+    "timeline", "versions", "testdesign", "results", "heatmap", "leak", "leakfix", "failures", "engineering",
+    "chat1", "chat2", "chat3", "chatbot",
+    "limits", "ethics", "ledger",
+    "future", "contribution", "conclusion", "refs", "refs2",
+    "appx-prompt", "appx-evidence"
+  ],
+  "sections": {
+    "s1": { "description": "What AccessSTEM AI is, in one page.", "start": "cover" },
+    "s2": { "description": "Motivation and problem statement, backed by external research.", "start": "problem" },
+    "s3": { "description": "The specific AI service, its users and how it works.", "start": "service" },
+    "s4": { "description": "Iterative development: prompt versions, tests, errors and fixes.", "start": "timeline" },
+    "s5": { "description": "Final chat history and live chatbot.", "start": "chat1" },
+    "s6": { "description": "Limitations, ethics and an honest evidence ledger.", "start": "limits" },
+    "s7": { "description": "Future development, contributions, conclusion and references.", "start": "future" },
+    "s8": { "description": "Appendix: prompt V3 and evidence index.", "start": "appx-prompt" }
+  },
+  "faces": {
+    "bricolage-grotesque": {
+      "family": "Bricolage Grotesque",
+      "href": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500..800&display=swap"
+    },
+    "work-sans": {
+      "family": "Work Sans",
+      "href": "https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+    }
+  },
+  "designSystems": []
+}

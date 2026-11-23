@@ -1,0 +1,41 @@
+<section id="results" data-transition="fade">
+<p class="eyebrow">ITERATIVE DEVELOPMENT · EXPERIMENTAL RESULTS</p>
+<h2 class="title t">V3 fixed the failures the tests exposed</h2>
+<div class="main">
+<div class="row grow" style="gap:44px">
+<div class="row" style="gap:40px; width:800px">
+<div class="col" style="gap:10px">
+<p class="small b">Mean score (0–10)</p>
+<div class="bars" style="height:430px">
+<div class="bar"><p class="small b">8.3</p><div style="width:78px; height:332px; background:#9A9086"></div><p class="src">Base</p></div>
+<div class="bar"><p class="small b">8.7</p><div style="width:78px; height:348px; background:#E9C46A"></div><p class="src">V1</p></div>
+<div class="bar"><p class="small b">8.3</p><div style="width:78px; height:332px; background:#2A9D8F"></div><p class="src">V2</p></div>
+<div class="bar"><p class="small b">10.0</p><div style="width:78px; height:400px; background:#264653"></div><p class="src">V3</p></div>
+</div>
+</div>
+<div class="col" style="gap:10px">
+<p class="small b">Passed (of 10)</p>
+<div class="bars" style="height:430px">
+<div class="bar"><p class="small b">7</p><div style="width:78px; height:280px; background:#9A9086"></div><p class="src">Base</p></div>
+<div class="bar"><p class="small b">6</p><div style="width:78px; height:240px; background:#E9C46A"></div><p class="src">V1</p></div>
+<div class="bar"><p class="small b">7</p><div style="width:78px; height:280px; background:#2A9D8F"></div><p class="src">V2</p></div>
+<div class="bar"><p class="small b">10</p><div style="width:78px; height:400px; background:#264653"></div><p class="src">V3</p></div>
+</div>
+</div>
+</div>
+<div class="col f1" style="gap:6px">
+<p class="small b">Mean per measure (0–2)</p>
+<div class="row" style="gap:6px"><p class="sm2" style="width:270px"> </p><p class="src f1" style="text-align:center">Base</p><p class="src f1" style="text-align:center">V1</p><p class="src f1" style="text-align:center">V2</p><p class="src f1" style="text-align:center">V3</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:270px; padding-top:12px">Grounding</p><p class="cell c10 f1">2.0</p><p class="cell c10 f1">2.0</p><p class="cell c10 f1">2.0</p><p class="cell c10 f1">2.0</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:270px; padding-top:12px">Personalization</p><p class="cell c7 f1">1.3</p><p class="cell c7 f1">1.4</p><p class="cell c7 f1">1.5</p><p class="cell c10 f1">2.0</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:270px; padding-top:12px">Teaching</p><p class="cell c7 f1">1.3</p><p class="cell c7 f1">1.5</p><p class="cell c6 f1">1.1</p><p class="cell c10 f1">2.0</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:270px; padding-top:12px">Uncertainty</p><p class="cell c8 f1">1.8</p><p class="cell c8 f1">1.8</p><p class="cell c8 f1">1.7</p><p class="cell c10 f1">2.0</p></div>
+<div class="row" style="gap:6px"><p class="sm2" style="width:270px; padding-top:12px">Accessible language</p><p class="cell c8 f1">1.9</p><p class="cell c10 f1">2.0</p><p class="cell c10 f1">2.0</p><p class="cell c10 f1">2.0</p></div>
+<p class="src" style="margin-top:8px">V2 improved personalization, but teaching fell to 1.1: answers leaked in hint scenarios.</p>
+</div>
+</div>
+<div class="sand"><p class="sm2"><b>Read with care.</b> 10 synthetic scenarios, one response per cell, scored by one AI-assisted reviewer (partial blinding), not by humans. V3’s rules were written after seeing failures on these same scenarios, so 10.0 shows the fixes work on known cases, not general accuracy.</p></div>
+</div>
+<p class="foot">Raw scores and rationales: evidence/raw/waicy-closeout-pilot-grades.json · run folder 2026-11-23T05-56-58Z</p>
+<aside>Be explicit about the ceiling: a perfect score here is expected after targeted fixes. The honest interpretation is a regression result: the specific failures no longer reproduce. V1 has the highest non-V3 mean but fewer passes than Baseline, which shows how a mean can hide failures. A larger hold-out set is a planned next step.</aside>
+</section>
