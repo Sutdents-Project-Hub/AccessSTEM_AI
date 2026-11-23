@@ -6,23 +6,23 @@
   "title": "AccessSTEM AI – WAICY 2026 LLM Track",
   "order": [
     "cover", "glance",
-    "problem", "gaps", "motivation",
+    "problem", "aiuse", "gaps", "motivation",
     "service", "scope", "architecture", "personas", "answers", "tour", "hints",
-    "timeline", "versions", "testdesign", "results", "heatmap", "leak", "leakfix", "failures", "engineering",
+    "timeline", "versions", "testdesign", "results", "heatmap", "leak", "leakfix", "failures", "english-retest", "engineering",
     "chat1", "chat2", "chat3", "chatbot",
     "limits", "ethics", "ledger",
-    "future", "contribution", "conclusion", "refs", "refs2",
-    "appx-prompt", "appx-evidence", "english-retest"
+    "future", "contribution", "conclusion", "sources", "refs", "refs2", "refs3",
+    "appx-prompt", "appx-evidence"
   ],
   "sections": {
     "s1": { "description": "What AccessSTEM AI is, in one page.", "start": "cover" },
-    "s2": { "description": "Motivation and problem statement, backed by external research.", "start": "problem" },
+    "s2": { "description": "Motivation and problem statement, backed by international surveys and studies.", "start": "problem" },
     "s3": { "description": "The specific AI service, its users and how it works.", "start": "service" },
-    "s4": { "description": "Iterative development: prompt versions, tests, errors and fixes.", "start": "timeline" },
+    "s4": { "description": "Iterative development: prompt versions, tests, errors, fixes and the English replication.", "start": "timeline" },
     "s5": { "description": "Final chat history and live chatbot.", "start": "chat1" },
     "s6": { "description": "Limitations, ethics and an honest evidence ledger.", "start": "limits" },
-    "s7": { "description": "Future development, contributions, conclusion and references.", "start": "future" },
-    "s8": { "description": "Appendix: prompt V3, evidence index, and English retests.", "start": "appx-prompt" }
+    "s7": { "description": "Future development, contributions, conclusion, sources and references.", "start": "future" },
+    "s8": { "description": "Appendix: prompt V3 and evidence index.", "start": "appx-prompt" }
   },
   "faces": {
     "bricolage-grotesque": {

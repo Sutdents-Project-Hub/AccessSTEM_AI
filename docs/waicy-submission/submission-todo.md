@@ -7,38 +7,39 @@
 
 | # | Missing item | Location | Action needed |
 |---|---|---|---|
-| 1 | Public chatbot URL | Slides 1, 25 | Decide the platform, deploy `web/`, configure server-side `OPENAI_API_KEY`, and verify from a private window without a developer account. Confirm API budget and rate limits. |
-| 2 | QR code | Slide 25 | Generate after the public URL is final. |
-| 3 | Accessible final transcript link, at least ten messages | Slide 25 | Record a genuine final-version conversation, anonymize it, confirm sharing rights, and test the link signed out. See below. |
-| 4 | Team, student names/grades, instructor | Slides 1, 30 | Use actual registration details; do not put private contact details in the public deck. |
+| 1 | Public chatbot URL | Slides 1, 27 | Decide the platform, deploy `web/`, configure server-side `OPENAI_API_KEY`, and verify from a private window without a developer account. Confirm API budget and rate limits. |
+| 2 | QR code | Slide 27 | Generate after the public URL is final. |
+| 3 | Accessible final transcript link, at least ten messages | Slide 27 | Record a genuine final-version conversation, anonymize it, confirm sharing rights, and test the link signed out. See below. |
+| 4 | Team, student names/grades, instructor | Slides 1, 32 | Use actual registration details; do not put private contact details in the public deck. |
 | 5 | Registration category | Slide 1 and file/folder names | The form asks Elementary / Middle / High, while the LLM chapter says no separate age categories. Use confirmed registration details; ask the organizer if unclear. |
-| 6 | Contribution table | Slide 30 | The team records actual student, instructor and tool contributions. |
-| 7 | Students' inspiration story | Slide 5 | Add 2–3 sentences in the students' own words. |
+| 6 | Contribution table | Slide 32 | The team records actual student, instructor and tool contributions. |
+| 7 | Students' inspiration story | Slide 6 | Add 2–3 sentences in the students' own words. |
 | 8 | Single English PDF | Export | Inspect before submission. Guidebook format: `LLM_<Category>_AccessSTEMAI.pdf` inside `LLM_<Category>_AccessSTEMAI`. No new PDF was exported in this content update. |
 | 9 | Shared submission folder and correct submission route | Google Drive / form | Ensure judges can view the folder. Confirm whether a country organizer already handles registration before submitting globally. Draft description: [project-description.txt](project-description.txt), below 200 words. |
 
 ### Final conversation link
 
-The app does not store or share conversations; that is the current privacy design. Slides 22–24 use real replies from a **local synthetic-learner script**, not a real student, and a public transcript link is still missing.
+The app does not store or share conversations; that is the current privacy design. Slides 24–26 use real replies from a **local synthetic-learner script**, not a real student, and a public transcript link is still missing.
 
 1. After deployment, a team member should use the final build for at least ten exchanged messages (six or more turns is a useful margin). Include a hint, a simpler re-explanation, an explicit switch to a full solution and a missing-data question. Test the three modes in additional sessions if needed.
 2. Preserve the actual prompts and replies in a document or PDF, remove identifying information, confirm public-sharing rights, and test the shared document without an account.
-3. If the new session replaces the displayed conversation, update slides 22–24 and their provenance. Keep the original local evidence. Do not relabel simulated learners as real participants.
+3. If the new session replaces the displayed conversation, update slides 24–26 and their provenance. Keep the original local evidence. Do not relabel simulated learners as real participants.
 
 ## B. Strongly recommended validation
 
-- Ask a teacher to review the three built-in lessons. Only after documented review should slides 6, 26 and 28 change their pending status.
+- Ask a teacher to review the three built-in lessons. Only after documented review should slides 7, 28 and 30 change their pending status.
 - Perform and record an actual VoiceOver flow. Keep untested accessibility claims pending; an automated check is insufficient for WCAG conformance.
 - Add English cases held out from prompt tuning. The separately recorded English replication reused the existing scenario designs and kept the historical mixed-language pilot and scores intact.
 - Obtain independent human ratings or a second rater, and repeat cells to measure variability.
+- Add one or two newer international surveys if time allows, or refresh slides 3–4 if a source updates; keep each statistic tied to its population.
 - Include consented, anonymized learner or teacher feedback only if it actually occurs and sharing rights are clear.
 
 ## C. Final checks
 
 - [ ] Public chatbot, transcript and Drive folder open in a private window.
 - [ ] All red placeholders replaced with team-confirmed information.
-- [ ] References on slides 32–33 still resolve; inspect source scope in [research-notes.md](research-notes.md).
-- [ ] Run existing checks from `web/`: `pnpm lint`, `pnpm typecheck`, `pnpm build`; keep actual results. Slide 28 refers to historical passing records.
+- [ ] References on slides 34–37 still resolve; inspect source scope in [research-notes.md](research-notes.md).
+- [ ] Run existing checks from `web/`: `pnpm lint`, `pnpm typecheck`, `pnpm build`; keep actual results. Slide 30 refers to historical passing records.
 - [ ] Inspect the exported PDF page by page: fonts, screenshots, links, clipping and readability.
 - [ ] Ensure `/_blob/` images survive export; source mapping is in [deck-source/README.md](deck-source/README.md).
 - [ ] Recheck deadline, form fields and the latest linked Guidebook.
