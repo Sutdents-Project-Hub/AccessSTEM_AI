@@ -1,6 +1,23 @@
-# Public Demo Deployment Plan (Not Deployed)
+# AccessSTEM AI on Vercel Hobby
 
-> Current status: `planned`. **No hosting provider has been selected, no domain acquired, no deployment performed, no public URL verified, and no OpenAI key configured in a deployment environment.** This document does not invent ports, health checks, or commands.
+The competition site targets Vercel Hobby. Its public deployment and final URL are pending.
+
+## Import from GitHub
+
+1. Choose **Add New → Project** in the intended Hobby account and import **Sutdents-Project-Hub/AccessSTEM_AI**. Use a project name based on `accessstem-ai`, subject to availability.
+2. Select **Next.js**, set **Root Directory** to `web`, and use **Node.js 24.x**. Keep the install, build, and output settings on their framework defaults. The Production Branch is `main`.
+3. Before the first deployment, enter the following in the project's **Production** environment.
+
+| Name | Value or source |
+| --- | --- |
+| `OPENAI_API_KEY` | Required for live chat. Enter the authorized key as a sensitive server-side variable. |
+| `OPENAI_MODEL` | Optional. The code defaults to the tested `gpt-6.1-terra` model and selects low reasoning effort for it. |
+| `ENABLE_EXPERIMENTAL_COREPACK` | Set to `1` so Vercel uses pnpm 10.33.0 from `web/package.json`. |
+
+4. Deploy, then open the project's production domain in **Settings → Domains**. Use that stable HTTPS address in the submission. After changing production variables, redeploy for them to take effect.
+5. In a signed-out browser, open `/?lang=en`, choose a graph, send a question, and follow up on the same graph. A successful homepage alone does not exercise the model. Record the tested URL and commit.
+
+The chat function has a 40-second execution limit and a 25-second upstream timeout. Request limits in the application apply per running instance. Provider usage controls apply across instances.
 
 ## Demo requirements
 
@@ -11,16 +28,6 @@
 5. Make text usable with a screen reader; a video-only page is not an operable chatbot.
 6. Set traffic and API quota limits and give users clear messages when service fails.
 7. Keep the deployed Git commit, Prompt version, and model ID traceable. Do not silently use a different Prompt in different environments.
-
-## Platform candidates (**options only; no platform selected**)
-
-- **Next.js-compatible platform:** Choose a service that can run Server Route Handlers and manage secrets, such as Vercel or another compatible Node.js host. Test AI API connectivity, region, cost, and timeout.
-- **Coolify (only if explicitly selected later):** The `web/` component is the only one with a deployment lifecycle. Use a standalone Dockerfile Application with base directory `web/`. Verify Node, startup command, port, health check, domain, environment secrets, logs, and rollback in the actual environment; do not reuse another project's Dockerfile.
-- No PostgreSQL, S3, or Redis is currently being created, and no persistent data needs a migration.
-
-## Local Compose and production boundary
-
-This project currently has **no Compose file**. If a root `compose.yaml` is later added for local integration, set top-level `name: accessstem_ai`, use service keys such as `web` to identify responsibilities, and avoid unnecessary `container_name`. Root Compose is for **local integration** and must not be used directly as the Coolify production entry point. A production Compose exception requires explicit approval plus a plan for services, secrets, volumes, backups, and rollback.
 
 ## Facts to record before launch (fill only after implementation)
 

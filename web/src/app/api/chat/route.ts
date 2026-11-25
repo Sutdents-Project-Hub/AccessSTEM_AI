@@ -4,6 +4,8 @@ import { getChart } from "@/lib/charts";
 import { askTutor, getOpenAIConfiguration } from "@/server/agent/openai";
 
 export const runtime = "nodejs";
+// Allow the 25-second provider timeout to return a structured error to the UI.
+export const maxDuration = 40;
 
 const minute = 60_000;
 let windowOpenedAt = 0;

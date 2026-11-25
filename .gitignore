@@ -33,6 +33,7 @@ coverage/
 
 # Next.js / TypeScript / tests
 .next/
+.vercel/
 next-env.d.ts
 out/
 *.tsbuildinfo

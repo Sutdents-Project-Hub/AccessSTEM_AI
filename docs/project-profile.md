@@ -60,13 +60,13 @@ An AI learning service for high-school math charts that helps blind students, st
 - If image upload is added, use a two-stage process: extract a draft, then require human confirmation. Do not generate definitive numeric claims without confirmation.
 - OpenAI Responses API defaults to `gpt-6.1-terra` with `low` reasoning effort. The model can be overridden server-side. Public traffic quotas and terms of use need confirmation.
 - The student competitor is responsible for understanding the problem, user research, Prompt iteration, and interpreting results. Contributions by advisors and tools must be disclosed accurately.
-- Deployment is needed only for the competition demo. Vercel, Coolify, or another service has not been selected.
+- Deployment is needed only for the competition demo. Use a dedicated Vercel Hobby project with its assigned production domain.
 
 ## Open decisions
 
 - Confirm the competitor's age eligibility and consent requirements, including whether the organizer must be consulted.
 - Confirm ownership of the OpenAI key, model access, API quota, payment responsibility, and public demo traffic budget.
-- Select a final demo deployment approach, public URL, and link permissions. Do not fill in a URL that does not exist.
+- Verify the assigned production URL and anonymous access. Do not fill in a URL that does not exist.
 - Confirm whether blind or low-vision participants can be recruited. If not, clearly state that only VoiceOver and keyboard simulation tests were completed.
 - Decide whether image upload is in scope before the deadline; by default, it is not P0.
 - Confirm rights to publicly cite, display, and reproduce chart materials.

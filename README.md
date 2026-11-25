@@ -2,7 +2,7 @@
 
 An AI tutor for high-school function graphs, designed for blind and low-vision learners and the teachers who support them. A learner can read a graph in words, ask follow-up questions, and choose when to see a solution. The tutor separates given facts, mathematical deductions, and missing information.
 
-**WAICY 2026 · AI Large Language Model Track.** The prototype works locally with OpenAI. The three sample lessons are awaiting teacher review. Public deployment, the shareable final conversation, and submission are pending.
+**WAICY 2026 · AI Large Language Model Track.** The prototype works locally with OpenAI. The three sample lessons are awaiting teacher review. The [Vercel Hobby setup](docs/deployment.md) is ready for import. Public deployment, the shareable final conversation, and submission are pending.
 
 ## Explore the project
 
