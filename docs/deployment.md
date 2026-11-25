@@ -19,6 +19,21 @@ The competition site targets Vercel Hobby. Its public deployment and final URL a
 
 The chat function has a 40-second execution limit and a 25-second upstream timeout. Request limits in the application apply per running instance. Provider usage controls apply across instances.
 
+## If the repository does not appear during import
+
+Select the GitHub organization in the import screen and check that the Vercel GitHub App has access to this repository. If the Hobby account cannot connect it, use the Vercel CLI with a clean export of the same commit. From the repository root:
+
+```sh
+release_dir=$(mktemp -d)
+git archive HEAD:web | tar -x -C "$release_dir"
+cd "$release_dir"
+vercel link
+```
+
+Choose the intended Hobby account and this project's name. For this CLI project set Root Directory to `./` because the export already starts inside `web`. Set the same Production variables listed above, then run `vercel deploy --prod` from the export. To publish another revision, export it again and link it to the same project.
+
+[GitHub import permissions](https://vercel.com/docs/git/vercel-for-github) · [Vercel CLI link](https://vercel.com/docs/cli/link) · [Production deployment](https://vercel.com/docs/cli/deploy)
+
 ## Demo requirements
 
 1. External judges can open the service from an unfamiliar device and incognito window at `/?lang=en` and use real LLM responses (confirm with the organizer first if access restrictions apply).
