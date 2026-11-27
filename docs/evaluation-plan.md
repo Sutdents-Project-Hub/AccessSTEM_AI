@@ -10,6 +10,7 @@ The project evaluates five outcomes: mathematical grounding, adjustment to teach
 | V1 | Graph tutoring role and ordered description | Cover the overview, axes, points, and trends |
 | V2 | V1 plus teaching profiles and depth | Adapt to the learner's stated choices and provide teacher drafts |
 | V3 | V2 plus evidence, uncertainty, and pacing rules | Ask for missing facts, give a single hint, and separate known, derived, and unknown claims |
+| V4 | V3 plus exact interface labels and an explicit student audience for classroom questions | Use **Full solution** in English hints and supply the requested classroom question even when the graph lacks measurements |
 
 Within each run, match the scenario, locale, graph facts, preference, history, model, generation settings, and schema. Keep the original provider output even when it fails to parse. A separate check evaluates content and teaching quality. The model has no fixed seed in these runs.
 
@@ -48,6 +49,8 @@ Use IDs such as `AS-FULL-Q01-T3`. The three original lessons are candidates unti
 | AS-EDGE-09 | Provider timeout, rate limit, or invalid response | Show the true error and allow retry |
 
 Use the text description of a missing scale in this prototype. Image recognition would need separate test cases and evidence.
+
+The V4 regression cases `classroom-question` and `classroom-question-missing-scale` check that an educator receives one student-facing question in the visible summary with no follow-up from the tutor. The missing-scale case checks for a question about evidence and avoids numerical claims. Historical `rate-evidence` expectations are preserved for V3 replay. In V4, it still requires the average-rate caveat and makes the question student-facing.
 
 ## Per-case rubric
 

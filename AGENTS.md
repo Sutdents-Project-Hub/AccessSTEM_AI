@@ -4,7 +4,7 @@
 
 - 本檔適用於整個 `AccessSTEM AI｜視障學生的個人化 STEM 圖表學習助理` repository；子目錄若有更具體的 `AGENTS.md`，只在該範圍內補充本檔。
 - 依序遵守使用者當次指示、本檔、根目錄 `README.md`、`docs/` 與元件 README；內容衝突時先停止並確認。
-- 目前階段：競賽／展示。部署狀態：已選 Vercel Hobby，公開部署待驗收。
+- 目前階段：競賽／展示。正式環境使用 Vercel Hobby，公開網址與驗收方式見 `docs/deployment.md`。
 - Git repository 名稱：`AccessSTEM_AI`。全新專案的初始 branch 為 `main`。
 
 - 產品型態：`web`

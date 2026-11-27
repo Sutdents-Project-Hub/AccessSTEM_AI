@@ -2,13 +2,13 @@
 
 An AI tutor for high-school function graphs, designed for blind and low-vision learners and the teachers who support them. A learner can read a graph in words, ask follow-up questions, and choose when to see a solution. The tutor separates given facts, mathematical deductions, and missing information.
 
-**WAICY 2026 · AI Large Language Model Track.** The prototype works locally with OpenAI. The three sample lessons are awaiting teacher review. The [Vercel Hobby setup](docs/deployment.md) is ready for import. Public deployment, the shareable final conversation, and submission are pending.
+**WAICY 2026 · AI Large Language Model Track.** Try the [public chatbot](https://accessstem-ai.vercel.app/). The three sample lessons are awaiting teacher review. See the [Vercel deployment guide](docs/deployment.md) for build and acceptance details.
 
 ## Explore the project
 
 - **Full guide** walks through the axes, key points, and trends. The same lesson includes a formula reading and a table of coordinates.
 - **Quick summary** starts with the central takeaway and keeps supporting detail available.
-- **Teacher guide** drafts a classroom explanation, a common misconception, and three guiding questions. The draft is marked for review.
+- **Teacher guide** drafts a classroom explanation, a common misconception, and three guiding questions. Ask for one classroom question to get a prompt you can read to students. The draft is marked for review.
 - Use a sample linear or quadratic function, or paste a text problem. Hints only gives a first step. Full solution shows the result and its reasoning.
 
 The workspace, tutoring, and error messages open in English by default. Select **繁體中文** or open `/?lang=zh-Hant` for Traditional Chinese. `/?lang=en` is the explicit English entry.

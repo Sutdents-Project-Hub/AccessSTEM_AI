@@ -113,6 +113,39 @@ const historicalCases: EvaluationCase[] = [
 
 export type EvaluationLanguage = "en" | "zh-Hant";
 
+function classroomQuestionCases(language: EvaluationLanguage): EvaluationCase[] {
+  const en = language === "en";
+  const preferences = profiles[2].preferences;
+  const message = en
+    ? "Give me one question I can ask my students about this graph. Do not give the answer."
+    : "請給我一題可以直接問學生的圖表引導題，不要附答案。";
+  return [
+    {
+      id: "classroom-question",
+      expected: en
+        ? "Put one student-facing question in the summary, with no answer or tutor follow-up."
+        : "在摘要直接給一道可問學生的問題，不附答案，也不向老師追問。",
+      request: { chartId: vertex, userDescription: null, message, history: [], preferences, language },
+    },
+    {
+      id: "classroom-question-missing-scale",
+      expected: en
+        ? "Give one student-facing question about the evidence needed to verify a constant rate, without asking the teacher for data, inventing values, or requiring a reading of the scales."
+        : "直接給學生一道查證固定速率所需證據的問題，不向老師索取資料、不猜數字，也不要求讀取刻度。",
+      request: {
+        chartId: null,
+        userDescription: en
+          ? "The water volume rises over time. The graph has no readable scale or units and no formula."
+          : "水量隨時間上升。圖表上的刻度和單位不可讀，也沒有公式。",
+        message: en
+          ? "A student thinks the rate is constant. Give me one question I can ask them to guide their reasoning."
+          : "學生認為速率固定。請給我一句可以直接問學生的引導題。",
+        history: [], preferences, language,
+      },
+    },
+  ];
+}
+
 // English scenarios retain the historical IDs and mathematical conditions, but
 // translation changes the experiment: compare variants within a language/run.
 const englishText: Record<string, {
@@ -174,8 +207,9 @@ const englishText: Record<string, {
 };
 
 export function getEvaluationCases(language: EvaluationLanguage = "en"): EvaluationCase[] {
-  if (language === "zh-Hant") return historicalCases;
-  return historicalCases.map((item) => {
+  const classroomCases = classroomQuestionCases(language);
+  if (language === "zh-Hant") return [...historicalCases, ...classroomCases];
+  const translatedCases = historicalCases.map<EvaluationCase>((item) => {
     const text = englishText[item.id];
     if (!text) throw new Error(`Missing English scenario text: ${item.id}`);
     return {
@@ -190,6 +224,7 @@ export function getEvaluationCases(language: EvaluationLanguage = "en"): Evaluat
       },
     };
   });
+  return [...translatedCases, ...classroomCases];
 }
 
 // Translate only the material used in this pilot. Mathematical values, trust

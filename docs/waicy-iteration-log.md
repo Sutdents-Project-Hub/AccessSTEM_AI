@@ -20,6 +20,7 @@ AccessSTEM AI addresses an interaction gap in high-school mathematics: a learner
 | V1 | Give the model a graph tutor role and a description order. | “Describe the overview, axes, key points, and trends in sequence.” |
 | V2 | Add adjustable depth, the three teaching modes, and a teacher draft with misconceptions and guiding questions. | Lead with the takeaway in Quick summary. Draft three guiding questions for a teacher. |
 | V3 | Add known, derived, and unknown claims, source identifiers, one-step hints, and missing-evidence questions. | In Hints only, keep the target result out of every answer field. For a possible constant rate, distinguish the average over an interval from a claim about the whole graph. |
+| V4 | Align English hint guidance with the interface and distinguish student questions from tutor follow-ups. | A teacher asking for one classroom question receives it in the summary. With unreadable scales, the question asks students what evidence they would need. |
 
 The reading guide paraphrases the tested instructions in English. [Prompt source](../web/src/server/agent/prompts.ts) and [request assembly](../web/src/server/agent/openai.ts) preserve the actual implementation. Individual run files retain the complete sent developer text and raw provider output. The historical matched comparison fixed `gpt-6.1-terra`, low reasoning effort, and a maximum of 2,200 output tokens. See the [evaluation protocol](evaluation-plan.md) for scoring and version controls.
 
@@ -33,6 +34,12 @@ The reading guide paraphrases the tested instructions in English. [Prompt source
 | English consistency | The summary could appear in English while headings or details remained in Chinese. Removed the fixed Traditional Chinese requirement, passed the selected locale, and applied it to all response fields. | Six English exchanges in Chrome included three hint turns, a full solution, evidence labels, and a follow-up. |
 | Unrecognized sources and formatting | Some model output contained unmatched source identifiers, wrapper markup, or control characters. Added source validation by lesson type, cleanup for rendered replies, and a review reminder. | Controlled adapter tests exercised invalid sources, text cleanup, 429, invalid output, and request validation. The original provider text remains in the local logs. |
 | Run-directory collision | Concurrent model comparisons initially used the same timestamp-based directory. Changed evaluation to create a unique directory atomically. | Affected comparison batches were rerun separately with model and effort verified. |
+
+### Nov 27 · V4 targeted regression
+
+An agent reported that language in the live hint replies sometimes used “Full answer” for the **Full solution** control and that a request for one classroom question could produce a clarification addressed to the teacher. V4 shares the label with the interface and gives the requested classroom question priority over a tutor follow-up.
+
+The local English retest sent six synthetic requests to `gpt-6.1-terra`. All six returned structured replies. The direct answer request received one hint without the minimum or vertex and used **Full solution**. Both new classroom-question cases and the rate-evidence case returned one student question in the summary and no tutor follow-up. The full teacher draft kept three questions, and the numeric question with insufficient data still asked for axis labels, units, scales, or an equation. Raw results are in the local ignored directory `evidence/raw/waicy-en-2026-11-27T06-17-29.490Z-Kze9sd/`.
 
 ## 4. Historical results and analyst limitations
 

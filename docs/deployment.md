@@ -1,21 +1,20 @@
 # AccessSTEM AI on Vercel Hobby
 
-The competition site targets Vercel Hobby. Its public deployment and final URL are pending.
+The competition site runs on Vercel Hobby at [accessstem-ai.vercel.app](https://accessstem-ai.vercel.app/). The project is linked to GitHub and deploys from `main`.
 
 ## Import from GitHub
 
 1. Choose **Add New → Project** in the intended Hobby account and import **Sutdents-Project-Hub/AccessSTEM_AI**. Use a project name based on `accessstem-ai`, subject to availability.
-2. Select **Next.js**, set **Root Directory** to `web`, and use **Node.js 24.x**. Keep the install, build, and output settings on their framework defaults. The Production Branch is `main`.
+2. Select **Next.js** and set **Root Directory** to `web`. The manifest pins **Node.js 24.x**. Use `npx --yes pnpm@10.33.0 install --frozen-lockfile` to install and `npm run build` to build. Keep the framework's output setting. The Production Branch is `main`.
 3. Before the first deployment, enter the following in the project's **Production** environment.
 
 | Name | Value or source |
 | --- | --- |
 | `OPENAI_API_KEY` | Required for live chat. Enter the authorized key as a sensitive server-side variable. |
 | `OPENAI_MODEL` | Optional. The code defaults to the tested `gpt-6.1-terra` model and selects low reasoning effort for it. |
-| `ENABLE_EXPERIMENTAL_COREPACK` | Set to `1` so Vercel uses pnpm 10.33.0 from `web/package.json`. |
 
 4. Deploy, then open the project's production domain in **Settings → Domains**. Use that stable HTTPS address in the submission. After changing production variables, redeploy for them to take effect.
-5. In a signed-out browser, open `/?lang=en`, choose a graph, send a question, and follow up on the same graph. A successful homepage alone does not exercise the model. Record the tested URL and commit.
+5. In a signed-out browser, open `/?lang=en`, choose a graph, send a question, and follow up on the same graph. Check that **Hints only** points to **Full solution** without revealing the result and that **Teacher guide** can draft a question for students. Record the tested URL and commit.
 
 The chat function has a 40-second execution limit and a 25-second upstream timeout. Request limits in the application apply per running instance. Provider usage controls apply across instances.
 

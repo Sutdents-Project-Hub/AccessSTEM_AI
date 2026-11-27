@@ -1,5 +1,6 @@
 import type { ChatErrorCode } from "@/lib/chat-contract";
 import type { ChartFacts } from "@/lib/charts";
+import { fullSolutionLabel } from "@/lib/learning-copy";
 
 export type Language = "zh-Hant" | "en";
 
@@ -19,7 +20,7 @@ export const workspaceCopy = {
     axesIntro: "橫軸 x，縱軸 y。", tutor: "AI 學習助理", modes: "學習方式", preferences: "調整學習偏好",
     modeCopy: [["完整導讀", "逐步說明"], ["重點短述", "結論優先"], ["教師引導", "教學草稿"]],
     fieldLabels: ["解說深度", "解題方式", "數學程度"],
-    optionLabels: [["簡短重點", "逐步解說", "深入解析"], ["只給提示", "循序引導", "完整解答"], ["初次接觸", "熟悉基本概念"]],
+    optionLabels: [["簡短重點", "逐步解說", "深入解析"], ["只給提示", "循序引導", fullSolutionLabel["zh-Hant"]], ["初次接觸", "熟悉基本概念"]],
   },
   en: {
     skip: "Skip to main content", nav: "Workspace navigation", material: "Graph lesson", chat: "AI chat", contrast: "High contrast",
@@ -36,7 +37,7 @@ export const workspaceCopy = {
     axesIntro: "The horizontal axis is x. The vertical axis is y.", tutor: "AI learning tutor", modes: "Learning mode", preferences: "Learning preferences",
     modeCopy: [["Full guide", "Step by step"], ["Quick summary", "Key points first"], ["Teacher guide", "Lesson draft"]],
     fieldLabels: ["Depth", "Solution style", "Math level"],
-    optionLabels: [["Brief", "Step by step", "In depth"], ["Hints only", "Guided", "Full solution"], ["New to the topic", "Know the basics"]],
+    optionLabels: [["Brief", "Step by step", "In depth"], ["Hints only", "Guided", fullSolutionLabel.en], ["New to the topic", "Know the basics"]],
   },
 } as const;
 
@@ -50,7 +51,7 @@ export const tutorCopy = {
     waiting: "正在取得 AI 回答。", stopped: "已停止等待，問題仍保留。",
     networkError: "暫時無法連線。問題已保留，可再送出一次。", history: "對話紀錄", you: "你",
     next: "接著問", start: "從這些問題開始", chooseLesson: "使用內建圖表，或在教材區確認題目後開始提問。",
-    hintGuidance: "要看完整解答，請到學習偏好切換解題方式。",
+    hintGuidance: `要看完整解答，請到調整學習偏好選「${fullSolutionLabel["zh-Hant"]}」。`,
     yourQuestion: "你的問題", latest: "閱讀最新回答", stop: "停止等待", retry: "重試", send: "送出",
     privacy: "問題會送至 OpenAI。請勿填寫個人資料。",
     starters: ["先說圖表的全貌", "從座標軸說起", "只給我一個提示"],
@@ -66,7 +67,7 @@ export const tutorCopy = {
     waiting: "Getting an AI answer.", stopped: "Stopped waiting. Your question is still here.",
     networkError: "Could not connect. Your question is still here. Try sending it again.", history: "Conversation history", you: "You",
     next: "Ask a follow-up", start: "Start with one of these questions", chooseLesson: "Choose a sample graph or apply your own problem before asking.",
-    hintGuidance: "To see the solution, choose Full solution in Learning preferences.",
+    hintGuidance: `To see the solution, choose ${fullSolutionLabel.en} in Learning preferences.`,
     yourQuestion: "Your question", latest: "Read the latest answer", stop: "Stop waiting", retry: "Retry", send: "Send",
     privacy: "Questions go to OpenAI. Leave out personal information.",
     starters: ["Give me an overview of the graph", "Start with the axes", "Give me just one hint"],

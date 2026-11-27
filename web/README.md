@@ -20,6 +20,8 @@ Copy `.env.example` to `.env.local`, set `OPENAI_API_KEY`, and restart the app. 
 
 `POST /api/chat` validates the lesson, question, and recent conversation before calling OpenAI. If the key is missing, the route returns 503. The lesson remains available, and the composer preserves the question for retry. Reloading or changing the lesson starts a new conversation.
 
+Prompt V4 keeps the hint guidance and the **Full solution** option aligned. In Teacher guide, a request for one student-facing question displays it in the answer summary, even when the graph only supports a question about the evidence students would need.
+
 ## Vercel
 
 Import this component with Root Directory `web` and the Next.js preset. The [deployment guide](../docs/deployment.md) lists production variables and the judge-link check.

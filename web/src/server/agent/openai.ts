@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import type { Response as OpenAIResponse, ResponseCreateParamsNonStreaming } from "openai/resources/responses/responses";
 import { ChatAnswerSchema, type ChatRequest } from "@/lib/chat-contract";
+import { fullSolutionLabel } from "@/lib/learning-copy";
 import { materialSources } from "@/lib/material-sources";
 import type { ChartFacts } from "@/lib/charts";
 import { instructionsFor, type PromptVariant } from "./prompts";
@@ -19,7 +20,7 @@ export function createTutorRequest(
   model: string,
   request: ChatRequest,
   chart: ChartFacts | undefined,
-  variant: PromptVariant = "v3",
+  variant: PromptVariant = "v4",
 ): ResponseCreateParamsNonStreaming {
   const material = chart
     ? {
@@ -97,19 +98,24 @@ export async function askTutor(
   if (!answer) return null;
 
   const allowedSources = chart ? materialSources.chart : materialSources.custom;
+  const cleanText = request.language === "en"
+    && request.preferences.profile !== "educator"
+    && request.preferences.pedagogyMode === "hint"
+    ? (value: string) => plainText(value).replace(/\bfull answer\b/gi, fullSolutionLabel.en)
+    : plainText;
   return {
     ...answer,
-    summary: plainText(answer.summary),
+    summary: cleanText(answer.summary),
     sections: answer.sections.map(({ heading, text }) => ({
-      heading: plainText(heading),
-      text: plainText(text),
+      heading: cleanText(heading),
+      text: cleanText(text),
     })),
     claims: answer.claims.map((claim) => ({
       ...claim,
-      text: plainText(claim.text),
+      text: cleanText(claim.text),
       sourceRef: claim.sourceRef && allowedSources.has(claim.sourceRef) ? claim.sourceRef : null,
     })),
-    nextQuestion: answer.nextQuestion ? plainText(answer.nextQuestion) : null,
+    nextQuestion: answer.nextQuestion ? cleanText(answer.nextQuestion) : null,
     needsHumanVerification: answer.needsHumanVerification
       || chart?.source.kind !== "curated_verified"
       || answer.claims.some((claim) => claim.kind === "unknown"),

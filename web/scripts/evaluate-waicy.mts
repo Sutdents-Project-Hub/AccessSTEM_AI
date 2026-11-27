@@ -22,7 +22,7 @@ const { values } = parseArgs({
 });
 if (values.help) {
   console.log(`Run a matched synthetic WAICY pilot (uses the configured OpenAI API quota).
-Usage: pnpm eval:waicy [--language en|zh-Hant] [--case ID ...] [--variant baseline|v1|v2|v3 ...] [--effort low|medium] [--repeat 1|2|3]
+Usage: pnpm eval:waicy [--language en|zh-Hant] [--case ID ...] [--variant ${variants.join("|")} ...] [--effort low|medium] [--repeat 1|2|3]
   --language    Scenario/material language; defaults to en. zh-Hant preserves historical mixed-language inputs.
   --list-cases  Print scenarios and expectations without loading credentials or calling the API.
   --help        Show this help without calling the API.
@@ -63,7 +63,7 @@ const runStart = performance.now();
 const runDirectory = await mkdtemp(resolve(evidenceDirectory, `waicy-${language}-${startedAt.replaceAll(":", "-")}-`));
 const manifest = {
   evidenceVersion: "waicy-pilot-2",
-  scenarioVersion: language === "en" ? "english-replication-1" : "historical-mixed-1",
+  scenarioVersion: language === "en" ? "english-replication-2" : "historical-mixed-2",
   language, startedAt, model, requestedEffort: effort ?? null, repeats,
   cases: selectedCases.map(({ id, expected }) => ({ id, expected })), variants: selectedVariants,
   limitations: [
