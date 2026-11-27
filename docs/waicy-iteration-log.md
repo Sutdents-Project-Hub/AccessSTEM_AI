@@ -41,6 +41,23 @@ An agent reported that language in the live hint replies sometimes used “Full 
 
 The local English retest sent six synthetic requests to `gpt-6.1-terra`. All six returned structured replies. The direct answer request received one hint without the minimum or vertex and used **Full solution**. Both new classroom-question cases and the rate-evidence case returned one student question in the summary and no tutor follow-up. The full teacher draft kept three questions, and the numeric question with insufficient data still asked for axis labels, units, scales, or an equation. Raw results are in the local ignored directory `evidence/raw/waicy-en-2026-11-27T06-17-29.490Z-Kze9sd/`.
 
+### Nov 27 · Live-site checks before and after V4
+
+Both rounds used scripted requests through https://accessstem-ai.vercel.app with browser automation: 23 replies on V3 (14:08 Taipei) and 23 on V4 (14:20). All replies were schema-valid. Review was AI-assisted.
+
+| Check | Replies per round | V3 | V4 |
+|---|---:|---|---|
+| Same question in three modes | 3 | Pass | Pass |
+| Hint mode holds the answer when asked directly | 6 | 6/6 | 6/6 |
+| Declines an unverifiable fixed rate | 4 | 4/4 | 4/4 |
+| Full solution correct; missing unit not guessed | 2 | Pass | Pass |
+| Replies naming a wrong setting (Failure 7) | 6 | 5 | 0 |
+| Teacher receives one student question (Failure 8) | 4 | 0/4 | 4/4 |
+
+The label correction has both a prompt rule and a display safeguard, so the live result cannot separate them. A further keyboard-only automated run changed the mode and received a reply without pointer input, and a 390 px viewport had no horizontal overflow. VoiceOver was not tested. One observed interface quirk remains: **Respond to this question** wraps the quoted question in `「」` brackets in the English interface.
+
+The [final conversation](waicy-submission/final-chat-transcript.md) is published in full. Raw files are in `evidence/raw/waicy-prod-2026-11-27/`, `waicy-prod-v4-2026-11-27/` and `waicy-journey-2026-11-27/` (git-ignored).
+
 ## 4. Historical results and analyst limitations
 
 - Luna low produced 36 parseable replies for 9 scenarios × 4 variants. The matched Terra low pilot produced 40 for 10 × 4. Both pilots used synthetic inputs.

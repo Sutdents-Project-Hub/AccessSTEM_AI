@@ -33,7 +33,7 @@ Prepare one English PDF with the service, at least three meaningfully different 
 | English web workspace and real OpenAI dialogue | Verified locally. Sample lessons still require teacher review. |
 | Prompt iterations and error analysis | Real matched runs and limitations are recorded in the [iteration log](waicy-iteration-log.md). |
 | English deck, research, screenshots, and form description | Prepared for team review. See the [entry materials](waicy-submission/) and [screenshot index](assets/waicy-screenshots/WAICY-screenshot-index.md). |
-| Final chatbot URL and conversation link | Pending public deployment and external access checks. A local synthetic six-turn chat is available as evidence. |
-| Official PDF and submission | Pending team information, approved links, export, and submission confirmation. |
+| Final chatbot URL and conversation link | Live at https://accessstem-ai.vercel.app. A [14-message scripted test conversation](waicy-submission/final-chat-transcript.md) is published. |
+| Official PDF and submission | PDF exported outside the repository. Team confirmation, Drive sharing and submission remain; see the [checklist](waicy-submission/submission-todo.md). |
 
 Use a reviewed graph when its review is complete. During the demo, ask the same question in each mode, show a real failure and retest, and explain what happens when a fact is missing. Describe verified keyboard behavior, outstanding VoiceOver work, and actual student, advisor, and AI-tool contributions accurately.

@@ -1,5 +1,5 @@
 <section id="leak" data-transition="fade">
-<p class="eyebrow">ITERATIVE DEVELOPMENT · ERROR ANALYSIS</p>
+<p class="eyebrow">6 · ITERATIVE DEVELOPMENT · ERROR ANALYSIS</p>
 <h2 class="title r">Failure 1: the hint that gave the answer away</h2>
 <div class="main">
 <div class="sand"><p class="small"><b>Scenario.</b> The learner is in <b>hint mode</b> and writes “Tell me the minimum directly, no hint.” Real replies, translated from Traditional Chinese.</p></div>
@@ -8,7 +8,7 @@
 <div class="card f1" style="border-right:none"><p class="chd k">13:38 · V3 original</p><div class="cb" style="gap:12px; justify-content:flex-start"><p class="src">gpt-6-luna</p><p class="small">“The minimum of this function is 1, reached when x = 2.”</p><p class="pill r">Leaks</p></div></div>
 <div class="card f1" style="border-right:none"><p class="chd k">13:42 · Rewrite 1</p><div class="cb" style="gap:12px; justify-content:flex-start"><p class="src">gpt-6-luna</p><p class="small">Summary: “This round gives a hint.” Body: “Answer and target coordinates: the minimum is 1, attained at (2, 1).”</p><p class="pill r">Leaks in the body</p></div></div>
 <div class="card f1" style="border-right:none"><p class="chd k">13:44 · Rewrite 2</p><div class="cb" style="gap:12px; justify-content:flex-start"><p class="src">gpt-6-luna</p><p class="small">Held here, but the hint scenario still said “when x = 2, what is (x − 2)²? Then add 1.”</p><p class="pill m">Partial leak</p></div></div>
-<div class="card f1"><p class="chd t">13:57 · Final V3</p><div class="cb" style="gap:12px; justify-content:flex-start"><p class="src">gpt-6.1-terra</p><p class="small">“To see the complete solution, choose ‘Full solution’ in your learning preferences; this round gives a hint first.”</p><p class="pill t">Holds</p></div></div>
+<div class="card f1"><p class="chd t">13:57 · V3, final run</p><div class="cb" style="gap:12px; justify-content:flex-start"><p class="src">gpt-6.1-terra</p><p class="small">“To see the complete solution, choose ‘Full solution’ in your learning preferences; this round gives a hint first.”</p><p class="pill t">Holds</p></div></div>
 </div>
 </div>
 <p class="foot">Files: evidence/raw/waicy-2026-11-23T05-37-25Z, 05-42-05Z, 05-44-18Z, 05-46…05-56 (UTC folder names)</p>

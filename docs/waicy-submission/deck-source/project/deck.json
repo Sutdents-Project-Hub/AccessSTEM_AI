@@ -1,28 +1,100 @@
 {
   "v": 5,
-  "createdOnFiles": { "v": 1, "at": "2026-11-23T09:00:00Z" },
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-23T09:00:00Z"
+  },
   "lists": "css",
-  "format": { "v": 1, "shared": ["project/deck.css"] },
+  "format": {
+    "v": 1,
+    "shared": [
+      "project/deck.css"
+    ]
+  },
   "title": "AccessSTEM AI – WAICY 2026 LLM Track",
   "order": [
-    "cover", "glance",
-    "problem", "aiuse", "gaps", "motivation",
-    "service", "scope", "architecture", "personas", "answers", "tour", "hints",
-    "timeline", "versions", "testdesign", "results", "heatmap", "leak", "leakfix", "failures", "english-retest", "engineering",
-    "chat1", "chat2", "chat3", "chatbot",
-    "limits", "ethics", "ledger",
-    "future", "contribution", "conclusion", "sources", "refs", "refs2", "refs3",
-    "appx-prompt", "appx-evidence"
+    "cover",
+    "team",
+    "glance",
+    "reqmap",
+    "problem",
+    "aiuse",
+    "gaps",
+    "motivation",
+    "service",
+    "advisor",
+    "scope",
+    "architecture",
+    "personas",
+    "answers",
+    "uncertainty",
+    "tour",
+    "journey",
+    "hints",
+    "teacherflow",
+    "access",
+    "process",
+    "timeline",
+    "versions",
+    "testdesign",
+    "results",
+    "heatmap",
+    "leak",
+    "leakfix",
+    "failures",
+    "english-retest",
+    "engineering",
+    "livecheck",
+    "chat1",
+    "chat2",
+    "chat3",
+    "chatbot",
+    "limits",
+    "ethics",
+    "ledger",
+    "future",
+    "contribution",
+    "conclusion",
+    "sources",
+    "refs",
+    "refs2",
+    "refs3",
+    "appx-prompt",
+    "appx-evidence"
   ],
   "sections": {
-    "s1": { "description": "What AccessSTEM AI is, in one page.", "start": "cover" },
-    "s2": { "description": "Motivation and problem statement, backed by international surveys and studies.", "start": "problem" },
-    "s3": { "description": "The specific AI service, its users and how it works.", "start": "service" },
-    "s4": { "description": "Iterative development: prompt versions, tests, errors, fixes and the English replication.", "start": "timeline" },
-    "s5": { "description": "Final chat history and live chatbot.", "start": "chat1" },
-    "s6": { "description": "Limitations, ethics and an honest evidence ledger.", "start": "limits" },
-    "s7": { "description": "Future development, contributions, conclusion, sources and references.", "start": "future" },
-    "s8": { "description": "Appendix: prompt V3 and evidence index.", "start": "appx-prompt" }
+    "s1": {
+      "description": "What AccessSTEM AI is, in one page.",
+      "start": "cover"
+    },
+    "s2": {
+      "description": "Motivation and problem statement, backed by international surveys and studies.",
+      "start": "problem"
+    },
+    "s3": {
+      "description": "The specific AI service, its users and how it works.",
+      "start": "service"
+    },
+    "s4": {
+      "description": "Iterative development: prompt versions, tests, errors, fixes and the English replication.",
+      "start": "process"
+    },
+    "s5": {
+      "description": "Final chat history and live chatbot.",
+      "start": "chat1"
+    },
+    "s6": {
+      "description": "Limitations, ethics and an honest evidence ledger.",
+      "start": "limits"
+    },
+    "s7": {
+      "description": "Future development, contributions, conclusion, sources and references.",
+      "start": "future"
+    },
+    "s8": {
+      "description": "Appendix: prompt V3 and evidence index.",
+      "start": "appx-prompt"
+    }
   },
   "faces": {
     "bricolage-grotesque": {

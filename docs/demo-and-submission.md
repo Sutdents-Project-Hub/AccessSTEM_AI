@@ -1,6 +1,6 @@
 # English demo and submission guide
 
-The local prototype has completed real OpenAI calls. The final public demo, reviewed conversation link, and official submission are pending. Use the [submission checklist](waicy-submission/submission-todo.md) for team details, file names, and permissions.
+The public demo at https://accessstem-ai.vercel.app and a [14-message test conversation](waicy-submission/final-chat-transcript.md) are available. Team review and the official submission are pending. Use the [submission checklist](waicy-submission/submission-todo.md) for team details, file names, and permissions.
 
 ## Three-minute live demo
 
@@ -29,8 +29,8 @@ Requirements and timing come from the [LLM track guidebook](https://waicy-cdn.wh
 
 | Item | Status and acceptance |
 |---|---|
-| Live chatbot | Pending. Verify from a signed-out browser, on mobile and desktop, and with keyboard entry and actual AI replies. |
-| Final conversation | Local six-turn synthetic evidence is archived in `evidence/raw/waicy-final-english-browser.md`. Review the final-version chat for privacy and verify that an unauthenticated reviewer can open it. |
+| Live chatbot | Real replies checked on 27 November 2026, including a keyboard-only automated run and a narrow viewport. Check from another device before judging. |
+| Final conversation | [Published transcript](waicy-submission/final-chat-transcript.md) from a scripted session on V4. Open it signed out before submitting. |
 | Anonymized iteration evidence | The repository contains the [method and excerpts](waicy-iteration-log.md). Full raw records remain local. |
 | English PDF and Drive | Confirm team identifiers and contribution claims, enter the two verified links, export one PDF, and check that the shared folder and its contents open. |
 | Submission | Retain the real confirmation once the team submits through its applicable channel. |

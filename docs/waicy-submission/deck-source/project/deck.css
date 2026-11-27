@@ -92,3 +92,6 @@ table.snug td, table.snug th { padding: 9px 20px; }
 .msg-l { background: #E4EBED; padding: 16px 24px; font-size: 28px; line-height: 1.38; }
 .msg-r { background: #FFFDFA; border: 2px solid #CDC3B5; padding: 16px 24px; font-size: 28px; line-height: 1.38; }
 .step { font-family: 'Bricolage Grotesque', Arial, sans-serif; font-size: 44px; font-weight: 800; width: 68px; height: 68px; background: #E2574C; color: #FFFFFF; text-align: center; border-radius: 34px; padding-top: 4px; }
+
+/* links */
+a { color: #1B6F65; text-decoration: underline; }

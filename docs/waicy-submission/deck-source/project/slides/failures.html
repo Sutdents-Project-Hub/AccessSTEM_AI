@@ -1,12 +1,12 @@
 <section id="failures" data-transition="fade">
-<p class="eyebrow">ITERATIVE DEVELOPMENT · ERROR ANALYSIS → IMPROVEMENT</p>
+<p class="eyebrow">6 · ITERATIVE DEVELOPMENT · ERROR ANALYSIS → IMPROVEMENT</p>
 <h2 class="title m">Failures 2–5: what broke and what we changed</h2>
-<div class="main">
+<div class="main" style="gap:20px">
 <div class="row grow" style="gap:22px">
 <div class="card f1"><p class="chd">2 · Missing unit</p><div class="cb" style="justify-content:flex-start; gap:10px">
 <p class="sm3"><b>Found.</b> V1 refused to assume meters but asked a hypothetical height question instead of the missing information.</p>
 <p class="sm3"><b>Change.</b> Ask for the missing data in one specific question; add a “Respond to this question” button.</p>
-<p class="sm3"><b>Result.</b> Final V3 asks what y represents; the English session repeats this.</p></div></div>
+<p class="sm3"><b>Result.</b> V3 asks what y represents; the English session repeats this.</p></div></div>
 <div class="card f1"><p class="chd r">3 · Rate evidence</p><div class="cb" style="justify-content:flex-start; gap:10px">
 <p class="sm3"><b>Found.</b> Baseline, V1 and V2 told a student to read values from a graph with no readable scale.</p>
 <p class="sm3"><b>Change.</b> Two points give only an interval average (change in quantity ÷ change in time); a fixed rate needs a formula or stated condition.</p>
@@ -20,9 +20,9 @@
 <div class="card f1"><p class="chd k">5 · Bad source IDs, stray markup</p><div class="cb" style="justify-content:flex-start; gap:10px">
 <p class="sm3"><b>Found.</b> Some replies cited IDs that map to nothing, or carried math wrappers and control codes.</p>
 <p class="sm3"><b>Change.</b> Source IDs validated; display text cleaned. Raw outputs untouched.</p>
-<p class="sm3"><b>Result.</b> Simulated-provider tests passed for source limits, cleaning, 429 and 502.</p></div></div>
+<p class="sm3"><b>Result.</b> Controlled adapter tests passed for source limits, cleaning, 429 and 502.</p></div></div>
 </div>
 </div>
 <p class="foot">Raw replies for each item are in evidence/raw. Results describe re-tests, not general accuracy.</p>
-<aside>Items 2 and 3 come from the 36-response pilot and the 40-response final run. Item 3 also drove the model choice: on this prompt Terra was more consistent than Luna in three repeats. Item 5 is an engineering safeguard, verified with simulated provider responses, not with real model behavior.</aside>
+<aside>Items 2 and 3 come from the 36-response pilot and the 40-response final run. Item 3 also drove the model choice: on this prompt Terra was more consistent than Luna in three repeats. Item 5 is an engineering safeguard, verified with stub provider responses, not with real model behavior.</aside>
 </section>

@@ -1,19 +1,20 @@
 <section id="versions" data-transition="fade">
-<p class="eyebrow">ITERATIVE DEVELOPMENT · ADVISOR DESIGN</p>
-<h2 class="title r">Four prompt versions, built up one layer at a time</h2>
+<p class="eyebrow">6 · ITERATIVE DEVELOPMENT · ADVISOR DESIGN</p>
+<h2 class="title r">Prompt versions, built up one layer at a time</h2>
 <div class="main">
-<table style="font-size:28px">
+<table style="font-size:26px">
 <tr><th style="width:13%">Version</th><th style="width:50%">What we added</th><th style="width:37%">Why</th></tr>
 <tr><td><b>Baseline</b></td><td>Nothing. Same lesson data, question, preferences, history and JSON schema, but no AccessSTEM instructions.</td><td>Shows what the same model does without our design.</td></tr>
 <tr><td><b>V1</b></td><td>Role of a high-school graph assistant. Reading order: overview, axes, key points, trend. Stay on the current graph.</td><td>Make descriptions structured and spatial.</td></tr>
 <tr><td><b>V2</b> <span class="muted">(V1 +)</span></td><td>Three learner types, reading depth and math level. Teacher drafts with a misconception and three guiding questions.</td><td>Make answers differ for different users.</td></tr>
 <tr><td><b>V3</b> <span class="muted">(V1 + V2 +)</span></td><td>Given, derived and unknown labels with source IDs. Ask when data is missing. Hint rule for every field. Interval-average versus fixed-rate rule. Language rule.</td><td>Fix the failures that the tests exposed.</td></tr>
+<tr><td><b>V4</b> <span class="muted">(V1–V3 +)</span></td><td>Exact interface labels in hints. A teacher’s requested classroom question is written for the student.</td><td>Fix Failures 7 and 8, found on the live site (Nov 27). Not in the scored comparison.</td></tr>
 </table>
 <div class="row grow" style="gap:24px">
 <div class="sand f2"><p class="sm2"><b>Held constant in the final comparison:</b> model gpt-6.1-terra · reasoning effort low · max 2,200 output tokens · same strict JSON schema · same ten scenarios · one response per cell · 23 Nov 2026.</p></div>
 <div class="wash f1"><p class="src"><b>SHA-256 of instruction text</b><br>V1 4f07ac0f… · V2 a6b64146…<br>V3 94cdaa83…</p></div>
 </div>
 </div>
-<p class="foot">Prompt text: web/src/server/agent/prompts.ts. English translation of V3 in the appendix.</p>
+<p class="foot">Prompt text: web/src/server/agent/prompts.ts. English guide to V3 and V4 in the appendix.</p>
 <aside>Prompts are cumulative: V2 sends V1 plus V2 text, V3 sends all three. The Baseline receives no developer instructions but the same user message and schema, so differences come from the instructions only.</aside>
 </section>
