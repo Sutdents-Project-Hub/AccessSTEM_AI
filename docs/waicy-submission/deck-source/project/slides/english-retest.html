@@ -2,7 +2,7 @@
 <p class="eyebrow">6 · ITERATIVE DEVELOPMENT · ENGLISH REPLICATION</p>
 <h2 class="title r">Failure 6: English tests exposed a new failure</h2>
 <div class="main">
-<p class="small">Ten scripted scenarios × four prompt versions on Terra low: all 40 replies were valid and in English. Two targeted revisions were then retested on four cases, twice each.</p>
+<p class="small">Ten test scenarios × four prompt versions on Terra low: all 40 replies were valid and in English. Two targeted revisions were then retested on four cases, twice each.</p>
 <div class="row grow" style="gap:40px">
 <div class="col" style="width:1010px; gap:8px; justify-content:space-between">
 <div class="row" style="gap:6px"><p class="src" style="width:380px"> </p><p class="src f1" style="text-align:center">Original V3<br>(1 reply)</p><p class="src f1" style="text-align:center">Revision 1<br>(2 replies)</p><p class="src f1" style="text-align:center">Revision 2<br>(2 replies)</p></div>
@@ -10,7 +10,7 @@
 <div class="row" style="gap:6px"><p class="sm2" style="width:380px; padding-top:14px">Teacher: one rate question</p><p class="cell c10 f1">Pass</p><p class="cell c6 f1">Fail</p><p class="cell c10 f1">Pass</p></div>
 <div class="row" style="gap:6px"><p class="sm2" style="width:380px; padding-top:14px">Learner: asks for a hint</p><p class="cell c10 f1">Pass</p><p class="cell c10 f1">Pass</p><p class="cell c10 f1">Pass</p></div>
 <div class="row" style="gap:6px"><p class="sm2" style="width:380px; padding-top:14px">Learner: asks for the answer</p><p class="cell c10 f1">Pass</p><p class="cell c10 f1">Pass</p><p class="cell c10 f1">Pass</p></div>
-<p class="src">Pass or fail against the expected behavior written for each case. Reviewed by an AI assistant reading every raw reply.</p>
+<p class="src">Pass or fail against the expected behavior written for each case. Every raw reply was read; no independent human rating.</p>
 </div>
 <div class="col f1" style="gap:16px; justify-content:center">
 <p class="sm3"><b>Original V3.</b> The teacher guide returned one “Hint” section, with no misconception and no guiding questions. The learner-only hint rule had overridden the teacher’s default.</p>
@@ -21,5 +21,5 @@
 <div class="sand"><p class="sm3"><b>Scope.</b> Each retest batch: 8 of 8 schema-valid replies, no provider failures. These are narrow checks on four cases; the full ten-case suite was not rerun and independent scoring remains open.</p></div>
 </div>
 <p class="foot">Runs: waicy-en-…T08-36-09Z (matched), …T15-40-59Z (revision 1), …T15-42-08Z (revision 2).</p>
-<aside>This slide shows a failure that only appeared in the English replication. In the original run, V3 returned a single hint for the teacher guide because the learner hint rule applied to the educator's default Hints-only setting. Revision 1 made the full draft explicit, which then over-applied to a focused teacher question. Revision 2 scoped the rule to the task. The learner cases passed in every run. Reviews were done by an AI assistant reading all raw replies, not by independent humans.</aside>
+<aside>This slide shows a failure that only appeared in the English replication. In the original run, V3 returned a single hint for the teacher guide because the learner hint rule applied to the educator's default Hints-only setting. Revision 1 made the full draft explicit, which then over-applied to a focused teacher question. Revision 2 scoped the rule to the task. The learner cases passed in every run. Every raw reply was read. There was no independent human rating.</aside>
 </section>

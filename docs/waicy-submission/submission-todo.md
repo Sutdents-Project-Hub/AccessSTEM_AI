@@ -11,7 +11,7 @@
 ## Team actions before submitting
 
 1. Each member reads the deck, confirms the portrait, name, grade and presentation topic on slide 2, and can explain it.
-2. Check that the statement of AI assistance on slide 41 and the description of the work match the competition's rules on student work. Ask the organizer if unsure.
+2. The PDF contains no statement of AI assistance. Prepare the separate document describing how AI tools were used (coding, testing, test conversation, review and report drafting), make sure it reaches the judges or organizer with the submission, and confirm this meets the competition's rules on student work.
 3. Recommended: a team member runs their own session of at least ten messages on the live site. If it replaces the scripted transcript, update slides 33–35 and their captions.
 4. Create the Drive folder `LLM_High_AccessSTEMAI`, upload the PDF, and allow the judging team to view it.
 5. Confirm country, participation route, instructor and contact details in the registration form. Teams registered through a local organizer follow that process. Form description draft: [project-description.txt](project-description.txt).

@@ -32,8 +32,8 @@
 ## Evidence boundaries disclosed in the deck
 
 - Scenarios are scripted; no learner, teacher or blind or low-vision participant study.
-- Scores come from one AI-assisted reviewer with partial blinding; V3 was tuned on the scored scenarios.
-- The final conversation was run through the public site with browser automation.
+- Scores come from a single AI-assisted review pass with partial blinding, with no independent human rating; V3 was tuned on the scored scenarios.
+- The final conversation was run through the public site with browser automation (recorded in the transcript).
 - V4 was checked on targeted cases; the ten-scenario suite was not rerun on it.
 - No VoiceOver test and no WCAG 2.2 AA conformance claim.
-- AI assistance is stated on slide 41.
+- The PDF carries no statement of AI assistance or of who operated the tests; the team provides that in a separate document.
