@@ -14,6 +14,8 @@
 
 Use turns 1–2 for depth, 3–6 for the hint and solution controls, 7 for the unknown unit, and 8–9 for the teacher draft and question. Earlier overview replies and the graph itself show the vertex. Describe turns 3–5 as a check of the tutor’s **hint reply**, since a previous turn already displayed the result. Item 4 of the guidebook describes a conversation between the entrant and the final assistant. If a team member records that conversation, use it as the primary link and keep this V5 record as engineering evidence. [Guidebook, PDF p. 21](https://waicy-cdn.wholeren.cn/wp-content/uploads/2026/10/WAICY-2026-Guidebook-2.pdf#page=21)
 
+The pasted-problem example is a separate 12-message session with live V5 replies to questions submitted by an AI agent. Use the [plain-text question and reply material](v5-question-and-reply-material.txt), [full record](v5-guided-graph-conversation.md), or [selected excerpts](v5-conversation-slide-copy.md). The [team recording worksheet](team-chat-recording.md) provides the setup and prompts for a fresh session.
+
 ## Source materials for each slide
 
 | Existing draft pages | What to use |
