@@ -1,6 +1,6 @@
 # Editable deck source backup
 
-Source of the 52-slide V5 report dated 28 November 2026: `project/deck.json`, `project/deck.css` and `project/slides/*.html`.
+Source of the 53-slide V5 report dated 28 November 2026: `project/deck.json`, `project/deck.css` and `project/slides/*.html`.
 
 - **Team details are removed.** Member names, grades and portraits are replaced by `Student A–D` and generic tokens. The submitted PDF is kept outside this public repository.
 - Images appear as `{{img:name}}` tokens. The renderer replaces each token with an uploaded asset or a local file before building.

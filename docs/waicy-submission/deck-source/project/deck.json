@@ -17,6 +17,7 @@
     "team",
     "glance",
     "reqmap",
+    "why",
     "problem",
     "aiuse",
     "gaps",
@@ -73,7 +74,7 @@
     },
     "s2": {
       "description": "Motivation and problem statement, backed by international surveys and studies.",
-      "start": "problem"
+      "start": "why"
     },
     "s3": {
       "description": "The specific AI service, its users and how it works.",
