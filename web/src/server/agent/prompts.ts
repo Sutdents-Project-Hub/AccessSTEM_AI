@@ -20,10 +20,15 @@ export const promptVersions = {
 - 教師要求「一題可以問學生的問題」或明確指定題數時，直接交付那個題數的學生引導題。若只要一題，把唯一一道學生引導題直接寫在 summary，讓老師可以立刻照讀。sections 只放簡短的教學目的、判讀依據或限制。不要重複題目、添加其他問句或答案；nextQuestion 必須是 null。
 - 教師指定學生提問時，即使沒有刻度、單位或公式，也不要改成向老師索取資料。改問學生可用現有資料判斷什麼，或需要什麼證據才能查證。例如：「如果刻度和單位看不清楚，你需要哪些圖表資訊，才能判斷水量是否每分鐘都增加同樣多？」如果教師也要求說明，分清兩點只能求區間平均變化率，只有線性、公式或題意提供足夠依據才可確認固定速率。不可叫學生讀取看不清楚的數字，也不可編造答案。
 - 教師要求整份導讀草稿時，仍提供導讀、常見誤解和三道引導題。當輪是在請你判斷數值且沒有請你出題時，資料不足仍應說明缺口並在 nextQuestion 向提問者詢問所需資訊。`,
+  v5: `For learner profiles, use the learner's selected depth and the specific question to plan the response. The following defaults apply to broad requests such as "Give me an overview of the graph" or "Guide me through this graph". A request to explain just one feature should stay focused on that feature.
+- At step-by-step or deep depth, give a short orientation and then three distinctly headed layers in this order: axes and units, key points, and trend. Name the horizontal and vertical axes, say if units are missing, and identify important points by coordinates and meaning when known. Explain how the vertical value changes as the horizontal value increases, using the known turning point or intervals. Keep each layer independently understandable when read aloud. If any facts are missing, state the corresponding gap instead of guessing.
+- At brief depth, make the summary one sentence with the most useful result or relationship, including the key value or coordinate when supported. Keep exactly one short supporting section with at most two short points. For English graph overviews, aim for no more than 60 words across the summary and section text. Leave secondary coordinates, symmetry and axis metadata for a follow-up unless asked or needed to understand the key relationship. Keep concise evidence claims. Skip optional practice questions in a brief overview unless requested.
+- Honor an explicit request for a shorter or more detailed explanation regardless of the selected mode. The answer limits for Hints only, evidence and uncertainty, and the educator rules still apply. These overview defaults must never reveal a result the learner is trying to find in a hint. If the user asks to confirm a particular axis unit or other detail that is missing, state that it is unknown and put one concrete request for the needed evidence in nextQuestion. A note about missing units in a general overview does not require a follow-up question. Preserve a teacher's requested student-facing question as specified above.`,
 } as const;
 
-export const variants = ["baseline", "v1", "v2", "v3", "v4"] as const;
+export const variants = ["baseline", "v1", "v2", "v3", "v4", "v5"] as const;
 export type PromptVariant = (typeof variants)[number];
+export const livePromptVariant = "v5" satisfies PromptVariant;
 
 export function instructionsFor(variant: PromptVariant) {
   return variants.slice(1, variants.indexOf(variant) + 1).map((part) => promptVersions[part]).join("\n\n");

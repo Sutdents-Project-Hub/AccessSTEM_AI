@@ -146,6 +146,40 @@ function classroomQuestionCases(language: EvaluationLanguage): EvaluationCase[] 
   ];
 }
 
+function walkthroughCases(language: EvaluationLanguage): EvaluationCase[] {
+  const en = language === "en";
+  const userDescription = en
+    ? "A line charts the total reading time (minutes) against the number of pages read. It goes through (0, 0), (6, 9), and (10, 15). The formula is y = 1.5x."
+    : "一條直線以閱讀頁數為橫軸、累計閱讀分鐘數為縱軸，通過 (0, 0)、(6, 9)、(10, 15)。公式是 y = 1.5x。";
+  const request = {
+    chartId: null, userDescription, history: [], language,
+    message: en ? "Give me an overview of this graph." : "請給我這張圖表的導讀。",
+  };
+  const brief = profiles[1].preferences;
+  return [
+    {
+      id: "reading-time-full",
+      expected: "Identify both quantities and units, use meaningful coordinates, and describe the constant rate of 1.5 minutes per page in separate, ordered layers.",
+      request: { ...request, preferences: full },
+    },
+    {
+      id: "reading-time-brief",
+      expected: "Lead with 1.5 minutes per page and keep one short supporting section without an unrequested follow-up question.",
+      request: { ...request, preferences: brief },
+    },
+    {
+      id: "reading-time-depth-override",
+      expected: "Honor the explicit request for a detailed walkthrough and distinguish the axis quantities, key points and rate despite the Quick summary preset.",
+      request: {
+        ...request, preferences: brief,
+        message: en
+          ? "Walk me through this whole graph in detail. Cover the axes and units, key points, and what the trend means in separate steps."
+          : "請依步驟詳細導讀整張圖，分別解釋座標軸與單位、關鍵座標以及趨勢的意義。",
+      },
+    },
+  ];
+}
+
 // English scenarios retain the historical IDs and mathematical conditions, but
 // translation changes the experiment: compare variants within a language/run.
 const englishText: Record<string, {
@@ -208,7 +242,8 @@ const englishText: Record<string, {
 
 export function getEvaluationCases(language: EvaluationLanguage = "en"): EvaluationCase[] {
   const classroomCases = classroomQuestionCases(language);
-  if (language === "zh-Hant") return [...historicalCases, ...classroomCases];
+  const newCases = walkthroughCases(language);
+  if (language === "zh-Hant") return [...historicalCases, ...classroomCases, ...newCases];
   const translatedCases = historicalCases.map<EvaluationCase>((item) => {
     const text = englishText[item.id];
     if (!text) throw new Error(`Missing English scenario text: ${item.id}`);
@@ -224,7 +259,7 @@ export function getEvaluationCases(language: EvaluationLanguage = "en"): Evaluat
       },
     };
   });
-  return [...translatedCases, ...classroomCases];
+  return [...translatedCases, ...classroomCases, ...newCases];
 }
 
 // Translate only the material used in this pilot. Mathematical values, trust

@@ -6,7 +6,7 @@ import { ChatAnswerSchema, type ChatRequest } from "@/lib/chat-contract";
 import { fullSolutionLabel } from "@/lib/learning-copy";
 import { materialSources } from "@/lib/material-sources";
 import type { ChartFacts } from "@/lib/charts";
-import { instructionsFor, type PromptVariant } from "./prompts";
+import { instructionsFor, livePromptVariant, type PromptVariant } from "./prompts";
 
 const responseFormat = zodTextFormat(ChatAnswerSchema, "accessstem_tutor_answer");
 const defaultModel = "gpt-6.1-terra";
@@ -20,7 +20,7 @@ export function createTutorRequest(
   model: string,
   request: ChatRequest,
   chart: ChartFacts | undefined,
-  variant: PromptVariant = "v4",
+  variant: PromptVariant = livePromptVariant,
 ): ResponseCreateParamsNonStreaming {
   const material = chart
     ? {

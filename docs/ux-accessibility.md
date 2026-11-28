@@ -23,6 +23,7 @@
 4. Common actions such as “Make it simpler,” “Start with the axes,” “Give me a hint,” and “Let me try” use real `<button>` elements.
 5. Keep the input field and “Send” control easy to find. Make the pending-request state perceivable.
 6. When a response arrives, offer “Read latest answer” and let the user choose when to move. Show recognized source references with readable names. If a next question is offered, “Respond to this question” may return focus to the question field; the user adds details and submits manually.
+7. The reply heading identifies the learning mode chosen for that turn. Learner replies at step-by-step or in-depth settings open the first explanation section. Brief replies lead with the summary and keep supporting sections collapsed. Section toggles use native `details` controls.
 
 ### C. Educator support (same web app; no separate dashboard)
 

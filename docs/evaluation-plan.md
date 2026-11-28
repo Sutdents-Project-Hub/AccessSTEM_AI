@@ -11,6 +11,7 @@ The project evaluates five outcomes: mathematical grounding, adjustment to teach
 | V2 | V1 plus teaching profiles and depth | Adapt to the learner's stated choices and provide teacher drafts |
 | V3 | V2 plus evidence, uncertainty, and pacing rules | Ask for missing facts, give a single hint, and separate known, derived, and unknown claims |
 | V4 | V3 plus exact interface labels and an explicit student audience for classroom questions | Use **Full solution** in English hints and supply the requested classroom question even when the graph lacks measurements |
+| V5 | V4 plus distinct structures for full and brief overviews and a missing-evidence clarification rule | Make the same overview useful at different depths while honoring a direct request for more detail |
 
 Within each run, match the scenario, locale, graph facts, preference, history, model, generation settings, and schema. Keep the original provider output even when it fails to parse. A separate check evaluates content and teaching quality. The model has no fixed seed in these runs.
 
@@ -101,11 +102,11 @@ The three batches had no provider failures or retries. Structural validity count
 cd web
 pnpm eval:waicy --help
 pnpm eval:waicy --list-cases
-OPENAI_MODEL=gpt-6.1-terra pnpm eval:waicy --language en --effort low
-OPENAI_MODEL=gpt-6.1-terra pnpm eval:waicy --language en --effort low --case mode-override --case rate-evidence
+OPENAI_MODEL=gpt-6.1-terra pnpm eval:waicy --language en --effort low --variant v5
+OPENAI_MODEL=gpt-6.1-terra pnpm eval:waicy --language en --effort low --variant v4 --variant v5 --case full-guide --case brief-guide
 ```
 
-The last two commands use the API, with 40 calls for the full run and 8 for the two-case run. They use the latest prompt source. The English replication and historical mixed-language batch are distinct, since inputs and locale differ. `--language zh-Hant` selects the original mixed-language fixtures. Extracting an exact past run requires its archived prompt and source snapshot. Raw logs remain ignored in `evidence/raw/`. Record the case, variant, exact request, response, model, settings, elapsed time, available token usage, grade, defect, change, and matched retest. See the [iteration log](waicy-iteration-log.md) and [record templates](evidence-templates.md).
+The last two commands use the API, with 15 calls for the V5 suite and 4 for the paired overview run. The first ten cases reproduce the English pilot archetypes. Two additional cases cover a single classroom question, and three use a new task about reading time and slope, including an explicit depth override. This new task is a targeted synthetic regression. The English replication and historical mixed-language batch use different inputs. `--language zh-Hant` selects the original mixed-language fixtures plus the localized regression cases. Exact past runs require the archived prompt and source snapshot. Raw logs remain ignored in `evidence/raw/`. See the [iteration log](waicy-iteration-log.md) and [record templates](evidence-templates.md) for evidence fields.
 
 ## Verification layers
 

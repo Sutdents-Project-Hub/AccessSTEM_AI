@@ -6,8 +6,8 @@ An AI tutor for high-school function graphs, designed for blind and low-vision l
 
 ## Explore the project
 
-- **Full guide** walks through the axes, key points, and trends. The same lesson includes a formula reading and a table of coordinates.
-- **Quick summary** starts with the central takeaway and keeps supporting detail available.
+- **Full guide** walks through axes and units, key points, and trends in order. The first explanation layer opens automatically at the default depth. The lesson also includes a formula reading and a coordinate table.
+- **Quick summary** leads with the central takeaway and keeps short supporting detail available on demand. Learners can request more detail in the same conversation.
 - **Teacher guide** drafts a classroom explanation, a common misconception, and three guiding questions. Ask for one classroom question to get a prompt you can read to students. The draft is marked for review.
 - Use a sample linear or quadratic function, or paste a text problem. Hints only gives a first step. Full solution shows the result and its reasoning.
 

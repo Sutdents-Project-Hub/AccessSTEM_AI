@@ -199,12 +199,12 @@ export function LearningWorkspace({ initialLanguage = "en" }: { initialLanguage?
             <fieldset className="mode-picker">
               <legend>{copy.modes}</legend>
               <div className="mode-options">
-                {learningModes.map(({ value, readingDepth, pedagogyMode }, index) => (
+                {learningModes.map(({ value, readingDepth, pedagogyMode }) => (
                   <label key={value} className="mode-option">
                     <input className="sr-only" type="radio" name="profile" value={value}
                       checked={preferences.profile === value}
                       onChange={() => setPreferences({ ...preferences, profile: value, readingDepth, pedagogyMode })} />
-                    <span><strong>{copy.modeCopy[index][0]}</strong><small>{copy.modeCopy[index][1]}</small></span>
+                    <span><strong>{copy.modeCopy[value][0]}</strong><small>{copy.modeCopy[value][1]}</small></span>
                   </label>
                 ))}
               </div>

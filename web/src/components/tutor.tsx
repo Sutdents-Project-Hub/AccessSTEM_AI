@@ -3,14 +3,14 @@
 import { ArrowRight, ArrowUp, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { materialSourceLabel } from "@/lib/material-sources";
-import { englishErrors, tutorCopy, type Language } from "./workspace-copy";
+import { englishErrors, tutorCopy, workspaceCopy, type Language } from "./workspace-copy";
 import { CHAT_LIMITS, type ChatAnswer, type ChatMessage, type ChatRequest, type ChatResponse, type LearnerPreferences } from "@/lib/chat-contract";
 
 export type Material =
   | { chartId: string; userDescription: null }
   | { chartId: null; userDescription: string };
 
-type Round = { id: string; question: string; answer: ChatAnswer; educator: boolean; hint: boolean; language: Language };
+type Round = { id: string; question: string; answer: ChatAnswer; preferences: LearnerPreferences; language: Language };
 
 function tutorHistory(rounds: Round[], characterBudget: number): ChatMessage[] {
   const history: ChatMessage[] = [];
@@ -33,6 +33,10 @@ function TutorAnswer({ round, language, onFollowUp }: {
   const [copyMessage, setCopyMessage] = useState("");
   const { answer } = round;
   const nextQuestion = answer.nextQuestion;
+  const { profile, readingDepth, pedagogyMode } = round.preferences;
+  const educator = profile === "educator";
+  const showHint = !educator && pedagogyMode === "hint";
+  const openFirstSection = !educator && readingDepth !== "brief";
 
   async function copyDraft() {
     const draft = [
@@ -51,12 +55,12 @@ function TutorAnswer({ round, language, onFollowUp }: {
 
   return (
     <article className="answer" id={`reply-${round.id}`} aria-labelledby={`reply-label-${round.id}`} tabIndex={-1}>
-      <h3 id={`reply-label-${round.id}`}>{copy.tutor}</h3>
-      {round.educator && <p className="verification">{copy.draft}</p>}
+      <h3 id={`reply-label-${round.id}`}>{copy.tutor} · {workspaceCopy[language].modeCopy[profile][0]}</h3>
+      {educator && <p className="verification">{copy.draft}</p>}
       <p className="answer-summary" lang={round.language}>{answer.summary}</p>
-      {answer.sections.map(({ heading, text }, index) => round.hint && !round.educator && index === 0
+      {answer.sections.map(({ heading, text }, index) => showHint && index === 0
         ? <div className="answer-step" lang={round.language} key={index}><h4>{heading}</h4><p>{text}</p></div>
-        : <details lang={round.language} key={index}>
+        : <details lang={round.language} key={index} open={openFirstSection && index === 0}>
           <summary><ChevronRight aria-hidden="true" />{heading}</summary><p>{text}</p>
         </details>)}
       {answer.claims.length > 0 && <details>
@@ -75,8 +79,8 @@ function TutorAnswer({ round, language, onFollowUp }: {
         <button type="button" className="secondary-button" disabled={!onFollowUp}
           onClick={() => onFollowUp?.(`${copy.replyPrefix}「${nextQuestion}」\n`)}>{copy.reply}</button>
       </div>}
-      {!round.educator && answer.needsHumanVerification && <p className="verification">{copy.needsReview}</p>}
-      {round.educator && <div className="copy-row">
+      {!educator && answer.needsHumanVerification && <p className="verification">{copy.needsReview}</p>}
+      {educator && <div className="copy-row">
         <button type="button" className="secondary-button" onClick={copyDraft}>{copy.copyDraft}</button>
         <span role="status">{copyMessage}</span>
       </div>}
@@ -156,8 +160,7 @@ export function Tutor({ material, preferences, language }: {
           id: result.requestId,
           question: message,
           answer: result.answer,
-          educator: preferences.profile === "educator",
-          hint: preferences.pedagogyMode === "hint",
+          preferences,
           language,
         }]);
         setDraft("");

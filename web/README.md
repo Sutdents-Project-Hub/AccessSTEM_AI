@@ -20,7 +20,7 @@ Copy `.env.example` to `.env.local`, set `OPENAI_API_KEY`, and restart the app. 
 
 `POST /api/chat` validates the lesson, question, and recent conversation before calling OpenAI. If the key is missing, the route returns 503. The lesson remains available, and the composer preserves the question for retry. Reloading or changing the lesson starts a new conversation.
 
-Prompt V4 keeps the hint guidance and the **Full solution** option aligned. In Teacher guide, a request for one student-facing question displays it in the answer summary, even when the graph only supports a question about the evidence students would need.
+Prompt V5 differentiates the default learner overviews. Full guide gives ordered explanations of axes, points and trends, with the first layer expanded. Quick summary gives the takeaway and one short supporting section. Each reply records the learning mode used for that turn. The question can override explanation depth. **Hints only** and **Full solution** still control whether the tutor reveals a result, and Teacher guide puts a single requested classroom question directly in the summary.
 
 ## Vercel
 

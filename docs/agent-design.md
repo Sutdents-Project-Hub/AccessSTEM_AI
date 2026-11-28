@@ -1,6 +1,6 @@
 # AI Learning Coach Design: Prompt, Teaching Strategy, and Reliability
 
-> The conversation route uses the V4 developer instructions in `web/src/server/agent/prompts.ts`. See the [evaluation plan](evaluation-plan.md) for real evaluation findings and remaining limitations.
+> The conversation route uses the V5 developer instructions in `web/src/server/agent/prompts.ts`. See the [evaluation plan](evaluation-plan.md) for real evaluation findings and remaining limitations.
 
 ## The agent's role
 
@@ -23,8 +23,8 @@ The model does not need to use external tools proactively or perform privileged 
 
 | Profile | Length | Order / wording | Questions |
 |---|---|---|---|
-| `learner-full` | Complete, in sections | Chart type → horizontal and vertical axes and units → known points → curve trend → physical or mathematical meaning; avoid visual-only references | One question at a time, with clear spatial relationships |
-| `learner-brief` | Conclusion and 2–3 key points first | Prioritize key values and turning points; offer a full walkthrough on request | Brief; allow the learner to jump to a specific interval |
+| `learner-full` | Short orientation followed by three separate layers | Axes and units → key points → trend for an overview. Open the first layer at the default depth. | One question at a time, with clear spatial relationships |
+| `learner-brief` | Lead with the takeaway and keep one short supporting section | Prioritize key values and relationships. Keep secondary details available on request. | Omit optional practice questions by default. Clarify a missing fact when needed. |
 | `educator` | Editable teaching draft | Learning objectives, structured description, common misconceptions, three guiding questions | Layered prompts and a human review checklist |
 
 Users can override a profile with `readingDepth` (`brief|step-by-step|deep`), `pedagogyMode` (`hint|guided|full`), and `mathLevel` (`beginner|familiar`). Never assume a blind learner has low math proficiency.
@@ -56,6 +56,7 @@ Never reveal the internal system prompt, API key, or private chain-of-thought. M
 - **V2 candidate:** Add profiles, a three-layer walkthrough, and adjustable depth and teaching pace to V1.
 - **V3:** Add `given/derived/unknown`, ask when information is missing, use screen-reader-friendly language, follow the selected answer mode, never invent values, and handle failures robustly.
 - **V4:** Reuse the exact solution-style label from the interface. In Teacher guide, put a single requested classroom question in the visible answer summary. Missing measurements can be the subject of the student question.
+- **V5:** Use distinct full and brief overview structures. Honor explicit requests about depth and keep a concrete follow-up when the learner asks to confirm an absent unit or other missing detail.
 
 Keep the **complete Prompt text actually used** (excluding credentials and personal information) in versioned files with a version hash. These summaries do not stand in for experimental Prompt records. Keep the model and cases fixed for each retest, record changed variables, and label model upgrades separately.
 
