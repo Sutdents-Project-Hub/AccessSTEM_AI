@@ -1,51 +1,62 @@
 # AccessSTEM AI
 
-An AI tutor for high-school function graphs, designed for blind and low-vision learners and the teachers who support them. A learner can read a graph in words, ask follow-up questions, and choose when to see a solution. The tutor separates given facts, mathematical deductions, and missing information.
+An AI tutor that helps blind and low-vision high-school learners explore function graphs through text, guided questions, and adjustable explanations.
 
-**WAICY 2026 · AI Large Language Model Track.** Try the [public chatbot](https://accessstem-ai.vercel.app/). The three sample lessons are awaiting teacher review. See the [Vercel deployment guide](docs/deployment.md) for build and acceptance details.
+[繁體中文](README.zh-TW.md) · [Live demo](https://accessstem-ai.vercel.app/) · [Public chat history](https://accessstem-ai.vercel.app/waicy/chat-history) · [WAICY presentation (PDF)](docs/LLM_High_AccessSTEMAI.anonymized.pdf)
 
-## Explore the project
+## Overview
 
-- **Full guide** walks through axes and units, key points, and trends in order. The first explanation layer opens automatically at the default depth. The lesson also includes a formula reading and a coordinate table.
-- **Quick summary** leads with the central takeaway and keeps short supporting detail available on demand. Learners can request more detail in the same conversation.
-- **Teacher guide** drafts a classroom explanation, a common misconception, and three guiding questions. Ask for one classroom question to get a prompt you can read to students. The draft is marked for review.
-- Use a sample linear or quadratic function, or paste a text problem. Hints only gives a first step. Full solution shows the result and its reasoning.
+Graph lessons often present meaning through position, slope, or shape. AccessSTEM AI describes those relationships in words and lets learners ask about the details they need. Built for the WAICY 2026 AI Large Language Model Track, the prototype covers three sample linear and quadratic function graphs. The samples are awaiting teacher review.
 
-The workspace, tutoring, and error messages open in English by default. Select **繁體中文** or open `/?lang=zh-Hant` for Traditional Chinese. `/?lang=en` is the explicit English entry.
+## Try the demo
 
-## Run locally
+1. Open the [workspace](https://accessstem-ai.vercel.app/) and select a sample graph or paste a text problem with its formula, coordinates, or scale.
+2. Choose **Full guide**, **Quick summary**, or **Teacher guide**. In **Learning preferences**, set the solution style to **Hints only** to get one step before seeing the result.
+3. Ask a question about the graph. For example, ask how to find the vertex, or have the tutor draft one question you can read to students.
 
-Use Node.js 24 LTS and pnpm 10.33.0. For AI chat, copy `web/.env.example` to `web/.env.local` and set the server-side `OPENAI_API_KEY`. The default model is `gpt-6.1-terra` at low reasoning effort.
+The workspace opens in English. Choose **繁體中文** in the header or open the [Traditional Chinese workspace](https://accessstem-ai.vercel.app/?lang=zh-Hant).
+
+![AccessSTEM workspace with the graph lesson and Full guide reply side by side](docs/waicy-submission/assets/v5/mode-full.jpg)
+
+## Features
+
+| Mode or tool | What it provides |
+| --- | --- |
+| **Text-based graph lessons** | A readable formula, axis labels and units when available, a coordinate table, and a description of trends. |
+| **Full guide** | A walkthrough of axes, key points, and trends. The first detail opens automatically at the default depth. |
+| **Quick summary** | The main takeaway and one supporting section at brief depth. Follow-ups can request more detail in the same conversation. |
+| **Teacher guide** | A copyable draft with a classroom explanation, a common misconception, and three guiding questions. A request for one classroom question gets a student-facing question in the summary. |
+| **Solution style** | Hints only gives a first step. Guided walks through the reasoning. Full solution shows the result and checkable steps. |
+| **Evidence and uncertainty** | Replies distinguish supplied facts, mathematical deductions, and missing information. When a unit or scale is missing, the tutor can ask for the evidence needed to answer. |
+
+## How it works
+
+The Next.js workspace in `web/` pairs sample graph facts or a text problem with the selected mode and recent turns. The server validates the request, calls the OpenAI Responses API, and validates the structured reply before rendering it. Conversation state lives in the current page. Use fictional details in chat because questions are sent to OpenAI. [Architecture](docs/architecture.md) · [API contract](docs/api-and-data-contracts.md) · [Data and privacy](docs/security-and-privacy.md)
+
+## Quick start
+
+Use Node.js 24 LTS and pnpm 10.33.0. Run the following commands from the repository root.
 
 ```sh
 cd web
 pnpm install --frozen-lockfile
+cp .env.example .env.local
 pnpm dev
 ```
 
-Open [the local workspace](http://localhost:3000/). The graph lessons are also available without a provider key. See the [Web setup](web/README.md) for error behavior and verification commands.
+Open [http://localhost:3000](http://localhost:3000/). The lessons work on their own. To enable chat, set `OPENAI_API_KEY` in `web/.env.local` and restart. The default model is `gpt-6.1-terra` with low reasoning effort. [Web setup and verification](web/README.md) · [Vercel deployment](docs/deployment.md)
 
-## Competition evidence
+## Verification and limitations
 
-| Material | Contents |
-|---|---|
-| [WAICY presentation PDF](docs/LLM_High_AccessSTEMAI.anonymized.pdf) | 53-page English V5 deck with student names, grades, and portraits removed |
-| [V5 slide-maker handoff](docs/waicy-submission/slide-maker-handoff.md) | Judge links, official checklist, English copy, prompt changes and fresh captures |
-| [Public chat history](https://accessstem-ai.vercel.app/waicy/chat-history) | Eighteen messages in one agent-operated conversation with the deployed V5 tutor |
-| [WAICY entry and rubric](docs/competition.md) | Deliverables, official sources, and status |
-| [Iteration log](docs/waicy-iteration-log.md) | Prompt changes, real model tests, failures, and retests |
-| [Evaluation protocol and results](docs/evaluation-plan.md) | Matched test design, case IDs, scores, and limitations |
-| [Screenshots and English captions](docs/assets/waicy-screenshots/WAICY-screenshot-index.md) | Browser captures of the workspace and actual model replies |
-| [Demo and submission](docs/demo-and-submission.md) | Three-minute English demo and final acceptance checks |
-| [Deck and submission package](docs/waicy-submission/) | English Collage deck source, score map, research, and form description |
-| [Research and source notes](docs/waicy-submission/research-notes.md) | Which sources support which claims |
+- The [V5 test report](docs/waicy-submission/evaluation/v5-test-report.md) covers matched explanation depth, hint pacing, and follow-ups about missing units. The [evaluation protocol](docs/evaluation-plan.md) and [iteration log](docs/waicy-iteration-log.md) describe the cases, earlier versions, and retests.
+- The [public transcript](https://accessstem-ai.vercel.app/waicy/chat-history) contains nine scripted questions entered by an AI agent and nine live tutor replies. Classroom validation, teacher review, and VoiceOver acceptance remain open.
+- The current workspace uses structured samples and text. Image upload, speech features, learner accounts, and saved conversations remain outside this prototype.
 
-## Engineering reference
+## Documentation
 
-- [Requirements and acceptance](docs/project-overview.md), [project profile](docs/project-profile.md), and [implementation plan](docs/implementation-plan.md).
-- [Architecture](docs/architecture.md), [agent instructions](docs/agent-design.md), and [API contract](docs/api-and-data-contracts.md).
-- [Accessibility](docs/ux-accessibility.md), [data handling](docs/data-and-storage.md), and [security and privacy](docs/security-and-privacy.md).
-- [Provider integration](docs/integrations.md), [deployment plan](docs/deployment.md), and [decisions and sources](docs/decisions-and-sources.md).
-- [Evidence templates](docs/evidence-templates.md) and [engineering handoff](docs/agent-handoff.md).
-
-The single Next.js component lives under `web/`. The server validates inputs and calls OpenAI through `POST /api/chat`. Conversation state lives in the current browser page. The prototype accepts structured sample facts and text. Image upload, speech features, learner accounts, and saved history remain future work.
+| Resource | Contents |
+| --- | --- |
+| [Project overview](docs/project-overview.md) · [Implementation plan](docs/implementation-plan.md) | Scope, requirements, and engineering status |
+| [Agent design](docs/agent-design.md) · [Accessibility design](docs/ux-accessibility.md) | Teaching modes, prompt behavior, and interaction design |
+| [WAICY materials](docs/waicy-submission/) · [Competition and rubric](docs/competition.md) | Presentation source, research, and submission resources |
+| [Slide-maker handoff](docs/waicy-submission/slide-maker-handoff.md) · [Screenshot index](docs/assets/waicy-screenshots/WAICY-screenshot-index.md) · [Demo guide](docs/demo-and-submission.md) | Public links, examples, and walkthrough |
