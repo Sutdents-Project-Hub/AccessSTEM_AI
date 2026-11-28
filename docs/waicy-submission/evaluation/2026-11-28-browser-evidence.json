@@ -1,0 +1,213 @@
+{
+  "method": "Scripted Playwright sessions on the public, signed-out browser interface",
+  "commit": "1c09bb4c31b37766380b4a1ef6aa41103a0489a4",
+  "testedAt": "2026-11-28T01:12:53.217Z",
+  "reflow": {
+    "width": 320,
+    "documentWidth": 320,
+    "highContrast": "high",
+    "table": true
+  },
+  "keyboard": [
+    {
+      "name": "profile",
+      "value": "learner-full",
+      "visible": true
+    }
+  ],
+  "matchedOverview": {
+    "fullGuide": {
+      "question": "Give me an overview of the graph",
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "guided",
+        "mathLevel": "beginner"
+      },
+      "chartId": "quadratic-vertex-demo-01",
+      "priorTurns": 0,
+      "capturedAt": "2026-11-28T01:12:20.631Z",
+      "latencyMs": 5261,
+      "answer": {
+        "summary": "The graph is an upward-opening parabola with its lowest point at (2, 1).",
+        "sections": [
+          {
+            "heading": "Axes and units",
+            "text": "The horizontal axis is x, and the vertical axis is y. No physical units are specified."
+          },
+          {
+            "heading": "Key points",
+            "text": "The vertex is (2, 1). The graph crosses the y-axis at (0, 5), and the matching point across the symmetry line is (4, 5)."
+          },
+          {
+            "heading": "Trend",
+            "text": "As x increases toward 2, y decreases; after x passes 2, y increases. The symmetry line is x = 2, and the curve does not cross the x-axis."
+          }
+        ],
+        "claims": [
+          {
+            "kind": "given",
+            "text": "The formula is y = (x - 2)^2 + 1.",
+            "sourceRef": "formula"
+          },
+          {
+            "kind": "given",
+            "text": "The vertex is (2, 1), and the points (0, 5) and (4, 5) are symmetric.",
+            "sourceRef": "key-points"
+          },
+          {
+            "kind": "given",
+            "text": "The parabola opens upward and decreases before x = 2, then increases.",
+            "sourceRef": "trends"
+          },
+          {
+            "kind": "unknown",
+            "text": "Physical units for the axes are not specified.",
+            "sourceRef": "missing-data"
+          }
+        ],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      },
+      "visibleFirstSection": true
+    },
+    "quickSummary": {
+      "question": "Give me an overview of the graph",
+      "preferences": {
+        "profile": "learner-brief",
+        "readingDepth": "brief",
+        "pedagogyMode": "guided",
+        "mathLevel": "beginner"
+      },
+      "chartId": "quadratic-vertex-demo-01",
+      "priorTurns": 0,
+      "capturedAt": "2026-11-28T01:12:52.061Z",
+      "latencyMs": 3227,
+      "answer": {
+        "summary": "The graph is an upward-opening parabola with its lowest point at (2, 1).",
+        "sections": [
+          {
+            "heading": "Trend",
+            "text": "As x increases, y decreases until x = 2, then increases."
+          }
+        ],
+        "claims": [
+          {
+            "kind": "given",
+            "text": "The vertex is (2, 1).",
+            "sourceRef": "key-points"
+          },
+          {
+            "kind": "given",
+            "text": "The parabola opens upward and changes from decreasing to increasing at x = 2.",
+            "sourceRef": "trends"
+          }
+        ],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      },
+      "visibleFirstSection": false
+    }
+  },
+  "journey": [
+    {
+      "capturedAt": "2026-11-28T01:12:20.631Z",
+      "latencyMs": 5261,
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "guided",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 0
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:23.184Z",
+      "latencyMs": 2447,
+      "preferences": {
+        "profile": "learner-brief",
+        "readingDepth": "brief",
+        "pedagogyMode": "guided",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 1
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:26.237Z",
+      "latencyMs": 2933,
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 2
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:30.264Z",
+      "latencyMs": 4022,
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 3
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:33.348Z",
+      "latencyMs": 3074,
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 4
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:37.189Z",
+      "latencyMs": 3772,
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "full",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 5
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:40.528Z",
+      "latencyMs": 3333,
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "full",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 6
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:45.416Z",
+      "latencyMs": 4858,
+      "preferences": {
+        "profile": "educator",
+        "readingDepth": "deep",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 6
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:47.855Z",
+      "latencyMs": 2430,
+      "preferences": {
+        "profile": "educator",
+        "readingDepth": "deep",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "priorTurns": 6
+    }
+  ]
+}

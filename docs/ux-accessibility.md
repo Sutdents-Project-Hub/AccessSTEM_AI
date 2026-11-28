@@ -81,6 +81,8 @@ Text-to-paper contrast is 12.47:1, ink on mustard is 8.88:1, white text on the p
 
 The English-first production build was checked again in Chrome. The first response to `/` had English document language and content with JavaScript disabled. The Traditional Chinese URL marked its workspace subtree correctly. The language for the document switches after hydration, and the preference survives a reload of its URL. At 320 CSS px the high-contrast screen did not overflow after expanding the graph notes. Selected automated axe rules reported zero violations on that screen. The [mobile capture](assets/waicy-screenshots/08-mobile-high-contrast.png) uses a 390 CSS px Chrome viewport.
 
+On the public V5 site on 28 November, Chrome keyboard checks reached the skip link, moved focus to main, selected a mode with arrow keys and moved to the latest AI reply. High contrast with the graph coordinate table expanded fit a 320 CSS px viewport. The [V5 captures and method](waicy-submission/slide-maker-handoff.md#screenshots-for-slides-14-19-and-20) cover those checks.
+
 ## Accessibility target and limitations
 
 WCAG 2.2 AA is the **design and testing target**. The design references W3C WAI [Complex Images](https://www.w3.org/WAI/tutorials/images/complex/) guidance on paired short and long descriptions. Implementation must retain at least a VoiceOver operation recording or reproducible test steps, an issue list, and a fix record. Without feedback from real users with visual impairments, **state clearly that only assistive-technology testing was done; do not claim real-user validation**.

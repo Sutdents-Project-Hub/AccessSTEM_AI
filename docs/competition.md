@@ -13,7 +13,7 @@ The [global event page](https://www.waicy.org/waicy-2026/) lists ages 6–18, in
 | Criterion | Points | Evidence |
 |---|---:|---|
 | Specific AI Service | 25 | One graph tutoring task, three modes with meaningfully different replies, interactive demo |
-| Iterative Development | 25 | Baseline to V3, matched model calls, recorded failures, revised instructions, and retests |
+| Iterative Development | 25 | Baseline through V5, matched model calls, recorded failures, prompt excerpts, and retests |
 | Motivation & Problem Statement | 10 | The learning gap between encountering a graph and understanding its axes, trends, and relationships |
 | Limitations & Considerations | 10 | Model errors, absent units, teacher review, user privacy, and the limits of accessibility testing |
 | Future Development & Clear Reference | 10 | Planned validation, image and speech work, and traceable sources |
@@ -30,10 +30,10 @@ Prepare one English PDF with the service, at least three meaningfully different 
 
 | Item | Status |
 |---|---|
-| English web workspace and real OpenAI dialogue | Verified locally. Sample lessons still require teacher review. |
+| English web workspace and real OpenAI dialogue | V5 verified in the public browser workflow. Sample lessons still require teacher review. |
 | Prompt iterations and error analysis | Real matched runs and limitations are recorded in the [iteration log](waicy-iteration-log.md). |
-| English deck, research, screenshots, and form description | Prepared for team review. See the [entry materials](waicy-submission/) and [screenshot index](assets/waicy-screenshots/WAICY-screenshot-index.md). |
-| Final chatbot URL and conversation link | Live at https://accessstem-ai.vercel.app. A [14-message scripted test conversation](waicy-submission/final-chat-transcript.md) is published. |
-| Official PDF and submission | PDF exported outside the repository. Team confirmation, Drive sharing and submission remain; see the [checklist](waicy-submission/submission-todo.md). |
+| English deck, research, screenshots, and form description | The [V5 slide-maker handoff](waicy-submission/slide-maker-handoff.md) maps the new evidence to the V4 draft. |
+| Final chatbot URL and conversation link | [Live prototype](https://accessstem-ai.vercel.app/?lang=en) and [18-message V5 test conversation](https://accessstem-ai.vercel.app/waicy/chat-history) operated by an agent. |
+| Official PDF and submission | The previous PDF is outside the repository. The V5 export, team confirmation, Drive sharing and submission are tracked in the [checklist](waicy-submission/submission-todo.md). |
 
 Use a reviewed graph when its review is complete. During the demo, ask the same question in each mode, show a real failure and retest, and explain what happens when a fact is missing. Describe verified keyboard behavior, outstanding VoiceOver work, and actual student, advisor, and AI-tool contributions accurately.

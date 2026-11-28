@@ -1,0 +1,5 @@
+AccessSTEM AI — AI use disclosure draft
+
+The prototype uses the OpenAI Responses API to generate graph-tutoring replies from supplied graph facts, a question, and selected learning preferences. Codex assisted with implementation, prompt revisions, scripted testing, review of model outputs, research synthesis, and drafting technical and presentation materials. The linked V5 example was operated by an AI agent through the public browser interface and contains actual service replies to scripted questions. Development tests used synthetic scenarios. Historical internal scores were AI-assisted. Sample graphs are awaiting teacher review.
+
+Before filing: add each team member's confirmed contribution and any other tool or adviser contribution. Confirm the final disclosure wording and submission channel with the team.

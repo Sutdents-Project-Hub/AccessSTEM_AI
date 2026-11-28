@@ -14,10 +14,10 @@ Read [repository instructions](../AGENTS.md), [requirements](project-overview.md
 | W04 | Server-side Responses API and chat route | W01/W03 | Live reply, bounded requests, and meaningful errors | Live provider verified locally. Missing key, 429, and invalid replies covered by controlled checks. |
 | W05 | Layered tutoring, evidence, and hints | W02/W04 | Follow-ups, alternative explanations, useful hints, and questions when facts are missing | Implemented with true browser dialogues and matched retests |
 | W06 | Accessible bilingual workspace | W03/W05 | Keyboard, labels, feedback, and English-first entry | Implemented. VoiceOver and participant testing pending. |
-| W07 | Baseline through V3 prompt comparison | W05/W06 | Save real requests, outputs, failures, and fixes | Historical and English pilot evidence recorded. Larger 36-scenario plan and independent grading remain open. |
+| W07 | Baseline through V5 prompt comparison | W05/W06 | Save real requests, outputs, failures, and fixes | Historical results and V4/V5 retest recorded. Larger 36-scenario plan and independent grading remain open. |
 | W08 | Accessibility and error verification | W06/W07 | Record real assistive-technology checks, fixes, and retests | Keyboard, reflow, and selected automated checks recorded. VoiceOver remains open. |
-| W09 | Deployed demo and reviewed conversation | W07/W08 and hosting decision | External judges can open both links and use AI | Public deployment and link acceptance pending |
-| W10 | English PDF and submission | W07–W09 and team review | One English PDF, form description within 200 words, and confirmation | English source package prepared. Final links, export, and submission pending. |
+| W09 | Deployed demo and reviewed conversation | W07/W08 and hosting decision | External judges can open both links and use AI | V5 deployed. The agent-operated transcript has a public HTML and text link. |
+| W10 | English PDF and submission | W07–W09 and team review | One English PDF, form description within 200 words, and confirmation | [V5 materials](waicy-submission/slide-maker-handoff.md) and form description prepared. Updated PDF export and formal submission pending. |
 
 ## Original rehearsal schedule
 

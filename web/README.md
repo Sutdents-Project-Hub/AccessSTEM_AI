@@ -26,6 +26,8 @@ Prompt V5 differentiates the default learner overviews. Full guide gives ordered
 
 Import this component with Root Directory `web` and the Next.js preset. The [deployment guide](../docs/deployment.md) lists production variables and the judge-link check.
 
+`/waicy/chat-history` and `/waicy/chat-history.txt` serve the same fixed, reviewed test transcript. They use the captured V5 replies in `src/app/waicy/chat-history/transcript.json`. Regular tutor conversations do not populate these routes.
+
 ## Verify
 
 ```sh

@@ -1,6 +1,6 @@
 # English demo and submission guide
 
-The public demo at https://accessstem-ai.vercel.app and a [14-message test conversation](waicy-submission/final-chat-transcript.md) are available. Team review and the official submission are pending. Use the [submission checklist](waicy-submission/submission-todo.md) for team details, file names, and permissions.
+The [public V5 demo](https://accessstem-ai.vercel.app/?lang=en) and an [18-message agent-operated test conversation](https://accessstem-ai.vercel.app/waicy/chat-history) are available. Use the [slide-maker handoff](waicy-submission/slide-maker-handoff.md) for English copy, captures, and the latest evidence. The [submission checklist](waicy-submission/submission-todo.md) covers team details, file names, and permissions.
 
 ## Three-minute live demo
 
@@ -29,9 +29,9 @@ Requirements and timing come from the [LLM track guidebook](https://waicy-cdn.wh
 
 | Item | Status and acceptance |
 |---|---|
-| Live chatbot | Real replies checked on 27 November 2026, including a keyboard-only automated run and a narrow viewport. Check from another device before judging. |
-| Final conversation | [Published transcript](waicy-submission/final-chat-transcript.md) from a scripted session on V4. Open it signed out before submitting. |
-| Anonymized iteration evidence | The repository contains the [method and excerpts](waicy-iteration-log.md). Full raw records remain local. |
+| Live chatbot | V5 real replies, keyboard mode changes, visible focus and 320 CSS px reflow checked on 28 November. |
+| Final conversation | [V5 published transcript](https://accessstem-ai.vercel.app/waicy/chat-history) and [text backup](https://accessstem-ai.vercel.app/waicy/chat-history.txt) from an agent-operated scripted session. A team-member conversation directly addresses the guidebook’s entrant-to-assistant wording. |
+| Anonymized iteration evidence | [Method and excerpts](waicy-iteration-log.md) and [new V5 replies and review](waicy-submission/evaluation/v5-test-report.md). |
 | English PDF and Drive | Confirm team identifiers and contribution claims, enter the two verified links, export one PDF, and check that the shared folder and its contents open. |
 | Submission | Retain the real confirmation once the team submits through its applicable channel. |
 

@@ -21,6 +21,7 @@ AccessSTEM AI addresses an interaction gap in high-school mathematics: a learner
 | V2 | Add adjustable depth, the three teaching modes, and a teacher draft with misconceptions and guiding questions. | Lead with the takeaway in Quick summary. Draft three guiding questions for a teacher. |
 | V3 | Add known, derived, and unknown claims, source identifiers, one-step hints, and missing-evidence questions. | In Hints only, keep the target result out of every answer field. For a possible constant rate, distinguish the average over an interval from a claim about the whole graph. |
 | V4 | Align English hint guidance with the interface and distinguish student questions from tutor follow-ups. | A teacher asking for one classroom question receives it in the summary. With unreadable scales, the question asks students what evidence they would need. |
+| V5 | Define separate overview structures for full and brief depth. Require a concrete clarification for a queried detail the graph cannot establish. | Same-graph browser replies used three layers in Full guide and one in Quick summary. The missing-unit retest asked for the axis label or problem statement. |
 
 The reading guide paraphrases the tested instructions in English. [Prompt source](../web/src/server/agent/prompts.ts) and [request assembly](../web/src/server/agent/openai.ts) preserve the actual implementation. Individual run files retain the complete sent developer text and raw provider output. The historical matched comparison fixed `gpt-6.1-terra`, low reasoning effort, and a maximum of 2,200 output tokens. See the [evaluation protocol](evaluation-plan.md) for scoring and version controls.
 
@@ -56,7 +57,11 @@ Both rounds used scripted requests through https://accessstem-ai.vercel.app with
 
 The label correction has both a prompt rule and a display safeguard, so the live result cannot separate them. A further keyboard-only automated run changed the mode and received a reply without pointer input, and a 390 px viewport had no horizontal overflow. VoiceOver was not tested. One observed interface quirk remains: **Respond to this question** wraps the quoted question in `「」` brackets in the English interface.
 
-The [final conversation](waicy-submission/final-chat-transcript.md) is published in full. Raw files are in `evidence/raw/waicy-prod-2026-11-27/`, `waicy-prod-v4-2026-11-27/` and `waicy-journey-2026-11-27/` (git-ignored).
+The [V4 archived conversation](waicy-submission/final-chat-transcript.md) is published in full. Original capture paths are `evidence/raw/waicy-prod-2026-11-27/`, `waicy-prod-v4-2026-11-27/` and `waicy-journey-2026-11-27/` (git-ignored).
+
+### Nov 28 · V5 learner depth and evidence follow-up
+
+The fresh V4 Quick summary still returned two sections, secondary coordinates and a practice question. V5 uses a single supporting section at brief depth and opens the first detail layer for the default Full guide. An initial V5 test correctly refused to infer meters but omitted the clarification. A narrower instruction restored the concrete follow-up in the English, Traditional Chinese and public browser retests. The [test report](waicy-submission/evaluation/v5-test-report.md) links exact model replies and preserves the first failure. The [V5 public conversation](https://accessstem-ai.vercel.app/waicy/chat-history) contains nine scripted questions and nine live replies.
 
 ## 4. Historical results and analyst limitations
 

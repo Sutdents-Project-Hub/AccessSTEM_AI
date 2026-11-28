@@ -29,6 +29,8 @@ Open [the local workspace](http://localhost:3000/). The graph lessons are also a
 
 | Material | Contents |
 |---|---|
+| [V5 slide-maker handoff](docs/waicy-submission/slide-maker-handoff.md) | Judge links, official checklist, English copy, prompt changes and fresh captures |
+| [Public chat history](https://accessstem-ai.vercel.app/waicy/chat-history) | Eighteen messages in one agent-operated conversation with the deployed V5 tutor |
 | [WAICY entry and rubric](docs/competition.md) | Deliverables, official sources, and status |
 | [Iteration log](docs/waicy-iteration-log.md) | Prompt changes, real model tests, failures, and retests |
 | [Evaluation protocol and results](docs/evaluation-plan.md) | Matched test design, case IDs, scores, and limitations |

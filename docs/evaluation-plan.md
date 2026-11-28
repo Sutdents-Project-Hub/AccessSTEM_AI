@@ -96,6 +96,10 @@ The English batch translated the ten existing scenario archetypes and graph fact
 
 The three batches had no provider failures or retries. Structural validity counts require valid parsing. The retest checks are narrow content checks of observed replies. They cover four cases, two repetitions each, with no independent human grading. The revised V3 was not rerun against the full ten-case suite. The historical score table remains labeled and unchanged. The English replication does not estimate general accuracy or provide independent held-out validation. See the [English iteration record](waicy-iteration-log.md#5-english-replication-and-two-revisions) for exact failure and fix examples.
 
+## V4 and V5 English retest · November 28, 2026
+
+The original ten English cases and two targeted classroom-question cases were rerun on V4. V5 added three reading-time/slope cases, including an explicit depth override. The draft run identified a missed follow-up about an unknown unit. The revised prompt was rerun on all 15 English cases and six targeted Traditional Chinese cases. The [V5 report](waicy-submission/evaluation/v5-test-report.md) records the content checks, schema results, actual prompt and response export, and two comparable first replies from the deployed browser. Review was performed by Codex. These runs leave the historical scoring table and its provenance intact.
+
 ## Run tests and keep evidence
 
 ```sh

@@ -2,6 +2,8 @@
 
 > Slide numbers follow [deck.json](deck-source/project/deck.json). Based on the [official rubric](https://www.waicy.org/rubrics/) checked on 23 November 2026 and the LLM pages of the October Guidebook rechecked on 27 November. This is a coverage review, not a predicted score.
 
+This map describes the 48-slide V4 snapshot. The [V5 handoff](slide-maker-handoff.md) contains the replacement material, and the [V5 test report](evaluation/v5-test-report.md) records the new runs.
+
 ## Ten required content areas
 
 | # | Requirement | Slides | Status |

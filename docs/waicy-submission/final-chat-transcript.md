@@ -1,4 +1,6 @@
-# AccessSTEM AI — final chat history
+# AccessSTEM AI — V4 chat history (27 November archive)
+
+For the current tutor, open the [public V5 conversation](https://accessstem-ai.vercel.app/waicy/chat-history) or its [plain-text companion](https://accessstem-ai.vercel.app/waicy/chat-history.txt).
 
 | | |
 |---|---|

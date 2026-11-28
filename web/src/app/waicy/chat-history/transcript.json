@@ -1,0 +1,287 @@
+{
+  "promptVersion": "V5",
+  "commit": "1c09bb4c31b37766380b4a1ef6aa41103a0489a4",
+  "recordedAt": "2026-11-28T01:12:20.631Z",
+  "lesson": "Quadratic functions and vertices, y = (x − 2)² + 1",
+  "turns": [
+    {
+      "capturedAt": "2026-11-28T01:12:20.631Z",
+      "question": "Give me an overview of the graph",
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "guided",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "The graph is an upward-opening parabola with its lowest point at (2, 1).",
+        "sections": [
+          {
+            "heading": "Axes and units",
+            "text": "The horizontal axis is x, and the vertical axis is y. No physical units are specified."
+          },
+          {
+            "heading": "Key points",
+            "text": "The vertex is (2, 1). The graph crosses the y-axis at (0, 5), and the matching point across the symmetry line is (4, 5)."
+          },
+          {
+            "heading": "Trend",
+            "text": "As x increases toward 2, y decreases; after x passes 2, y increases. The symmetry line is x = 2, and the curve does not cross the x-axis."
+          }
+        ],
+        "claims": [
+          {
+            "kind": "given",
+            "text": "The formula is y = (x - 2)^2 + 1.",
+            "sourceRef": "formula"
+          },
+          {
+            "kind": "given",
+            "text": "The vertex is (2, 1), and the points (0, 5) and (4, 5) are symmetric.",
+            "sourceRef": "key-points"
+          },
+          {
+            "kind": "given",
+            "text": "The parabola opens upward and decreases before x = 2, then increases.",
+            "sourceRef": "trends"
+          },
+          {
+            "kind": "unknown",
+            "text": "Physical units for the axes are not specified.",
+            "sourceRef": "missing-data"
+          }
+        ],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      }
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:23.184Z",
+      "question": "Give me the key relationship in just a few words.",
+      "preferences": {
+        "profile": "learner-brief",
+        "readingDepth": "brief",
+        "pedagogyMode": "guided",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "The parabola has a minimum at (2, 1).",
+        "sections": [
+          {
+            "heading": "Trend",
+            "text": "y decreases before x = 2 and increases after it."
+          }
+        ],
+        "claims": [
+          {
+            "kind": "derived",
+            "text": "The minimum is at (2, 1).",
+            "sourceRef": "formula"
+          }
+        ],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      }
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:26.237Z",
+      "question": "Give me one hint for finding the minimum. Please keep the result hidden.",
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "Look at the squared term in y = (x − 2)² + 1.",
+        "sections": [
+          {
+            "heading": "Hint",
+            "text": "What is the smallest value a square can have?"
+          }
+        ],
+        "claims": [],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      }
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:30.264Z",
+      "question": "I still do not understand why the squared part matters. Can you use different numbers without giving the graph’s result?",
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "A square affects the total because it adds a nonnegative amount.",
+        "sections": [
+          {
+            "heading": "Hint",
+            "text": "With different numbers, compare (−3)² = 9 and (−1)² = 1. What happens to the square as the number gets closer to zero?"
+          }
+        ],
+        "claims": [],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      }
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:33.348Z",
+      "question": "Tell me the minimum value directly now.",
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "To see the direct answer, select “Full solution” in your learning preferences.",
+        "sections": [
+          {
+            "heading": "Hint",
+            "text": "What is the smallest value the squared term (x − 2)² can have?"
+          }
+        ],
+        "claims": [],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      }
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:37.189Z",
+      "question": "Now show me the full solution and explain why the minimum is reached.",
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "full",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "The minimum value is y = 1, reached at x = 2.",
+        "sections": [
+          {
+            "heading": "Why this is the minimum",
+            "text": "In y = (x − 2)² + 1, the squared term cannot be negative. Its smallest possible value is 0, which occurs when x − 2 = 0, or x = 2. Substituting gives y = 0 + 1 = 1."
+          }
+        ],
+        "claims": [
+          {
+            "kind": "given",
+            "text": "The function is y = (x − 2)² + 1.",
+            "sourceRef": "formula"
+          },
+          {
+            "kind": "derived",
+            "text": "The minimum is 1, reached at x = 2.",
+            "sourceRef": "formula"
+          }
+        ],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      }
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:40.528Z",
+      "question": "Is the vertical axis measured in meters? Tell me what evidence I would need.",
+      "preferences": {
+        "profile": "learner-full",
+        "readingDepth": "step-by-step",
+        "pedagogyMode": "full",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "It is not possible to tell whether the vertical axis is measured in meters.",
+        "sections": [
+          {
+            "heading": "Evidence needed",
+            "text": "The axis is labeled y, but no physical unit is specified. A clear axis label or a statement in the problem identifying y’s unit would establish whether it is measured in meters."
+          }
+        ],
+        "claims": [
+          {
+            "kind": "given",
+            "text": "The vertical axis is labeled y, with no unit specified.",
+            "sourceRef": "y-axis"
+          },
+          {
+            "kind": "unknown",
+            "text": "Whether y is measured in meters is not established by the available information.",
+            "sourceRef": "missing-data"
+          }
+        ],
+        "nextQuestion": "Can you provide a clear axis label or a problem statement that specifies the unit of y?",
+        "needsHumanVerification": true
+      }
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:45.416Z",
+      "question": "Draft a short high-school lesson guide with one misconception and three questions.",
+      "preferences": {
+        "profile": "educator",
+        "readingDepth": "deep",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "Lesson guide: Use the vertex form to connect a squared expression with the parabola’s minimum.",
+        "sections": [
+          {
+            "heading": "Teacher orientation",
+            "text": "For y = (x − 2)² + 1, the vertex is (2, 1). The parabola opens upward, decreases for x < 2, and increases for x > 2. Its minimum is y = 1. The axes are labeled x and y; no physical units are specified."
+          },
+          {
+            "heading": "Common misconception",
+            "text": "Students may think (x − 2)² can be negative when x < 2. The expression inside the square can be negative, but its square cannot."
+          },
+          {
+            "heading": "Student questions",
+            "text": "What values can a squared expression take?\nWhen is (x − 2)² as small as possible?\nHow does adding 1 affect the value of y?"
+          }
+        ],
+        "claims": [
+          {
+            "kind": "given",
+            "text": "The function is y = (x − 2)² + 1.",
+            "sourceRef": "formula"
+          },
+          {
+            "kind": "derived",
+            "text": "The minimum is y = 1, reached at x = 2.",
+            "sourceRef": "formula"
+          },
+          {
+            "kind": "unknown",
+            "text": "No physical units are specified for the axes.",
+            "sourceRef": "missing-data"
+          }
+        ],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      }
+    },
+    {
+      "capturedAt": "2026-11-28T01:12:47.855Z",
+      "question": "Give me one question I can read aloud to students. Leave out the answer.",
+      "preferences": {
+        "profile": "educator",
+        "readingDepth": "deep",
+        "pedagogyMode": "hint",
+        "mathLevel": "beginner"
+      },
+      "answer": {
+        "summary": "How does the squared term in y = (x − 2)² + 1 help you find the minimum value of the function?",
+        "sections": [
+          {
+            "heading": "Teaching purpose",
+            "text": "Connect the nonnegativity of a square to the function’s minimum."
+          }
+        ],
+        "claims": [],
+        "nextQuestion": null,
+        "needsHumanVerification": true
+      }
+    }
+  ]
+}

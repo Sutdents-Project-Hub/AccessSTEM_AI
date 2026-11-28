@@ -1,6 +1,6 @@
 # Chart Data, Conversation Ephemera, and Competition Evidence
 
-> Status: Local MVP. Materials ship with the application; chat and learning preferences remain in the browser's current page session.
+> Status: Public MVP. Materials ship with the application. Live chat and learning preferences remain in the browser's current page session.
 
 ## Data categories and default storage
 
@@ -10,7 +10,7 @@
 | User-entered problem / description | Current browser session; only the portion needed for the current turn is sent to AI | No by default | Refreshing, leaving the page, or switching charts clears the conversation. OpenAI requests use `store: false`; confirm applicable provider policy before going public |
 | Profile / learning preferences | Current UI state | Non-identifying settings may be retained | Do not store diagnosis, school, or account data |
 | Raw LLM evaluation inputs and outputs | Team-controlled **private** evidence space (not yet selected) | No by default | Publish only after de-identification, permission, and review |
-| Final 10-turn real conversation (public version) | Read-only public page/document after review (not yet created) | Only with appropriate consent and de-identification | Confirm link validity for submission and conditions for removal and retention |
+| V5 competition chat recording | Read-only HTML and plain-text routes generated from one static file | Reviewed scripted questions and service replies | Select and review data before publication. Browser sessions cannot write to these routes. |
 | Images / scans (P1) | If added in the future, process temporarily and then remove | No by default | Do not retain original images; recheck third-party processing terms |
 | Keys, personal data, real student data | **Never in the repository or public materials** | No | Process only as legally necessary; do not log sensitive data |
 
@@ -33,11 +33,11 @@ See the [API contract](api-and-data-contracts.md) for exact fields; do not defin
 - If image support is added, all model-extracted values remain **provisional drafts** until confirmed by the user or reviewed by a teacher.
 - Confirm rights, appropriate citation, source, and permission to publish on GitHub for images and PDFs from formal learning materials.
 
-## Submission without a database (not yet implemented)
+## Submission without a database
 
-- The demo may support anonymous short-lived conversations with real multi-turn LLM responses; sign-in is not required.
-- For the final real interaction, manually preserve the raw conversation, review and de-identify it, then create a **read-only conversation link**, potentially as a static evidence page or public document.
-- The read-only page must not be a fake chat. It must state the original run date, model, and version, and preserve the original message order. Do not write a conversation in advance and pass it off as an LLM run.
+- The demo supports anonymous, short-lived conversations with real multi-turn LLM responses. Both the demo and the published example are available without signing in.
+- The [read-only competition example](https://accessstem-ai.vercel.app/waicy/chat-history) preserves the captured date, prompt version, message order and source release. It contains only the reviewed V5 scripted browser session. The accompanying [plain text](https://accessstem-ai.vercel.app/waicy/chat-history.txt) uses the same source record.
+- Store provider logs privately. For the public evidence export, retain synthetic inputs, instructions, and replies after review. Exclude credentials, user identifiers, and private provider metadata.
 - Cross-device permanent chat storage or public share links for every user would be a **new requirement** that needs decisions about database, identity, consent, deletion, and backups.
 
 ## Sources, copyright, and reuse

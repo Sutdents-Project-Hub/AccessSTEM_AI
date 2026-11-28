@@ -15,6 +15,7 @@ The competition site runs on Vercel Hobby at [accessstem-ai.vercel.app](https://
 
 4. Deploy, then open the project's production domain in **Settings → Domains**. Use that stable HTTPS address in the submission. After changing production variables, redeploy for them to take effect.
 5. In a signed-out browser, open `/?lang=en`, choose a graph, send a question, and follow up on the same graph. Check that **Hints only** points to **Full solution** without revealing the result and that **Teacher guide** can draft a question for students. Record the tested URL and commit.
+6. Open [`/waicy/chat-history`](https://accessstem-ai.vercel.app/waicy/chat-history) and its [plain-text companion](https://accessstem-ai.vercel.app/waicy/chat-history.txt) without signing in. Both serve the same reviewed, scripted test conversation. The recording identifies the V5 tutor commit and its agent operator.
 
 The chat function has a 40-second execution limit and a 25-second upstream timeout. Request limits in the application apply per running instance. Provider usage controls apply across instances.
 

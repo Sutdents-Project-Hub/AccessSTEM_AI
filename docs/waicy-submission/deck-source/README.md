@@ -2,6 +2,8 @@
 
 Source of the 48-slide report: `project/deck.json`, `project/deck.css` and `project/slides/*.html`.
 
+This snapshot reflects V4. Use the [V5 slide-maker handoff](../slide-maker-handoff.md) for the replacement links, reply excerpts, figures and verified claims before exporting the new PDF.
+
 - **Team details are removed.** Member names, grades and portraits are replaced by `Student A–D` and generic tokens. The submitted PDF is kept outside this public repository.
 - Images appear as `{{img:name}}` tokens. The renderer replaces each token with an uploaded asset or a local file before building.
 - Fonts: Bricolage Grotesque and Work Sans from Google Fonts.
