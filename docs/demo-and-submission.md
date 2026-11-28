@@ -21,7 +21,7 @@ Use the [English captures and captions](assets/waicy-screenshots/WAICY-screensho
 - One English PDF with the specific service, at least three different user needs, motivation, final conversation link, live chatbot link, design iterations, limitations, future work, conclusion, and references.
 - A reviewed final conversation with at least ten real exchanged messages. The team's working target is up to ten full turns to give the interaction room to develop.
 - The official description field accepts up to 200 words. Use the [English description draft](waicy-submission/project-description.txt).
-- The [submission deck source](waicy-submission/deck-source/) and [scoring map](waicy-submission/scoring-map.md) contain the prepared English presentation. A shorter local PDF draft is available in the ignored evidence folder. The formal PDF needs the approved links and confirmed contributions.
+- The [53-page presentation PDF](LLM_High_AccessSTEMAI.anonymized.pdf) is the anonymized V5 archive. See the [editable deck source](waicy-submission/deck-source/) and [scoring map](waicy-submission/scoring-map.md). Check the approved links and confirmed contributions in the team copy before filing.
 
 Requirements and timing come from the [LLM track guidebook](https://waicy-cdn.wholeren.cn/wp-content/uploads/2026/10/WAICY-2026-Guidebook-2.pdf#page=20) and [submission form](https://www.waicy.org/2026-submission/).
 

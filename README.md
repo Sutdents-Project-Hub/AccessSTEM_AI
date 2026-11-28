@@ -29,6 +29,7 @@ Open [the local workspace](http://localhost:3000/). The graph lessons are also a
 
 | Material | Contents |
 |---|---|
+| [WAICY presentation PDF](docs/LLM_High_AccessSTEMAI.anonymized.pdf) | 53-page English V5 deck with student names, grades, and portraits removed |
 | [V5 slide-maker handoff](docs/waicy-submission/slide-maker-handoff.md) | Judge links, official checklist, English copy, prompt changes and fresh captures |
 | [Public chat history](https://accessstem-ai.vercel.app/waicy/chat-history) | Eighteen messages in one agent-operated conversation with the deployed V5 tutor |
 | [WAICY entry and rubric](docs/competition.md) | Deliverables, official sources, and status |

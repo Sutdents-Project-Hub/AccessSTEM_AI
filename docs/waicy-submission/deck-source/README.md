@@ -2,7 +2,7 @@
 
 Source of the 53-slide V5 report dated 28 November 2026: `project/deck.json`, `project/deck.css` and `project/slides/*.html`.
 
-- **Team details are removed.** Member names, grades and portraits are replaced by `Student A–D` and generic tokens. The submitted PDF is kept outside this public repository.
+- The [53-page PDF archive](../../LLM_High_AccessSTEMAI.anonymized.pdf) uses `Student A–D` labels and omits individual grades and portraits. This source uses generic placeholders for grades and portraits. The team copy is kept privately.
 - Images appear as `{{img:name}}` tokens. The renderer replaces each token with an uploaded asset or a local file before building.
 - Fonts: Bricolage Grotesque and Work Sans from Google Fonts.
 - Research notes: [research-notes.md](../research-notes.md). Coverage: [scoring-map.md](../scoring-map.md). Submission checks: [submission-todo.md](../submission-todo.md).

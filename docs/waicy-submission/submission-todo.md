@@ -7,7 +7,7 @@ The global form closes **29 November 2026 at 17:00 Eastern**, or **30 November a
 - [V5 English public chatbot](https://accessstem-ai.vercel.app/?lang=en) and [18-message agent-operated test conversation](https://accessstem-ai.vercel.app/waicy/chat-history). The [plain-text version](https://accessstem-ai.vercel.app/waicy/chat-history.txt) serves the same conversation.
 - [Slide-maker handoff](slide-maker-handoff.md) with the ten-item guidebook map, rubric, research, prompt excerpts, model replies, and screenshots.
 - [Project description](project-description.txt), 163 words, and [AI-use disclosure draft](ai-use-disclosure.txt).
-- The 53-page English V5 PDF `LLM_High_AccessSTEMAI.pdf` is outside the repository. The [public deck source](deck-source/README.md) matches it with member details removed; [coverage map](scoring-map.md).
+- The [53-page English V5 archive PDF](../LLM_High_AccessSTEMAI.anonymized.pdf) removes student names, grades, and portraits. The team copy, `LLM_High_AccessSTEMAI.pdf`, is kept privately. See the [editable source](deck-source/README.md) and [coverage map](scoring-map.md).
 
 ## Team actions before filing
 

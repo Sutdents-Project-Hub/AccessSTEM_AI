@@ -34,6 +34,6 @@ Prepare one English PDF with the service, at least three meaningfully different 
 | Prompt iterations and error analysis | Real matched runs and limitations are recorded in the [iteration log](waicy-iteration-log.md). |
 | English deck, research, screenshots, and form description | A 53-slide V5 deck applies the [slide-maker handoff](waicy-submission/slide-maker-handoff.md); see the [coverage map](waicy-submission/scoring-map.md). Team review and filing remain open. |
 | Final chatbot URL and conversation link | [Live prototype](https://accessstem-ai.vercel.app/?lang=en) and [18-message V5 test conversation](https://accessstem-ai.vercel.app/waicy/chat-history) operated by an agent. |
-| Official PDF and submission | The previous PDF is outside the repository. The V5 export, team confirmation, Drive sharing and submission are tracked in the [checklist](waicy-submission/submission-todo.md). |
+| PDF and submission | The [53-page V5 presentation PDF](LLM_High_AccessSTEMAI.anonymized.pdf) is archived with student identifiers removed. The team copy, confirmation, Drive sharing and filing are tracked in the [checklist](waicy-submission/submission-todo.md). |
 
 Use a reviewed graph when its review is complete. During the demo, ask the same question in each mode, show a real failure and retest, and explain what happens when a fact is missing. Describe verified keyboard behavior, outstanding VoiceOver work, and actual student, advisor, and AI-tool contributions accurately.
