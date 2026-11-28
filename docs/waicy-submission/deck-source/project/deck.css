@@ -87,6 +87,7 @@ tr:first-child { background: #264653; }
 td, th { padding: 14px 22px; }
 table.tall td, table.tall th { padding: 22px 24px; }
 table.snug td, table.snug th { padding: 9px 20px; }
+table.tight td, table.tight th { padding: 6px 18px; }
 
 /* chat */
 .msg-l { background: #E4EBED; padding: 16px 24px; font-size: 28px; line-height: 1.38; }

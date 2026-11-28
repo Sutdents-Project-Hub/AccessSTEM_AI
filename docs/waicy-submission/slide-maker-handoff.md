@@ -1,6 +1,6 @@
 # AccessSTEM AI · WAICY slide-maker handoff
 
-**28 November 2026 · Use V5 for final product screenshots and links.** The existing 48-slide source is the V4 draft. Its page numbers identify where to apply the changes below. The competition submission is one English PDF. [Official requirements and references](official-and-research-brief.md)
+**28 November 2026 · Applied to the 52-slide V5 deck.** The page numbers below refer to the earlier 48-slide V4 draft; current numbers are in the [coverage map](scoring-map.md). The competition submission is one English PDF. [Official requirements and references](official-and-research-brief.md)
 
 ## Links to put in the PDF
 
